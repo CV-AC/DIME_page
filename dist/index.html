@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#edf2f8">
   <meta name="description" content="DIME: Scaling Self-Supervised Facial Representation Learning via Differential Masked Autoencoding. Project page, method, results, and video.">
   <meta property="og:title" content="DIME: Differential Masked Autoencoding">
   <meta property="og:description" content="Self-supervised facial representation learning through same-identity pairing and differential supervision.">
@@ -17,7 +17,7 @@
   <main id="content" class="page-width">
     <section class="paper-header" id="top" aria-labelledby="paper-title">
       <p class="project-label">Research project · 2026</p>
-      <h1 id="paper-title">DIME: Scaling Self-Supervised Facial Representation Learning via Differential Masked Autoencoding</h1>
+      <h1 id="paper-title"><span class="title-acronym">DIME:</span> Scaling Self-Supervised Facial Representation Learning via Differential Masked Autoencoding</h1>
       <p class="authors">Hao Yu<sup>1</sup>, Haoyu Chen<sup>1</sup>, Hui Wei<sup>1</sup>, Yan Jiang<sup>1</sup>, Nicu Sebe<sup>2</sup>, Guoying Zhao<sup>1</sup></p>
       <p class="affiliations"><sup>1</sup> ELLIS Institute Finland and CMVS, University of Oulu &nbsp; · &nbsp; <sup>2</sup> DISI, University of Trento</p>
       <div class="resource-links">
@@ -29,30 +29,47 @@
 
     <section class="opening-demo" id="video" aria-labelledby="video-title">
       <div class="demo-heading">
-        <h2 id="video-title">Video overview</h2>
-        <p>The recording illustrates facial landmarks, head pose, face parsing, and action-unit analysis on a moving face.</p>
+        <div><p class="eyebrow">Downstream results</p><h2 id="video-title">DIME in action</h2></div>
+        <p>Results obtained with DIME for facial landmarks, head pose, face parsing, and action-unit analysis.</p>
       </div>
       <figure class="demo-media demo-media-primary">
-        <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="Facial analysis demo video">
+        <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="DIME downstream facial analysis results">
           <source src="media/dime-demo.mp4" type="video/mp4">
           Your browser does not support video playback.
         </video>
-        <figcaption>Video demo · motion, geometry, parsing, and action units</figcaption>
+        <figcaption><strong>DIME results.</strong> Facial geometry, parsing, and action-unit predictions on a moving face.</figcaption>
       </figure>
-      <div class="demo-copy">
+      <section class="design-insight" aria-labelledby="design-title">
+        <header class="insight-heading">
+          <p class="eyebrow">The DIME design</p>
+          <h3 id="design-title">Learning the variation within an identity</h3>
+          <p>A shared appearance reference makes subtle facial changes an explicit learning signal.</p>
+        </header>
+        <div class="insight-grid">
         <figure class="paired-observations">
           <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
-            <div class="portrait neutral" role="img" aria-label="Neutral expression"></div>
-            <div class="portrait-arrow" aria-hidden="true">→</div>
-            <div class="portrait smile" role="img" aria-label="Smiling expression of the same person"></div>
+            <div class="observation observation-a"><span class="observation-label">Observation A</span><div class="portrait neutral" role="img" aria-label="The person with a neutral expression"></div></div>
+            <div class="observation observation-b"><span class="observation-label">Observation B</span><div class="portrait smile" role="img" aria-label="The same person with a smiling expression"></div></div>
           </div>
-          <figcaption>Illustrative portraits: <a href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Andrea Piacquadio / Pexels</a>. Not study samples.</figcaption>
+          <div class="identity-bracket"><span>Same identity · different observations</span></div>
+          <figcaption>Illustrative portraits by <a href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Andrea Piacquadio / Pexels</a>; not study samples.</figcaption>
         </figure>
-        <div class="pair-note">
-          <h3>Identity-matched observations</h3>
-          <p>During pretraining, DIME compares two images of the same person and learns the direction of their subtle differences.</p>
+        <div class="learning-path">
+          <div class="learning-step"><span class="step-number">01</span><div><h4>Reconstruct both observations</h4><p>Reciprocal masked mixtures share an encoder. Source-isolated attention prevents copying between observations.</p></div></div>
+          <div class="learning-step"><span class="step-number">02</span><div><h4>Supervise how they differ</h4><p>Explicit Differential Direction Supervision (EDDS) aligns the direction of change between the input pair and its reconstructions.</p></div></div>
+          <p class="learning-anchor">RGB recovery preserves appearance; gradient-orientation recovery preserves local structure.</p>
         </div>
-      </div>
+        </div>
+        <div class="direction-panel" aria-label="EDDS aligns the directions of centered input-pair and reconstruction-pair differences">
+          <div class="difference-label"><span>Input-pair difference</span><strong>Observed change <i>δ</i></strong></div>
+          <div class="direction-alignment">
+            <svg viewBox="0 0 132 45" width="132" height="45" aria-hidden="true"><path d="M12 14H116m-11-8 11 8-11 8" fill="none" stroke="#355aa5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 32H116m-11-8 11 8-11 8" fill="none" stroke="#187e85" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>EDDS · align directions</span>
+          </div>
+          <div class="difference-label"><span>Reconstruction-pair difference</span><strong>Recovered change <math aria-label="delta hat"><mover><mi>δ</mi><mo>^</mo></mover></math></strong></div>
+          <p class="direction-note">Compared patch by patch after removing constant channel offsets. Pair order does not matter.</p>
+        </div>
+      </section>
     </section>
 
     <section class="content-section" id="abstract">
