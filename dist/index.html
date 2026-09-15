@@ -40,20 +40,35 @@
       </div>
     </section>
 
-    <figure class="teaser">
-      <div class="teaser-inner">
-        <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
-          <div class="portrait neutral" role="img" aria-label="Neutral expression"></div>
-          <div class="portrait-arrow" aria-hidden="true">→</div>
-          <div class="portrait smile" role="img" aria-label="Smiling expression of the same person"></div>
-        </div>
-        <div class="teaser-text">
-          <span>Same identity, different observations</span>
-          <p>DIME uses a person's shared appearance as a reference and explicitly learns the direction of subtle changes between two masked reconstructions.</p>
-        </div>
+    <section class="opening-demo" id="video" aria-labelledby="video-title">
+      <figure class="demo-media">
+        <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="Facial analysis demo video">
+          <source src="media/dime-demo.mp4" type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+        <figcaption>Video demo · facial analysis on a moving face</figcaption>
+      </figure>
+      <div class="demo-copy">
+        <p class="demo-label">DEMONSTRATION <span>· 17 seconds</span></p>
+        <h2 id="video-title">Downstream facial analysis</h2>
+        <p>The demo shows four downstream analyses on one moving face:</p>
+        <ul class="demo-tasks">
+          <li>Facial landmarks</li>
+          <li>Head pose</li>
+          <li>Face parsing</li>
+          <li>Action units</li>
+        </ul>
+        <p class="demo-method-note">During pretraining, DIME learns subtle changes between two observations of the same person.</p>
+        <figure class="paired-observations">
+          <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
+            <div class="portrait neutral" role="img" aria-label="Neutral expression"></div>
+            <div class="portrait-arrow" aria-hidden="true">→</div>
+            <div class="portrait smile" role="img" aria-label="Smiling expression of the same person"></div>
+          </div>
+          <figcaption>Illustrative portraits: <a href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Andrea Piacquadio / Pexels</a>. Not study samples.</figcaption>
+        </figure>
       </div>
-      <figcaption>Illustrative portraits by <a href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Andrea Piacquadio / Pexels</a>. These images are not study samples.</figcaption>
-    </figure>
+    </section>
 
     <section class="content-section" id="abstract">
       <h2>Abstract</h2>
@@ -64,8 +79,8 @@
       <h2>Method</h2>
       <p>Same-identity pairs are mixed reciprocally at the patch level. A shared encoder with source-isolated attention and complementary decoder branches recovers both faces. RGB reconstruction, gradient-orientation recovery, and EDDS jointly preserve appearance, local structure, and inter-observation variation.</p>
       <figure class="paper-figure">
-        <a href="media/main.webp" target="_blank" rel="noopener noreferrer" aria-label="Open DIME architecture figure at full size"><img src="media/main.webp" alt="DIME architecture with same-identity pairing, reciprocal masked mixtures, source-isolated ViT encoding, complementary decoding, and differential supervision" loading="lazy"></a>
-        <figcaption>Overall DIME architecture. Only the encoder is retained for downstream single-image inference. <a href="media/main.webp" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+        <a href="media/main.png" target="_blank" rel="noopener noreferrer" aria-label="Open DIME architecture figure at full size"><img src="media/main.png" alt="DIME architecture with same-identity pairing, reciprocal masked mixtures, source-isolated ViT encoding, complementary decoding, and differential supervision" loading="lazy"></a>
+        <figcaption>Overall DIME architecture. Only the encoder is retained for downstream single-image inference. <a href="media/main.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
       </figure>
     </section>
 
@@ -85,15 +100,6 @@
         <a href="media/gen_show_1.webp" target="_blank" rel="noopener noreferrer" aria-label="Open generated face samples at full size"><img src="media/gen_show_1.webp" alt="Selected face images generated using the DIME-L encoder in RAEv2 after 100K training steps" loading="lazy"></a>
         <figcaption>Selected face-generation samples using DIME-L in the RAEv2 framework after 100K steps.</figcaption>
       </figure>
-    </section>
-
-    <section class="content-section" id="video">
-      <h2>Video</h2>
-      <p>The supplied demo shows facial landmarks, head pose, face parsing, and action-unit analysis on a moving face.</p>
-      <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="Facial analysis demo video">
-        <source src="media/dime-demo.mp4" type="video/mp4">
-        Your browser does not support video playback.
-      </video>
     </section>
 
     <section class="content-section citation-section" id="citation">
