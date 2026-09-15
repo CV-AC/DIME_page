@@ -22,6 +22,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Stamp stylesheet version with commit SHA (cache busting)
+        run: sed -i "s/style\.css?v=[^\"]*/style.css?v=${GITHUB_SHA::10}/" dist/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
