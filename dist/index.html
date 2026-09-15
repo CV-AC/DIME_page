@@ -41,17 +41,26 @@
     </section>
 
     <section class="opening-demo" id="video" aria-labelledby="video-title">
-      <figure class="demo-media">
-        <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="Facial analysis demo video">
-          <source src="media/dime-demo.mp4" type="video/mp4">
-          Your browser does not support video playback.
-        </video>
-        <figcaption>Video demo · facial analysis on a moving face</figcaption>
-      </figure>
+      <div class="demo-videos">
+        <figure class="demo-media">
+          <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="Facial analysis demo on the first person">
+            <source src="media/dime-demo.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+          <figcaption>Example 01 · facial analysis in motion</figcaption>
+        </figure>
+        <figure class="demo-media demo-media-secondary">
+          <video controls playsinline preload="none" poster="media/demo-second-poster.webp" aria-label="Facial analysis demo on a second person">
+            <source src="media/dime-demo-second.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+          <figcaption>Example 02 · a different person and scene</figcaption>
+        </figure>
+      </div>
       <div class="demo-copy">
-        <p class="demo-label">DEMONSTRATION <span>· 17 seconds</span></p>
+        <p class="demo-label">TWO VIDEO EXAMPLES <span>· 17 s + 7 s</span></p>
         <h2 id="video-title">Downstream facial analysis</h2>
-        <p>The demo shows four downstream analyses on one moving face:</p>
+        <p>Two moving faces illustrate the analysis outputs shown in the demos:</p>
         <ul class="demo-tasks">
           <li>Facial landmarks</li>
           <li>Head pose</li>

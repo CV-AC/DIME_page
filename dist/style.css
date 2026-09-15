@@ -25,8 +25,10 @@ sup{font-size:10px;vertical-align:super}
 .resource-links a:hover{background:#f4f8fb;text-decoration:none}
 .resource-links span{font-weight:400;color:var(--sub)}
 .opening-demo{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,.85fr);gap:30px;align-items:start;margin:2px 0 52px;padding:0 0 52px;border-bottom:1px solid var(--line);scroll-margin-top:20px}
+.demo-videos{display:flex;flex-direction:column;gap:17px}
 .demo-media{margin:0}
 .demo-media video{width:100%;aspect-ratio:1800/638;object-fit:contain;background:#12171b;border:1px solid var(--line)}
+.demo-media-secondary video{aspect-ratio:1600/710}
 .demo-media figcaption{font-size:12px;color:var(--sub);margin-top:8px}
 .demo-copy{border-left:2px solid #a9c9df;padding-left:22px}
 .demo-label{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--link);margin:0 0 10px}
