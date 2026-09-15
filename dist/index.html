@@ -128,23 +128,21 @@
       </div>
 
       <div class="edds-panel">
-        <div class="edds-formula">
-          \[\begin{aligned}
-          \mathcal{L}_{\mathrm{edds}}&=\frac{1}{\max(1,|\Gamma|)}\sum_{\ell\in\Gamma}\bigl(1-\cos\theta_{\ell}\bigr),\\[4pt]
-          \cos\theta_{\ell}&=\frac{\langle\hat{\boldsymbol{\delta}}_{\ell},\boldsymbol{\delta}_{\ell}\rangle_{F}}{\|\hat{\boldsymbol{\delta}}_{\ell}\|_{F}\,\|\boldsymbol{\delta}_{\ell}\|_{F}+\varepsilon}
-          \end{aligned}\]
-          <div class="delta-def">\[\begin{aligned}
-          \boldsymbol{\delta}_{\ell}&=\mathbf{H}_{P}\,\boldsymbol{\Delta}_{\ell}, & \boldsymbol{\Delta}_{\ell}&=\operatorname{reshape}_{P\times 3}\bigl(\mathbf{y}^{a}_{\ell}-\mathbf{y}^{b}_{\ell}\bigr),\\
-          \hat{\boldsymbol{\delta}}_{\ell}&=\mathbf{H}_{P}\,\hat{\boldsymbol{\Delta}}_{\ell}, & \hat{\boldsymbol{\Delta}}_{\ell}&=\operatorname{reshape}_{P\times 3}\bigl(\hat{\mathbf{y}}^{a}_{\ell}-\hat{\mathbf{y}}^{b}_{\ell}\bigr)
-          \end{aligned}\]</div>
-          <dl class="notation">
-            <div><dt>\(\ell\), \(P\)</dt><dd>\(\ell\) indexes the image patches; each patch has \(P\) pixels, so a patch is a \(P\times 3\) matrix over RGB.</dd></div>
-            <div><dt>\(\mathbf{y}^{a}_{\ell}\), \(\mathbf{y}^{b}_{\ell}\)</dt><dd>raw pixels of patch \(\ell\) in the two observations; \(\hat{\mathbf{y}}^{a}_{\ell}\), \(\hat{\mathbf{y}}^{b}_{\ell}\) are the recovered patches, mapped from the decoder's normalized output back to raw pixels so both faces are compared in the same space.</dd></div>
-            <div><dt>\(\mathbf{H}_{P}\)</dt><dd>\(\mathbf{I}_{P}-\tfrac{1}{P}\mathbf{1}_{P}\mathbf{1}_{P}^{\top}\), identity minus the averaging matrix: subtracts each channel's spatial mean, so a uniform color offset is not counted as change.</dd></div>
-            <div><dt>\(\theta_{\ell}\)</dt><dd>the angle between \(\boldsymbol{\delta}_{\ell}\) and \(\hat{\boldsymbol{\delta}}_{\ell}\), exactly the angle drawn in step 03; \(\langle\cdot,\cdot\rangle_{F}\) and \(\|\cdot\|_{F}\) are the Frobenius inner product and norm, \(\varepsilon\) a small stabilizer.</dd></div>
-            <div><dt>\(\Gamma\)</dt><dd>the supervised patches: a fixed fraction with the largest \(\|\boldsymbol{\delta}_{\ell}\|_{F}\), chosen from the targets only. If the pair barely changes, \(\Gamma\) is empty and the term is zero; \(\max(1,|\Gamma|)\) keeps that case well defined.</dd></div>
-          </dl>
+        <p class="panel-label">The EDDS objective</p>
+        <div class="edds-eqs">
+          <div>\[\mathcal{L}_{\mathrm{edds}}=\frac{1}{\max(1,|\Gamma|)}\sum_{\ell\in\Gamma}\bigl(1-\cos\theta_{\ell}\bigr)\]</div>
+          <div>\[\cos\theta_{\ell}=\frac{\langle\hat{\boldsymbol{\delta}}_{\ell},\boldsymbol{\delta}_{\ell}\rangle_{F}}{\|\hat{\boldsymbol{\delta}}_{\ell}\|_{F}\,\|\boldsymbol{\delta}_{\ell}\|_{F}+\varepsilon}\]</div>
         </div>
+        <div class="delta-def">\[\boldsymbol{\delta}_{\ell}=\mathbf{H}_{P}\,\boldsymbol{\Delta}_{\ell},\qquad \hat{\boldsymbol{\delta}}_{\ell}=\mathbf{H}_{P}\,\hat{\boldsymbol{\Delta}}_{\ell},\qquad \boldsymbol{\Delta}_{\ell}=\operatorname{reshape}_{P\times 3}\bigl(\mathbf{y}^{a}_{\ell}-\mathbf{y}^{b}_{\ell}\bigr),\qquad \hat{\boldsymbol{\Delta}}_{\ell}=\operatorname{reshape}_{P\times 3}\bigl(\hat{\mathbf{y}}^{a}_{\ell}-\hat{\mathbf{y}}^{b}_{\ell}\bigr)\]</div>
+        <p class="panel-label">Notation</p>
+        <dl class="notation">
+          <div><dt>\(\ell\), \(P\)</dt><dd>\(\ell\) indexes the image patches; each patch has \(P\) pixels, so a patch is a \(P\times 3\) matrix over RGB.</dd></div>
+          <div><dt>\(\mathbf{y}^{a}_{\ell}\), \(\mathbf{y}^{b}_{\ell}\)</dt><dd>raw pixels of patch \(\ell\) in the two observations; \(\hat{\mathbf{y}}^{a}_{\ell}\), \(\hat{\mathbf{y}}^{b}_{\ell}\) are the recovered patches, mapped from the decoder's normalized output back to raw pixels so both faces are compared in the same space.</dd></div>
+          <div><dt>\(\mathbf{H}_{P}\)</dt><dd>\(\mathbf{I}_{P}-\tfrac{1}{P}\mathbf{1}_{P}\mathbf{1}_{P}^{\top}\), identity minus the averaging matrix: subtracts each channel's spatial mean, so a uniform color offset is not counted as change.</dd></div>
+          <div><dt>\(\theta_{\ell}\)</dt><dd>the angle between \(\boldsymbol{\delta}_{\ell}\) and \(\hat{\boldsymbol{\delta}}_{\ell}\), exactly the angle drawn in step 03; \(\langle\cdot,\cdot\rangle_{F}\) and \(\|\cdot\|_{F}\) are the Frobenius inner product and norm, \(\varepsilon\) a small stabilizer.</dd></div>
+          <div><dt>\(\Gamma\)</dt><dd>the supervised patches: a fixed fraction with the largest \(\|\boldsymbol{\delta}_{\ell}\|_{F}\), chosen from the targets only. If the pair barely changes, \(\Gamma\) is empty and the term is zero; \(\max(1,|\Gamma|)\) keeps that case well defined.</dd></div>
+        </dl>
+        <p class="panel-label">What follows</p>
         <ul class="edds-facts">
           <li><b>Equal and opposite gradients.</b> \(\nabla_{\hat{\mathbf{y}}^{a}_{\ell}}\mathcal{L}_{\mathrm{edds}}=-\nabla_{\hat{\mathbf{y}}^{b}_{\ell}}\mathcal{L}_{\mathrm{edds}}\): because the loss only sees the difference \(\hat{\boldsymbol{\delta}}_{\ell}\), the two recovered patches receive equal and opposite updates that push them apart along the true direction, and each update depends on the other face's current state.</li>
           <li><b>Zero mean per channel.</b> \(\mathbf{1}_{P}^{\top}\nabla_{\hat{\mathbf{y}}^{i}_{\ell}}\mathcal{L}_{\mathrm{edds}}=\mathbf{0}\), since \(\mathbf{H}_{P}\) removes the mean: EDDS never touches the constant appearance component, so RGB reconstruction keeps anchoring what the face looks like while gradient orientation keeps local structure.</li>
