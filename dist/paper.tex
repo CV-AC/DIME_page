@@ -1,0 +1,2126 @@
+%% bare_jrnl_compsoc.tex
+%% V1.4b
+%% 2015/08/26
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8b or later) with an IEEE
+%% Computer Society journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/pkg/ieeetran
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall the IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. The IEEE's font choices and paper sizes can   ***
+% *** trigger bugs that do not appear when using other class files.       ***  
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/pkg/ifpdf
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+% IEEE Computer Society needs nocompress option
+% requires cite.sty v4.0 or later (November 2003)
+\usepackage[nocompress]{cite}
+\else
+% normal IEEE
+\usepackage{cite}
+\fi
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later. Note also the use of a CLASSOPTION conditional provided by
+% IEEEtran.cls V1.7 and later.
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+% \usepackage[pdftex]{graphicx}
+% declare the path(s) where your graphic files are
+% \graphicspath{{../pdf/}{../jpeg/}}
+% and their extensions so you won't have to specify these with
+% every instance of \includegraphics
+% \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+% or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+% will default to the driver specified in the system graphics.cfg if no
+% driver is specified.
+% \usepackage[dvips]{graphicx}
+% declare the path(s) where your graphic files are
+% \graphicspath{{../eps/}}
+% and their extensions so you won't have to specify these with
+% every instance of \includegraphics
+% \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/pkg/endfloat
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+
+% Include other packages here, before hyperref.
+% Required by the migrated colored tables; preserves existing font settings.
+\usepackage[dvipsnames,table]{xcolor}
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false,urlcolor=red,citecolor=blue]{hyperref}
+\usepackage{gensymb,graphics,subfigure,inputenc}
+\usepackage[linesnumbered,algo2e,boxed]{algorithm2e}
+\usepackage{ragged2e} % 导入包，支持 \justify 命令
+\graphicspath{{Figure/}}
+\usepackage[figuresright]{rotating}
+\usepackage{amsmath,amssymb,textcomp,subfigure,multirow,upgreek}
+\usepackage{booktabs}
+\usepackage{color,mdwlist}
+\newcommand{\thr}[1]{\rotatebox[origin=c]{90}{#1}}
+\newcommand{\tht}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\newcommand{\hao}[1]{\textcolor{blue}{#1}}
+
+% ----------------------------------------
+\usepackage{makecell}
+\usepackage{graphicx}
+\usepackage{utfsym}
+% \usepackage{arydshln} % Unused; avoid patching tabular/array end commands.
+\usepackage{cleveref}
+\usepackage{threeparttable,booktabs}
+\usepackage{subcaption}
+\usepackage{longtable}
+
+\usepackage{wasysym}
+\usepackage{utfsym}
+\usepackage{amsbsy}
+% \usepackage{bbding}
+\usepackage{pifont}
+
+\definecolor{DIMEBestText}{HTML}{D55E00}
+\definecolor{DIMESecondText}{HTML}{0072B2}
+\newcommand{\BestScore}[1]{\textcolor{DIMEBestText}{#1}}
+\newcommand{\SecondScore}[1]{\textcolor{DIMESecondText}{#1}}
+\newcommand{\fidup}[1]{\textcolor{gray}{\scriptsize\, $\uparrow$#1}}
+\newcommand{\fiddown}[1]{\textcolor{gray}{\scriptsize\, $\downarrow$#1}}
+
+
+\usepackage{threeparttablex} % tablenotes with longtable
+\usepackage{array}           % optional, for p{..} columns
+
+
+\newcommand{\rotheader}[1]{\rotatebox[origin=c]{90}{#1}}
+
+\definecolor{ManuscriptRed}{HTML}{8B0000}     % new/changed text in manuscript
+\definecolor{ManuscriptBlack}{HTML}{000000}     % new/changed text in manuscript
+\newcommand{\change}[1]{{\color{ManuscriptBlack}#1}}
+\newcommand{\changeminor}[1]{{\color{ManuscriptBlack}#1}}
+% ----------------------------------------
+
+
+\usepackage{graphicx,fontawesome}
+\graphicspath{{Figures/}}
+
+\def\ci#1{\textcircled{\resizebox{.4em}{!}{#1}}}
+
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\usepackage{caption}
+\captionsetup{skip=4pt}
+
+\usepackage{enumitem}
+\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+%\setlength{\textfloatsep}{1pt} % reduce the space between figure and body text
+\newcommand*\samethanks[1][\value{footnote}]{\footnotemark[#1]}
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\input{setup/macro}
+
+
+% Support the title-block figure using the existing caption formatting.
+\makeatletter
+\providecommand{\figcaption}{\def\@captype{figure}\caption}
+\makeatother
+
+
+% Keep the combined AU tables and the following wide figure on separate page tops.
+\setcounter{dbltopnumber}{1}
+
+\begin{document}
+
+\title{DIME: Scaling Self-Supervised Facial Representation Learning via Differential Masked Autoencoding}
+
+% \title{DIME:Differential Masked Autoencoding for Self-supervised Facial Representation Learning Beyond Identity}
+
+% \title{DIME: Scaling Self-supervised Facial Representation Learning Beyond Identity}
+
+\author{Hao~Yu, Haoyu~Chen, Hui~Wei, Yan~Jiang, Nicu~Sebe,
+and~Guoying~Zhao,~\IEEEmembership{Fellow,~IEEE}
+\IEEEcompsocitemizethanks{
+\IEEEcompsocthanksitem H. Yu, H. Chen, H. Wei, Y. Jiang, and G. Zhao are with the ELLIS Institute Finland and CMVS, University of Oulu, Finland. N. Sebe is with DISI, University of Trento, Italy. Corresponding author: Guoying Zhao (e-mail: guoying.zhao@oulu.fi).
+}
+}
+
+\markboth{IEEE Transactions on Pattern Analysis and Machine Intelligence,~Vol.~XX, No.~X, XXXXX~2026}%
+{Yu \MakeLowercase{\textit{et al.}}: DIME: Unlocking Scale for Self-Supervised Facial Representation Learning}
+
+% \IEEEtitleabstractindextext{%
+% \justifying
+% \begingroup
+% \setlength{\abovecaptionskip}{4pt}
+% \setlength{\belowcaptionskip}{0pt}
+% \noindent\makebox[\linewidth][c]{%
+%   \includegraphics[width=\linewidth]{figures/first_new.png}}
+% \par
+% \setcounter{figure}{0}
+% \figcaption{\textbf{Scaling facial pretraining via DIME.}
+% \textit{(a)} MAE reconstructs each image in isolation to learn appearance.
+% \textit{(b)} DIME treats two observations of the \emph{same} person as a single learning unit and explicitly supervises their difference to model how a face changes.
+% \textit{(c)} Compared with generic visual encoders, DIME is far more parameter-efficient on facial Action-Unit detection (mean performance over BP4D and BP4D+).
+% \textit{(d)} Pretrained on the matched fractions of facial data, MAE* saturates beyond roughly 6M faces, whereas DIME keeps improving all the way to 20M.}
+% \label{fig:1}
+% \endgroup
+% \vspace{0.6\baselineskip}
+
+% \begin{abstract}
+% Scaling up data and model capacity has driven substantial progress in visual representation learning. However, we observe that conventional large-scale pre-training exhibits diminishing returns on fine-grained facial tasks. This reveals a scaling bottleneck—capabilities that depend on weak within-identity differences cannot be reliably acquired by scaling conventional single-image objectives alone, which can easily fall into local optima with shortcut learning. We introduce DIME, a novel differential masked autoencoding paradigm customized for large-scale self-supervised facial representation learning. The rationale of DIME lies in the observation that, due to the nature of facial representation, a pair of distinct observations from the same individual naturally establishes a counterfactual control. Thus, DIME enables a traditional masked autoencoding paradigm differential by introducing an Explicit Differential Direction Supervision (EDDS) objective that directly emphasizes informative variation between paired observations to preserve fine structural details. Furthermore, we carefully craft Face-20M, a publicly available dataset designed for facial pre-training. Constructed by consolidating existing face datasets, Face-20M comprises 20 million clean and high-resolution facial images. Scaling experiments on Face-20M reveal a clear divergence: while conventional objectives plateau on fine-grained downstream tasks, DIME continues to improve as the training scale increases, successfully \textit{unlocking the gains of scale} for fine-grained facial representation learning.
+% Comprehensive evaluations on a broad range of facial analysis and generation tasks further highlight DIME’s versatility. Delivering consistent gains over generic foundation models and specialized methods, DIME establishes differential learning as an effective alternative to scaling facial pre-training. Our code, weights, and pretraining data can be find in the project page \url{https://github.com/CV-AC/DIME}.
+% \end{abstract}
+
+% \begin{IEEEkeywords}
+% Differential Masked Autoencoding, Facial Representation Learning, Subtle Facial Evidence Modeling.
+% \end{IEEEkeywords}}
+
+
+% \maketitle
+
+% \IEEEdisplaynontitleabstractindextext
+
+% \IEEEpeerreviewmaketitle
+
+% \setcounter{figure}{1}
+
+% \IEEEraisesectionheading{\section{Introduction}
+% \label{sec:introduction}}
+% \IEEEPARstart{F}{aces} support a broad range of applications beyond identity recognition \cite{wright2008robust,kim202650}. In many facial analysis tasks, including action unit (AU) analysis \cite{ma2024facial}, expression understanding \cite{zhao2007dynamic}, and facial attack detection \cite{yu2025learning}, the relevant evidence lies primarily in how a face varies across observations rather than in who the subject is. Despite their different prediction targets, these tasks share a perceptual basis of fine-grained deformation, texture, and subtle chromatic variation \cite{zhao2007dynamic,zhao2011facial,wang2025fsfm}. Annotating these cues is costly and often requires domain expertise, leaving only limited labeled data for training task-specific models that are easily overfitting to identity and dataset shortcuts. This motivates a large and generic facial foundation model that preserves both global facial structure and subtle local variations, providing reusable representations of expression, configuration, and surface appearance across subjects.
+
+\IEEEtitleabstractindextext{%
+\justifying
+
+\begin{abstract}
+Scaling up data and model capacity has driven substantial progress in visual representation learning. However, we observe that conventional large-scale pretraining exhibits diminishing returns on fine-grained facial tasks. This reveals a scaling bottleneck---capabilities that depend on weak within-identity differences cannot be reliably acquired by scaling conventional single-image objectives alone, which can easily fall into local optima with shortcut learning. We introduce DIME, a novel differential masked autoencoding paradigm customized for large-scale self-supervised facial representation learning. The rationale of DIME lies in the observation that, due to the nature of facial representation, a pair of distinct observations from the same individual naturally establishes a counterfactual control. Thus, DIME extends traditional masked autoencoding by introducing an novel Explicit Differential Direction Supervision (EDDS) objective that directly emphasizes informative variation between paired observations to preserve fine structural details. Furthermore, we carefully craft Face-20M, a publicly available dataset designed for facial pretraining. Constructed by consolidating existing face datasets, Face-20M comprises 20 million clean and high-resolution facial images. Scaling experiments on Face-20M reveal a clear divergence: while conventional objectives plateau on fine-grained downstream tasks, DIME continues to improve as the training scale increases, successfully \textit{unlocking the gains of scale} for fine-grained facial representation learning.
+Comprehensive evaluations on a broad range of facial analysis and generation tasks further highlight DIME's versatility. Delivering consistent gains over generic foundation models and specialized methods, DIME establishes differential learning as an effective approach to scaling facial pretraining. Our code, weights, and pretraining data can be found on the project page \url{https://github.com/CV-AC/DIME}.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Differential Masked Autoencoding, Facial Representation Learning, Subtle Facial Evidence Modeling.
+\end{IEEEkeywords}
+}
+
+\IEEEaftertitletext{%
+  % 缩短分隔线与图片之间的默认留白。
+  \par\vspace*{-2.8\baselineskip}
+  \noindent
+  \begin{minipage}{\textwidth}
+    \normalfont\normalsize
+    \centering
+    \setlength{\abovecaptionskip}{0pt}
+    \setlength{\belowcaptionskip}{0pt}
+
+    \includegraphics[width=\linewidth]{figures/first.png}
+    \par
+    \setcounter{figure}{0}
+    \figcaption{\textbf{Scaling facial pretraining via DIME.}
+    \textit{(a)} MAE reconstructs each image in isolation to learn appearance.
+    \textit{(b)} DIME treats two observations of the \emph{same} person
+    as a single learning unit and explicitly supervises their difference
+    to model how a face changes.
+    \textit{(c)} Compared with generic visual encoders, DIME is far more efficient in facial representation learning tasks such as Action-Unit detection
+    (mean performance over BP4D \cite{zhang2014bp4d} and BP4D+ \cite{zhang2016multimodal}).
+    \textit{(d)} Pretrained on the matched setting and fractions of facial data,
+    MAE \cite{he2022masked} saturates beyond roughly 6M faces, whereas DIME keeps scaling
+    all the way to 20M.}
+    \label{fig:1}
+  \end{minipage}
+  \par\vspace{0.5\baselineskip}
+}
+
+\maketitle
+\IEEEdisplaynontitleabstractindextext
+\IEEEpeerreviewmaketitle
+
+\setcounter{figure}{1}
+
+% 不再使用 \IEEEraisesectionheading，避免标题向上覆盖图注。
+\section{Introduction}
+\label{sec:introduction}
+
+\IEEEPARstart{F}{aces} support a broad range of applications aside from identity recognition \cite{wright2008robust,kim202650}, including action unit (AU) analysis \cite{ma2024facial}, expression understanding \cite{zhao2007dynamic}, editing \cite{melnik2024face}, and facial attack detection \cite{yu2025learning}, etc. Despite their different prediction targets, these tasks share a perceptual basis of fine-grained deformation, texture, and subtle chromatic variation \cite{zhao2007dynamic,zhao2011facial,wang2025fsfm}, which demand representation learning goes beyond facial identity. Annotating these task-specific cues is costly and often requires domain expertise, leaving only limited labeled data for training task-specific models that are easily prone to identity and dataset shortcuts. This motivates a large and generic facial foundation model that preserves both global facial structure and subtle local variations, providing reusable representations of expression, configuration, and surface appearance across subjects.
+
+\IEEEpubidadjcol
+
+\begin{figure*}[!t]
+  \centering
+  \setlength{\abovecaptionskip}{0pt}
+  \includegraphics[width=\textwidth]{figures/semantic.png}
+  \caption{\textbf{Emergent capacity of DIME.} \textit{(a)} Cosine similarity between a marked query token and all patches. Queries are selected from different facial regions; brighter colors indicate higher similarity. \textit{(b)} UMAP-PCA \cite{mcinnes2018umap} visualizations of dense features from DIME-L, DINOv3-L~\cite{simeoni2025dinov3}, and MAE-L~\cite{he2022masked}. DIME shows more visibly differentiated facial semantics.}
+  \label{fig:DIME_semantic}
+  \vspace{-1.5em}
+\end{figure*}
+
+Self-supervised visual learning (SSL) \cite{he2022masked,simeoni2025dinov3,liu2022mixmim} offers a route to learn such a foundation facial model at scale without annotations. For example, self-distillation methods \cite{caron2021emerging,oquab2023dinov2,simeoni2025dinov3} align predictions across augmented views, whereas masked image modeling~\cite{he2022masked} (MIM) predicts missing content from visible context \cite{xie2022simmim,liu2022mixmim,wang2025bootstrap}. Both paradigms have proved effective for natural images, whose transferable structure is commonly organized around objects, spatial layouts, and scene semantics. 
+
+Applied to faces, however, scaling the pretraining of existing self-supervised  paradigms encounters bottlenecks. As shown in Fig.~\ref{fig:1}(d), we pretrain MAE on progressively larger subsets of facial data, and the downstream performance on AU detection begins to saturate at roughly 6M pretraining images, with little improvement as the dataset grows to 20M. This seemingly discouraging outcome may be expected: scaling the pretraining may therefore broaden the coverage of appearance without improving sensitivity to facial dynamics. This plateau suggests that scaling appearance-oriented pretraining alone is insufficient to capture the facial variation needed beyond identity recognition.
+
+The rationale of this work lies on the observations that the resulting facial representations learned from existing SSL works are highly dominated by identity-related information without adequately encoding task-relevant changes~\cite{ning2024representation}. Specifically, existing SSL works incorporate facial landmarks, multimodal cues, or temporal context into reconstruction and view-consistency objectives~\cite{zheng2022general,ma2024facial,wang2025fsfm,cai2023marlin,sun2023mae}. Their underlying objectives, however, remain inherited from natural-image pretraining paradigms and tend to favor predictable appearance over the within-identity variation. In principle, human faces share a canonical topology and structured person-specific morphology~\cite{zhu2019face}, allowing masked image modeling to recover plausible appearance from coarse context while treating subtle cues as low-magnitude residuals. The resulting representations can therefore be dominated by identity-related information without adequately encoding task-relevant changes~\cite{ning2024representation}. Contrastive learning has a related limitation: enforcing invariance across augmented views can suppress facial differences within positive pairs~\cite{sun2024contrast}. In both cases, the objective can be largely satisfied by modeling appearance alone, limiting the gains from scaling pretraining for downstream facial analysis.
+
+Key to our construction is to redesign the SSL paradigm to address this identity-driven shortcut in facial representation learning and better scale the learning of facial variations. We suggest that the issue is not identity information per se, but its role as the dominant explanatory signal. Specifically, across people, differences in eye or mouth shape may reflect identity (intrinsic), facial state (extrinsic), or both; but within one person, shared morphology provides a natural condition (identical intrinsic attributes) so that only extrinsic facial state changes. This means, once the identity is fixed, the condition can be used to guide what the model must distinguish: same-identity differencing removes the between-identity baseline, exposing identity-irrelevant variation without requiring an identity-free encoder.
+
+To make this variation explicit for SSL, a carefully designed learning paradigm is needed. Aligning paired features can erase their differences, while independent reconstruction can leave them poorly recovered: even modest errors can overwhelm a weak change's direction despite low reconstruction losses. We retain masked prediction but require successful recovery to preserve both observations and their relation. Masking requires missing facial evidence to be inferred from context, while supervising reconstructed differences provides a spatially explicit target for how that evidence changes. The encoder must therefore retain information that distinguishes facial states beyond their shared appearance.
+
+In this paper, we propose Differential Masked Autoencoding (DIME), a self-supervised framework that learns facial variation through paired masked reconstruction with differential supervision. As illustrated in Fig.~\ref{fig:1}(a), MAE reconstructs each image independently, allowing predictable, person-specific appearance to dominate representation learning. DIME instead recovers the mixed two faces from the same person and explicitly supervises how their reconstructions differ (Fig.~\ref{fig:1}(b)). Same-identity pairing provides a shared appearance reference: the identity-conditioned baseline cancels in the differential target, directing supervision toward observation-specific changes such as local facial deformations. DIME thus extends masked image modeling beyond individual appearance recovery by making within-identity variation an explicit prediction target.
+
+To supervise this variation, we introduce Explicit Differential Direction Supervision (EDDS). EDDS compares the differences between corresponding patches of the two reconstructed faces with those of the original pair, aligning the direction of change in pixel space. This directional supervision gives subtle facial variations explicit importance even when their magnitudes are small. In MAE, independent RGB losses do not directly enforce this relation: two individually plausible predictions may still distort or reverse a local change while incurring small reconstruction errors. EDDS penalizes this discrepancy and couples the recovery of the two observations, so reproducing their shared appearance alone is insufficient to satisfy the differential objective. Together with RGB reconstruction, this supervision encourages the encoder to retain both individual appearance and the fine-grained evidence needed to distinguish facial states.
+
+
+
+Fine-grained semantic organization \textit{emerges} spontaneously from DIME's differential supervision. Regional queries elicit localized, semantically coherent cross-attention activations across anatomical structures (Fig.~\ref{fig:DIME_semantic}(a)), establishing sharper spatial boundaries than baseline representations (Fig.~\ref{fig:DIME_semantic}(b)). DIME thus preserves fine-grained local distinctions within a unified representation of facial structure.
+
+We show that DIME further unlocks sustained scalability in large-scale facial pretraining. On Face-20M, a curated dataset of 20 million high-resolution facial images for pretraining, DIME exhibits continuous downstream AU detection gains when scaled up to 20M pretraining samples, whereas standard MAE saturates near 6M (Fig.~\ref{fig:1}(d)). Consequently, DIME achieves higher accuracy with a smaller parameter footprint than general vision backbones~\cite{simeoni2025dinov3,he2022masked,liu2022mixmim,woo2023convnext} and specialized facial SSL baselines~\cite{ning2024representation,ma2024facial} (Fig.~\ref{fig:1}(c)). Benchmark evaluations across seven distinct task families: AU detection, AU intensity estimation, cross-domain anti-spoofing, landmark localization, head pose estimation, face parsing, and facial generation, we show that DIME surpasses both general foundation encoders and specialized methods across all the evaluations. These results establish DIME as an effective route to scaling self-supervised pretraining on faces. Our contributions are:
+\begin{itemize}
+\item We identify an empirical scaling bottleneck in facial SSL and propose DIME, which makes facial data scaling effective for learning representations beyond identity.
+
+\item We introduce EDDS to turn subtle facial variations into learning targets, enabling DIME to learn fine-grained facial semantics without dense annotations.
+
+\item We curate Face-20M dataset to pretrain DIME. We show that DIME's representation gains from pretraining scale transfer effectively across a broad suite of facial analysis and generation tasks. It outperforms generic foundation models, facial SSL models, and domain-specialized methods with better parameter-efficiency. 
+\end{itemize}
+
+\section{Related Work}
+\label{sec:related_work}
+
+\subsection{Self-Supervised Visual Pretraining}
+\label{sec:related_ssl}
+
+Self-supervised visual pretraining has two core paradigms: enforcing view consistency and predicting missing content. Contrastive and self-distillation frameworks~\cite{chen2020simple,caron2021emerging} learn representations by maximizing agreement between augmented views. Expanding on this, DINOv2~\cite{oquab2023dinov2} integrates self-distillation with masked patch prediction to enhance transferability, while DINOv3~\cite{simeoni2025dinov3} introduces Gram anchoring to prevent dense feature degradation during extended training. Together, these methods highlight the importance of preserving both global semantics and spatially organized local detail within a unified visual encoder.
+
+Conversely, masked image modeling learns representations by predicting missing regions from visible context. MAE~\cite{he2022masked} introduces an efficient asymmetric architecture that processes only visible tokens. Subsequent work explores alternative targets, including local descriptors~\cite{wei2022masked}, and extends to hierarchical backbones through simplified prediction~\cite{xie2022simmim}. Moving beyond pixels, I-JEPA~\cite{assran2023self} directly predicts target-region representations in latent space. MixMAE~\cite{liu2023mixmae} instead forms random image pairs without prescribing any semantic relationship. Because its objective decomposes into source-wise, intra-image reconstruction losses, pairing primarily serves as a computational mechanism for replacing encoder-side mask tokens and improving pretraining efficiency. DIME constructs a structured pair from two observations of the same identity, using their shared appearance as the reference. Beyond reconstructing each face, EDDS couples the pair through an explicit cross-image constraint on the direction of their recovered difference. Pairing thus changes from an efficiency device for intra-image reconstruction in MixMAE to a semantically controlled learning unit for modeling facial variation beyond identity.
+
+\subsection{Facial Representation Learning and Pretraining}
+\label{sec:related_face}
+
+Domain-specific facial pretraining adapts general self-supervised objectives by incorporating facial priors and specialized architectures. For instance, FaRL~\cite{zheng2022general} unifies image--text contrastive learning with masked image modeling, MAE-Face~\cite{ma2024facial} uses masked image modeling for action unit analysis, and FSFM~\cite{wang2025fsfm} integrates region-specific masking with self-distillation for biometric security. Other single-image strategies explore privacy-preserving reconstruction~\cite{wang2022facemae} or landmark-guided local tokenization~\cite{sun2024lafs}.
+
+Beyond static images, video-based frameworks exploit temporal continuity across observations: MARLIN~\cite{cai2023marlin} performs spatiotemporal reconstruction, MAE-DFER~\cite{sun2023mae} predicts inter-frame differences, and AU-vMAE~\cite{jin2024vmae} leverages video pretraining with AU-guided fine-tuning. A parallel line of work explicitly disentangles the factors governing facial variation. PCL~\cite{liu2023pose} separates pose-dependent from pose-invariant features, LatentFace~\cite{he2023generative} isolates identity from expression using 3D-aware autoencoding and temporally averaged identity latent references, and FMAE-IAT~\cite{ning2024representation} applies identity-adversarial regularization during downstream fine-tuning. Language offers complementary supervision beyond visual reconstruction. FaceLLM~\cite{shahreza2025facellm} adapts a multimodal language model using generated facial question pairs, while GPTFace~\cite{li2025gptface} combines masked image/language modeling with image--text matching for facial understanding and generation.
+
+In contrast, DIME uses shared identity as a structural reference to organize both the learning unit and its supervision. By reconstructing token-mixed observation pairs under Explicit Differential Direction Supervision (EDDS), DIME directly aligns patch-centered relative differences between reconstructed and ground-truth pairs. Crucially, identity serves purely as a pairing reference, bypassing explicit latent factorization, adversarial losses, or video/text annotations, while EDDS directly constrains the primary reconstructions themselves. Consequently, DIME transforms within-identity variation into an explicit pretraining target while retaining a versatile, single-image encoder for downstream transfer.
+
+
+\begin{figure*}[!t]
+\centering
+  \setlength{\abovecaptionskip}{0pt}
+\includegraphics[width=1.0\textwidth]{figures/main.png}
+\caption{\textbf{Overall architecture of DIME.} For simplicity, we illustrate a single mixed canvas. In practice, the two reciprocal mixed grids and their complementary decoder branches are batched and processed in parallel to improve efficiency.}
+\label{fig:framework}
+\vspace{-1.5em}
+\end{figure*}
+
+\section{Proposed Method}
+
+\subsection{Problem Formulation}
+\label{sec:dime_formulation}
+
+DIME learns facial representations by leveraging identity as a reference to model identity-irrelevant variation. Because predictable facial geometry dominates raw pixel reconstruction, task-relevant dynamics often manifest as subtle, localized deviations. We propose to align predicted and ground-truth differences to grant these fine-grained cues a dedicated supervisory signal, ensuring they are preserved beyond standard pixelwise reconstruction losses. Specifically, we first organize the training data into same-identity pairs,
+
+\begin{equation}
+\mathcal{P}=\bigl\{(\mathbf{x}^{a}_{n},\mathbf{x}^{b}_{n})\bigr\}_{n=1}^{N},
+\qquad
+\operatorname{id}(\mathbf{x}^{a}_{n})=\operatorname{id}(\mathbf{x}^{b}_{n}),
+\label{eq:dime_pair_set}
+\end{equation}
+where $\mathbf{x}^{a}_{n},\mathbf{x}^{b}_{n}\in\mathbb{R}^{3\times H\times W}$ are distinct observations, $n$ indexes pairs, and $\operatorname{id}$ denotes identity. Identity labels are used only for pairing to control the person-specific appearance; they are neither network inputs nor prediction targets.
+
+The backbone comprises a patch tokenizer $\mathcal{E}_{p}$, a ViT encoder $\mathcal{F}$, and a lightweight decoder $\mathcal{G}$~\cite{he2022masked}. Each image yields $L$  patches of $P$ pixels, with $LP=HW$, and tokens $\mathbf{T}^{i}=\mathcal{E}_{p}(\mathbf{x}^{i})\in\mathbb{R}^{L\times C}$ for $i\in\{a,b\}$. Let $\mathbf{Y}^{i},\hat{\mathbf{Y}}^{i}\in\mathbb{R}^{L\times 3P}$ stack the raw target patches and their normalized RGB predictions, respectively. With trainable parameters $\theta$, we draw a minibatch $\mathcal{B}$ of $B$ pairs from $\mathcal{P}$ and masks $\mathbf{m}_{1:B}$ from the source-mask distribution $\mathcal{M}$. Pretraining minimizes
+\begin{equation}
+\min_{\theta}\ \mathbb{E}_{\mathcal{B},\,\mathbf{m}_{1:B}}\
+\frac{1}{B}\sum_{n=1}^{B}\mathcal{L}_{\mathrm{DIME}}^{(n)}.
+\label{eq:dime_optimization}
+\end{equation}
+
+Here, $\mathcal{L}_{\mathrm{DIME}}^{(n)}$ is the loss for the $n$-th pair, combining patch-level reconstruction and pairwise difference-direction supervision. We omit the pair index below for simplicity. Figure~\ref{fig:framework} summarizes the pipeline. Tildes denote mixed token grids and hats denote predictions.
+
+\subsection{Encoding and Reciprocal Decoding}
+\label{sec:dime_source_recovery}
+
+Unlike the single-image learning unit of conventional masked autoencoding \cite{sun2023mae, he2022masked}, DIME uses a token-level mixture of two same-identity observations, using their shared appearance as a reference to learn subtle variations. A binary mask $\mathbf{m}\in\{0,1\}^{L}$ selects the source at each spatial position, with $50\%$ of entries set to one by default. For $i,j\in\{a,b\}$ with $i\neq j$, we write the corresponding source-mixing operation as
+\begin{equation}
+\operatorname{mix}(\mathbf{T}^{i},\mathbf{T}^{j};\mathbf{m})
+=
+(\mathbf{1}_{L}-\mathbf{m})\odot\mathbf{T}^{i}
++
+\mathbf{m}\odot\mathbf{T}^{j},
+\label{eq:dime_reciprocal_mix}
+\end{equation}
+here, $\mathbf{1}_{L}$ is the length-$L$ all-ones vector, and $\odot$ is elementwise multiplication with the mask broadcast over channels. Positions with $m_p=0$ contain the first source; those with $m_p=1$ contain the second. Recovering both provides the paired predictions for differential supervision.
+
+To implement paired reconstruction efficiently, we build on the reconstruction machinery of MixMAE~\cite{liu2023mixmae}. For a pair of same-identity observations, DIME applies the mixture reciprocally in both source orders under the same partition:
+\begin{equation}
+\begin{aligned}
+\widetilde{\mathbf{T}}^{a}
+&=
+\operatorname{mix}(\mathbf{T}^{a},\mathbf{T}^{b};\mathbf{m}),\\
+\widetilde{\mathbf{T}}^{b}
+&=
+\operatorname{mix}(\mathbf{T}^{b},\mathbf{T}^{a};\mathbf{m}),
+\end{aligned}
+\label{eq:dime_reciprocal_realization}
+\end{equation}
+both pass through the shared encoder:
+\begin{equation}
+\mathbf{Z}^{i}
+=
+\mathcal{F}(\widetilde{\mathbf{T}}^{i};\mathbf{m}),
+\qquad
+i\in\{a,b\},
+\label{eq:dime_shared_encoder}
+\end{equation}
+where $\mathbf{Z}^{i}\in\mathbb{R}^{L\times C}$. Reciprocal assignments expose complementary subsets of each source, enabling dense reconstruction from branches that withhold the predicted patches.
+
+To prevent one observation from supplying the other's missing content, every encoder block adds the following bias to the attention logits between positions $p$ and $q$:
+\begin{equation}
+A_{p,q}=
+\begin{cases}
+0, & m_{p}=m_{q},\\[2pt]
+-\infty, & m_{p}\neq m_{q}.
+\end{cases}
+\label{eq:dime_source_attention_bias}
+\end{equation}
+
+Thus, attention connects only tokens from the same source. The remaining encoder operations are tokenwise, with no unrestricted global token. The sources share parameters and spatial coordinates. The mask specifies source membership, not a facial attribute or an identity code. Its role is to keep recovery predictive: similarity between the paired faces must not allow the second observation to bypass the missing evidence in the first.
+
+Let $\mathbf{W}_{d}\in\mathbb{R}^{C\times D}$ project encoder features to decoder width $D$, and let $\mathbf{e}_{\mathrm{mask}}\in\mathbb{R}^{D}$ be a learned mask token broadcast across positions. For each reciprocal grid $i\in\{a,b\}$, two decoder inputs $\mathbf{U}^{i}_{k}\in\mathbb{R}^{L\times D}$, indexed by $k\in\{0,1\}$, retain complementary subsets:
+\begin{equation}
+\begin{aligned}
+\mathbf{U}^{i}_{0}
+&=
+(\mathbf{1}_{L}-\mathbf{m})\odot(\mathbf{Z}^{i}\mathbf{W}_{d})
++
+\mathbf{m}\odot\mathbf{e}_{\mathrm{mask}},\\
+\mathbf{U}^{i}_{1}
+&=
+\mathbf{m}\odot(\mathbf{Z}^{i}\mathbf{W}_{d})
++
+(\mathbf{1}_{L}-\mathbf{m})\odot\mathbf{e}_{\mathrm{mask}},\\
+i\ &\in\ \{a,b\},
+\end{aligned}
+\label{eq:dime_complementary_decoder_inputs}
+\end{equation}
+branch $0$ retains positions with $m_p=0$; branch $1$ retains positions with $m_p=1$. Each decoder input therefore contains features from only one source, together with mask tokens at the remaining positions. All branches use the same decoder, with normalized outputs $\mathbf{R}^{i}_{k}=\mathcal{G}(\mathbf{U}^{i}_{k})\in\mathbb{R}^{L\times 3P}$. We assemble the two source predictions as
+\begin{equation}
+\begin{aligned}
+\hat{\mathbf{Y}}^{a}
+&=
+\mathbf{m}\odot\mathbf{R}^{a}_{0}
++
+(\mathbf{1}_{L}-\mathbf{m})\odot\mathbf{R}^{b}_{1},\\
+\hat{\mathbf{Y}}^{b}
+&=
+\mathbf{m}\odot\mathbf{R}^{b}_{0}
++
+(\mathbf{1}_{L}-\mathbf{m})\odot\mathbf{R}^{a}_{1}.
+\end{aligned}
+\label{eq:dime_complementary_unmixing}
+\end{equation}
+
+For $a$, positions with $m_p=1$ are predicted from its visible context at $m_p=0$, and vice versa; source $b$ is recovered symmetrically. Each assembled patch comes from a branch in which its corresponding position is masked.
+
+The role of pairing is fundamentally different in MixMAE \cite{liu2023mixmae} and DIME. In MixMAE, two images are sampled randomly to construct the mixed input only for efficiency, and its final objective decomposes into conventional single-image reconstruction. The pair therefore carries neither a prescribed semantic relation nor an explicit cross-image learning signal. DIME instead deliberately pairs two distinct observations of the same identity, making shared appearance a controlled reference. Although their forward feature streams remain separated to prevent content leakage, EDDS jointly constrains the recovered faces through the direction of their difference. Pairing thus changes from an efficiency mechanism in MixMAE into a semantically structured learning unit with explicit cross-image supervision in DIME.
+
+
+\subsection{Differential Supervision}
+\label{sec:dime_losses}
+
+DIME supervises the recovered pair at three complementary levels. EDDS provides the central cross-image signal by preserving how the two observations differ; gradient-orientation recovery emphasizes local structure; and RGB reconstruction anchors the predictions to their source appearance. We introduce the three objectives in this order.
+
+\noindent\textbf{Difference-direction supervision.} Source-wise reconstruction can recover two plausible faces without accurately preserving their relationship. This limitation is crucial for fine-grained facial analysis: when the true within-identity change is weak, small reconstruction errors in different directions can substantially distort the recovered variation. Explicit Differential Direction Supervision (EDDS) addresses this problem by directly constraining whether the reconstructed pair changes in the same local manner as the original pair. Same-identity sampling provides a shared appearance, while EDDS turns the residual variation between observations into an explicit cross-image learning signal.
+
+For source $i\in\{a,b\}$ and patch $\ell$, let $\mathbf{y}^{i}_{\ell}\in\mathbb{R}^{3P}$ denote the raw target pixels and $\hat{\mathbf{y}}^{i}_{\ell}$ the corresponding prediction in normalized patch coordinates. Let $\mu^{i}_{\ell}$ and $\nu^{i}_{\ell}$ be the mean and variance over all $3P$ target values, and let $\varepsilon>0$ be a numerical stabilizer. Because the two sources are normalized using different patch statistics, their predictions must be expressed in a common raw-pixel space before their difference is computed:
+\begin{equation}
+\hat{\mathbf{y}}^{i,\mathrm{raw}}_{\ell}
+=
+\sqrt{\nu^{i}_{\ell}+\varepsilon}\,
+\hat{\mathbf{y}}^{i}_{\ell}
++
+\mu^{i}_{\ell}\mathbf{1}_{3P},
+\label{eq:dime_inverse_normalization}
+\end{equation}
+the target statistics are fixed quantities and are not provided to the encoder. The target and recovered differences are
+\begin{equation}
+\begin{aligned}
+\boldsymbol{\Delta}_{\ell}
+&=
+\operatorname{reshape}_{P\times 3}
+\bigl(\mathbf{y}^{a}_{\ell}-\mathbf{y}^{b}_{\ell}\bigr),\\
+\hat{\boldsymbol{\Delta}}_{\ell}
+&=
+\operatorname{reshape}_{P\times 3}
+\bigl(\hat{\mathbf{y}}^{a,\mathrm{raw}}_{\ell}
+-\hat{\mathbf{y}}^{b,\mathrm{raw}}_{\ell}\bigr),
+\end{aligned}
+\label{eq:dime_pairwise_difference}
+\end{equation}
+both sides of the predicted difference are recovered patches; no visible source patch is substituted as an anchor. Raw differences may contain spatially uniform per-channel offsets that carry little information about local facial change. We remove this component using the centering matrix $\mathbf{H}_{P}=\mathbf{I}_{P} -\tfrac{1}{P}\mathbf{1}_{P}\mathbf{1}_{P}^{\top}$. For any $\mathbf{b}\in\mathbb{R}^{3}$,
+\begin{equation}
+\mathbf{H}_{P}
+\bigl(\boldsymbol{\Delta}_{\ell}
++\mathbf{1}_{P}\mathbf{b}^{\top}\bigr)
+=
+\mathbf{H}_{P}\boldsymbol{\Delta}_{\ell},
+\label{eq:dime_dc_invariance}
+\end{equation}
+thus, centering removes constant RGB offsets within each patch, while retaining the spatial pattern of change. It does not imply invariance to general illumination variation. Let us define the centered target and predicted residuals as
+$\boldsymbol{\delta}_{\ell}
+=\mathbf{H}_{P}\boldsymbol{\Delta}_{\ell}$ and
+$\hat{\boldsymbol{\delta}}_{\ell}
+=\mathbf{H}_{P}\hat{\boldsymbol{\Delta}}_{\ell}$, respectively. With Frobenius inner product $\langle\cdot,\cdot\rangle_F$ and norm $\|\cdot\|_F$, EDDS minimizes their stabilized directional discrepancy:
+\begin{equation}
+\mathcal{L}_{\mathrm{edds}}
+=
+\frac{1}{\max(1,|\Gamma|)}
+\sum_{\ell\in\Gamma}
+\left[
+1-
+\frac{
+\left\langle
+\hat{\boldsymbol{\delta}}_{\ell},
+\boldsymbol{\delta}_{\ell}
+\right\rangle_F
+}{
+\left\|\hat{\boldsymbol{\delta}}_{\ell}\right\|_F
+\left\|\boldsymbol{\delta}_{\ell}\right\|_F
++\varepsilon
+}
+\right].
+\label{eq:dime_edds_loss}
+\end{equation}
+
+This comparison emphasizes the direction of change rather than requiring its recovered magnitude to match exactly. Its scale insensitivity is approximate when the norm product dominates $\varepsilon$. The support $\Gamma$ is selected only from the target residuals. Let $d_{\ell}=\|\boldsymbol{\delta}_{\ell}\|_F$, $\bar d=L^{-1}\sum_{\ell}d_{\ell}$, and let $\bar d_{\mathcal{B}}$ be the mean of $\bar d$ over the training batch. For $\rho,\kappa\in(0,1)$, $\Gamma$ retains patches in the top $(1-\rho)$ fraction by $d_{\ell}$ when $\bar d>\kappa\bar d_{\mathcal{B}}$; otherwise it is empty. This gate prioritizes informative local changes and suppresses relatively static pairs without depending on the model prediction. Empty supports contribute zero, and EDDS is activated after a short reconstruction warm-up. Meanwhile, EDDS is invariant to pair order. Swapping $a$ and $b$ negates both $\boldsymbol{\delta}_{\ell}$ and $\hat{\boldsymbol{\delta}}_{\ell}$, leaving the loss and its support
+unchanged. It therefore requires neither temporal ordering nor a designated reference expression. Instead, it couples the two recovered faces through the directional geometry of their difference.
+
+\noindent\textbf{Gradient-orientation recovery.}
+While EDDS captures variation across observations, fine-grained facial evidence also depends on local spatial structure~\cite{lee1996image}. We therefore add a decoder head that predicts horizontal and vertical image gradients for each RGB channel, producing six values per pixel. This head shares decoder features with RGB reconstruction but is supervised by gradient orientation.
+
+A fixed Sobel operator $\mathcal{S}$ computes the target gradients $\mathbf{G}^{i}=\mathcal{S}(\mathbf{x}^{i})$ for image $i\in\{a,b\}$. At pixel $u\in\{1,\ldots,HW\}$ and channel $c\in\{1,2,3\}$, the vector $\mathbf{G}^{i}_{u,c}\in\mathbb{R}^{2}$ contains the horizontal and vertical intensity derivatives. We define its magnitude and stabilized direction as
+\begin{equation}
+g^{i}_{u,c}
+=
+\|\mathbf{G}^{i}_{u,c}\|_{2},
+\qquad
+\mathbf{v}^{i}_{u,c}
+=
+\frac{\mathbf{G}^{i}_{u,c}}
+{g^{i}_{u,c}+\varepsilon},
+\label{eq:dime_gradient_orientation}
+\end{equation}
+where the scalar $g^{i}_{u,c}$ measures local intensity-change strength, and $\mathbf{v}^{i}_{u,c}\in\mathbb{R}^{2}$ describes the direction of increasing intensity in the image plane. These quantities serve different roles: magnitude identifies reliable locations for supervision, while direction specifies the local structure to recover. The stabilizer $\varepsilon>0$ avoids division by zero; $\mathbf{v}^{i}_{u,c}$ is approximately unit length when $g^{i}_{u,c}\gg\varepsilon$.
+
+Let $\hat{\mathbf{G}}^{i}_{u,c}\in\mathbb{R}^{2}$ denote the predicted gradient, with stabilized direction
+$\hat{\mathbf{v}}^{i}_{u,c}
+=
+\hat{\mathbf{G}}^{i}_{u,c}/
+(\|\hat{\mathbf{G}}^{i}_{u,c}\|_{2}+\varepsilon)$.
+Because gradient direction is unreliable in nearly flat regions, we restrict supervision to
+$\Omega=\{(i,u,c):i\in\{a,b\},\,
+g^{i}_{u,c}>\tau_{i,c}\}$,
+where $\tau_{i,c}$ is the $\rho$-quantile of target gradient magnitudes over spatial positions in channel $c$ of $i$. We use the same retention parameter $\rho$ as EDDS. The orientation objective is
+\begin{equation}
+\mathcal{L}_{\mathrm{ori}}
+=
+\frac{1}{\max(1,|\Omega|)}
+\sum_{(i,u,c)\in\Omega}
+\left(
+1-
+(\hat{\mathbf{v}}^{i}_{u,c})^{\top}
+\mathbf{v}^{i}_{u,c}
+\right).
+\label{eq:dime_orientation_loss}
+\end{equation}
+
+The inner product measures directional agreement between predicted and target gradients. Approximately the upper $(1-\rho)$ fraction of target gradients is retained, and an empty support contributes zero. Target magnitude selects supervised locations but does not directly weight their directional errors, preventing strong edges from dominating solely through their magnitude.
+
+\noindent\textbf{RGB reconstruction.}
+We retain the normalized-pixel reconstruction objective of MAE~\cite{he2022masked} as a global reconstruction anchor. Specifically, each raw target patch is standardized as \scalebox{0.90}{$\mathcal{N}(\mathbf{y}^{i}_{\ell}) = (\mathbf{y}^{i}_{\ell} - \mu^{i}_{\ell}\mathbf{1}_{3P})/\sqrt{\nu^{i}_{\ell} + \varepsilon}$}, and $\mathcal{L}_{\mathrm{rgb}}$ is the mean squared error between $\hat{\mathbf{y}}^{i}_{\ell}$ and $\mathcal{N}(\mathbf{y}^{i}_{\ell})$, averaged over both sources, all $L$ patches, and their $3P$ pixel values. Every assembled prediction comes from a decoder branch in which the target position was masked, so RGB supervision preserves the predictive nature of masked autoencoding.
+
+\noindent\textbf{Full objective.} The three objectives are combined as
+\begin{equation}
+\mathcal{L}_{\mathrm{DIME}}
+=
+\lambda_{\mathrm{edds}}\,\mathcal{L}_{\mathrm{edds}}
++
+\lambda_{\mathrm{ori}}\,\mathcal{L}_{\mathrm{ori}}
++
+\mathcal{L}_{\mathrm{rgb}},
+\label{eq:dime_total_objective}
+\end{equation}
+where $\lambda_{\mathrm{edds}}$ and $\lambda_{\mathrm{ori}}$ are nonnegative weights. After pretraining, only the encoder is retained for downstream tasks without paired inputs or a source-separation mask.
+
+\subsection{Learning Variation from Differential Supervision}
+\label{sec:dime_formal}
+
+The central design of DIME is to reorganize masked pretraining around an identity-controlled pair. It turns subtle, identity-irrelevant variation from a secondary reconstruction residual into a signal that must be modeled directly.
+
+\noindent\textbf{Separated forward paths.}
+Although DIME supervises the pair jointly, each observation is recovered only from its own visible evidence. Source-restricted attention ensures that, for fixed parameters $\theta$ and mask $\mathbf{m}$,
+\begin{equation}
+\hat{\mathbf{Y}}^{i}
+=
+\Phi_{\theta}(\mathbf{T}^{i};\mathbf{m}),
+\quad
+\frac{\partial\hat{\mathbf{Y}}^{i}}
+{\partial\mathbf{T}^{j}}
+=
+\mathbf{0},
+\quad
+i,j\in\{a,b\},\ i\neq j,
+\label{eq:dime_source_isolation}
+\end{equation}
+where $\Phi_{\theta}$ denotes the shared reciprocal recovery operator. This property assumes that no cross-token operation bypasses the source mask. The two observations share parameters and spatial coordinates, but exchange no image-dependent features. EDDS therefore cannot be satisfied by copying content between observations; each prediction must remain recoverable from its own context.
+
+\noindent\textbf{Identity as the reference.}
+DIME jointly reconstructs two observations from the same identity to model facial variation. We formalize this effect at the patch level. Let $S$ be the random variable representing identity, with $s$ denoting one of its realizations. At an aligned spatial location $\ell$, let $\mathbf{y}_{\ell}\in\mathbb{R}^{3P}$ be a random flattened RGB patch, where $P$ is the number of pixels. For identity $s$ and observation $i\in\{a,b\}$, the concrete patch $\mathbf{y}^{i}_{s,\ell}$ is decomposed as
+\begin{equation}
+\begin{aligned}
+\boldsymbol{\mu}_{s,\ell}
+&:=\mathbb{E}\!\left[\mathbf{y}_{\ell}\mid S=s\right],\quad
+\mathbf{r}^{i}_{s,\ell}
+:=\mathbf{y}^{i}_{s,\ell}-\boldsymbol{\mu}_{s,\ell},\\
+\mathbf{y}^{i}_{s,\ell}
+&=\boldsymbol{\mu}_{s,\ell}+\mathbf{r}^{i}_{s,\ell}.
+\end{aligned}
+\label{eq:dime_identity_reference}
+\end{equation}
+
+Here, $\mathbb{E}$ denotes the elementwise expectation over facial observations of identity $s$. Thus, $\boldsymbol{\mu}_{s,\ell}$ represents the average patch appearance of that identity at location $\ell$, whereas $\mathbf{r}^{i}_{s,\ell}$ captures the observation-specific deviation from this reference. Equation~\eqref{eq:dime_identity_reference} is an exact decomposition by definition, not an assumption that facial appearance is disentangled.
+
+Consider observations $a$ and $b$ with identity values $s_a$ and $s_b$, which are not assumed equal. Their flattened target-patch difference can be written as
+\begin{equation}
+\begin{aligned}
+\mathbf{y}^{a}_{s_a,\ell}
+-\mathbf{y}^{b}_{s_b,\ell}
+&=\bigl(\boldsymbol{\mu}_{s_a,\ell}
+-\boldsymbol{\mu}_{s_b,\ell}\bigr)\\
+&\quad+\bigl(\mathbf{r}^{a}_{s_a,\ell}
+-\mathbf{r}^{b}_{s_b,\ell}\bigr),
+\end{aligned}
+\label{eq:dime_pair_decomposition}
+\end{equation}
+the first parenthesized term is the between-identity baseline; the second is the difference between the observation-dependent residuals. For an
+unconstrained pair, the first term can dominate changes between facial states. DIME instead samples $s_a=s_b$, for which Eq.~\eqref{eq:dime_pair_decomposition} reduces to
+\begin{equation}
+s_a=s_b=s
+\quad\Longrightarrow\quad
+\boldsymbol{\Delta}_{\ell}
+=\operatorname{reshape}_{P\times3}
+\bigl(\mathbf{r}^{a}_{s,\ell}-\mathbf{r}^{b}_{s,\ell}\bigr).
+\label{eq:dime_identity_control}
+\end{equation}
+
+Thus, shared identity-conditioned appearance remains in each image but cancels in the comparison, allowing identity to serve as a control for exposing subtle variation. EDDS then compares the centered differences of the recovered and original pairs. Components reconstructed identically in both outputs cannot reduce this discrepancy; the model must preserve the directional pattern that distinguishes the two observations. DIME thereby turns subtle variation from a secondary residual into an explicit learning target.
+
+This interpretation does not imply disentanglement: the residual $\mathbf{r}^{i}_{s,\ell}$ may include different states and misalignment. Here, \emph{identity-irrelevant variation} refers operationally to evidence that changes after identity is controlled. Equations~\eqref{eq:dime_identity_reference}-\eqref{eq:dime_identity_control} therefore define an optimization bias: reconstruction retains shared identity appearance, while EDDS provides dedicated supervision for variation.
+
+\noindent\textbf{Cross-Image Coupling.}
+Eq.~\eqref{eq:dime_source_isolation} shows that the two observations remain separated for the forward pass. EDDS couples their reconstructions through a joint loss. Let $\Gamma$ be the target-derived set of valid patches. For $\ell\in\Gamma$, write the recovered raw patch in matrix form and define its EDDS gradient as
+\begin{equation}
+\begin{aligned}
+\hat{\mathbf{Q}}^{i}_{\ell}
+&:=\operatorname{reshape}_{P\times3}
+\bigl(\hat{\mathbf{y}}^{i,\mathrm{raw}}_{\ell}\bigr),
+\qquad i\in\{a,b\},\\
+\mathbf{q}_{\ell}
+&:=
+\nabla_{\hat{\boldsymbol{\delta}}_{\ell}}
+\mathcal{L}_{\mathrm{edds},\ell},
+\end{aligned}
+\label{eq:dime_cross_image_terms}
+\end{equation}
+here, $\hat{\mathbf{Q}}^{i}_{\ell}\in\mathbb{R}^{P\times3}$, $\hat{\boldsymbol{\delta}}_{\ell}=\mathbf{H}_{P}(\hat{\mathbf{Q}}^{a}_{\ell}-\hat{\mathbf{Q}}^{b}_{\ell})$, and $\mathcal{L}_{\mathrm{edds},\ell}$ is the EDDS contribution of patch $\ell$. Holding the target-derived support $\Gamma$ fixed, the chain rule gives
+\begin{equation}
+\begin{aligned}
+\nabla_{\hat{\mathbf{Q}}^{a}_{\ell}}
+\mathcal{L}_{\mathrm{edds},\ell}
+&=
+\mathbf{H}_{P}^{\top}\mathbf{q}_{\ell},\\
+\nabla_{\hat{\mathbf{Q}}^{b}_{\ell}}
+\mathcal{L}_{\mathrm{edds},\ell}
+&=
+-\mathbf{H}_{P}^{\top}\mathbf{q}_{\ell},\\
+\mathbf{1}_{P}^{\top}
+\nabla_{\hat{\mathbf{Q}}^{i}_{\ell}}
+\mathcal{L}_{\mathrm{edds},\ell}
+&=
+\mathbf{0},
+\quad i\in\{a,b\}.
+\end{aligned}
+\label{eq:dime_relational_gradient}
+\end{equation}
+
+The first two lines show that EDDS induces equal-and-opposite gradients with respect to the two raw patches. Since $\mathbf{q}_{\ell}$ is computed from their joint difference, the gradient with respect to either reconstruction depends on the recovered state of the other. Two individually plausible predictions can therefore receive a substantial penalty when their centered difference has the wrong direction. EDDS thus makes such variation directly visible to optimization.
+
+The last line follows from $\mathbf{1}_{P}^{\top}\mathbf{H}_{P}^{\top}=\mathbf{0}$, showing that the EDDS gradient has zero spatial mean in each color channel. RGB reconstruction therefore anchors the unconstrained constant appearance component, while gradient-orientation recovery emphasizes local geometry. The equal-and-opposite relation holds in raw-patch coordinates; normalized outputs additionally introduce the source-specific scale factors in Eq.~\eqref{eq:dime_inverse_normalization}. Together, source separation prevents cross-image copying, same-identity pairing removes the dominant between-identity baseline, and EDDS couples the recovered observations through an explicit cross-image objective. DIME therefore learns beyond-identity cues not merely by pairing two faces, but by directly optimizing the variation between them while retaining individual appearance and local structure through reconstruction.
+
+
+\section{Experiments}
+
+\subsection{Architecture, Pretraining, and Transfer Settings}
+\label{sec:implementation_settings}
+
+\noindent\textbf{Architecture.}
+We instantiate DIME with ViT encoders~\cite{dosovitskiy2020image,touvron2021training} using $16\times16$ patches. Before encoding, tokens from two observations of the same person are composed into the reciprocal mixed grids of Eq.~\eqref{eq:dime_reciprocal_realization}. Source-restricted self-attention is applied in every encoder block, allowing each token to aggregate evidence only from its own observation and preventing cross-observation copying. A lightweight MAE-style decoder~\cite{he2022masked} supports two linear prediction heads for normalized RGB patches and per-channel two-dimensional gradients, respectively. The RGB predictions also supply the paired reconstructions used by EDDS, while the gradient predictions receive orientation supervision. Table~\ref{tab:dime_architecture} specifies DIME-S, DIME-B, and DIME-L, built on ViT-S/16, ViT-B/16, and ViT-L/16~\cite{touvron2021training}, respectively.
+
+
+\noindent\textbf{Pretraining and Data.}
+We pretrain DIME on Face-20M, comprising 20M facial images aggregated from WebFace42M~\cite{zhu2023webface260m}, Glint360K~\cite{an2022killing}, MS1MV2~\cite{deng2022arcface}, and MegaFace~\cite{kemelmacher2016megaface}. Identity metadata is used only to sample image pairs; pretraining requires no facial-state or dense annotations. To improve the image quality, the original face images are restored and upsampled to $448\times448$ and $512\times512$ using GFPGAN~\cite{wang2021towards} and CodeFormer~\cite{zhou2022towards}.
+
+Following the image-pretraining optimization recipe of Hiera~\cite{ryali2023hiera}, we use AdamW with $(\beta_1,\beta_2)=(0.9,0.95)$ and weight decay $0.05$. The pretraining stage uses a 40-epoch warmup followed by cosine decay. Training runs on the EU LUMI supercomputer with AMD MI250X GPUs. We first train all DIME variants at $224\times224$ for 400 epochs, then continue at $512\times512$ for another 100 epochs. With the patch size fixed, this transition increases the spatial grid from $14\times14$ to $32\times32$ tokens, allowing continued pretraining to resolve finer facial structure. The complete training configurations and data are provided with the released code.
+
+
+\begin{table}[t]
+\centering
+\caption{\textbf{Architectures of DIME.} The decoder column reports its embedding dimension and block depth. Parameter counts exclude pretraining-only components.}
+\label{tab:dime_architecture}
+\setlength{\tabcolsep}{4.0pt}
+\vspace{-2pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+Model &
+Backbone &
+Embed. dim &
+Depth &
+Decoder dim/depth &
+Params \\
+\midrule
+DIME-S &
+ViT-S/16 &
+384 &
+12 &
+$384/6$ &
+$23$M \\
+
+DIME-B &
+ViT-B/16 &
+768 &
+12 &
+$512/8$ &
+$86$M \\
+
+DIME-L &
+ViT-L/16 &
+1024 &
+24 &
+$512/8$ &
+$307$M \\
+\bottomrule
+\end{tabular}%
+}
+\vspace{-2.0em}
+\end{table}
+
+\noindent\textbf{Transfer.}
+After pretraining, we retain only the ViT encoder and discard the decoder and prediction heads. Token mixing and the source-restricted attention mask are removed, restoring global self-attention for standard single-image processing. Same-identity pairing is therefore required only during pretraining; downstream tasks use individual images without a reference observation or identity metadata.
+
+
+% AU layout: four independently numbered tables in one top float.
+\begin{table*}[!t]
+\centering
+\begin{minipage}{\textwidth}
+\centering
+  \caption{Per-AU F1 scores (\%) on BP4D \cite{zhang2014bp4d}. Best and second-best results are in \BestScore{vermilion} and \SecondScore{deep blue}, respectively.}
+  \label{tab:au_bp4d}
+  \vspace{-1.0mm}
+
+  \setlength{\tabcolsep}{2.5pt}
+  \renewcommand{\arraystretch}{0.95}
+
+  \resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}l*{14}{>{\centering\arraybackslash}m{2.9em}}@{}}
+    \toprule
+    Method
+    & AU1 & AU2 & AU4 & AU6 & AU7 & AU10 & AU12
+    & AU14 & AU15 & AU17 & AU23 & AU24
+    & \textbf{Avg.}$\uparrow$ & \textbf{SD}$\downarrow$ \\
+    \midrule
+
+    CISNet \cite{chen2022causal}
+    & 54.8 & 48.3 & 57.2 & 76.2 & 76.5
+    & \SecondScore{85.2} & 87.2 & 66.2 & 50.9 & 65.0 & 47.7 & 56.5
+    & 64.3 & 13.4 \\
+
+    D-PAttNet \cite{onal2019d}
+    & 50.7 & 42.5 & 59.0 & 79.4 & 79.0
+    & 85.0 & 89.3 & 67.6 & 51.6 & 65.3 & 49.6 & 54.5
+    & 64.7 & 14.9 \\
+
+    CaFNet \cite{chen2021cafgraph}
+    & 55.1 & 49.3 & 57.7 & 78.3 & 78.6
+    & 85.1 & 86.2 & 67.4 & 52.0 & 64.4 & 48.3 & 56.2
+    & 64.9 & 13.4 \\
+
+    ME-GraphAU \cite{luo2022learning}
+    & 52.7 & 44.3 & 60.9 & 79.9 & 80.1
+    & \BestScore{85.3} & 89.2 & 69.4 & 55.4 & 64.4 & 49.8 & 55.1
+    & 65.5 & 14.4 \\
+
+    MAE-Face \cite{ma2024facial}
+    & 65.2 & 55.7 & 66.9 & 79.5 & 79.5
+    & \SecondScore{85.2} & \BestScore{90.0} & 67.5 & 59.7 & 67.5
+    & 54.8 & 60.9
+    & 69.4 & 11.1 \\
+
+    FMAE \cite{ning2024representation}
+    & 59.2 & 50.0 & 62.7 & 80.0 & 79.2
+    & 84.7 & 89.8 & 63.5 & 52.8 & 65.1 & 55.3 & 56.9
+    & 66.6 & 12.8 \\
+
+    FMAE-IAT \cite{ning2024representation}
+    & 62.7 & 51.9 & 62.7 & 79.8 & 80.1
+    & 84.8 & \SecondScore{89.9} & 64.6 & 54.9 & 65.4 & 53.1 & 54.7
+    & 67.1 & 12.7 \\
+    \midrule
+
+    MAE-L \cite{he2022masked}
+    & 53.0 & 46.5 & 55.4 & 74.4 & 74.7
+    & 83.4 & 85.4 & 64.4 & 49.1 & 63.2 & 45.9 & 54.7
+    & 62.5 & 13.4 \\
+
+    DINOv3-L \cite{simeoni2025dinov3}
+    & 54.5 & 46.7 & 56.4 & 74.9 & 76.0
+    & 83.2 & 85.5 & 66.0 & 49.0 & 64.0 & 47.7 & 54.6
+    & 63.2 & 13.3 \\
+
+    MixMAE-L \cite{liu2023mixmae}
+    & 52.0 & 44.3 & 54.7 & 72.6 & 73.8
+    & 83.6 & 85.5 & 62.9 & 46.7 & 62.1 & 43.9 & 53.6
+    & 61.3 & 14.0 \\
+
+    ConvNeXtV2-L \cite{woo2023convnext}
+    & 52.8 & 45.6 & 55.7 & 73.9 & 74.6
+    & 82.8 & 85.6 & 63.6 & 48.4 & 63.3 & 45.5 & 53.5
+    & 62.1 & 13.6 \\
+    \midrule
+
+    DIME-S
+    & 66.4 & 57.0 & 67.8 & 79.5 & 78.2
+    & 84.2 & 88.2 & 67.7 & 61.6 & 68.2 & 56.4 & 62.4
+    & 69.8 & 10.0 \\
+
+    DIME-B
+    & \SecondScore{68.3}
+    & \SecondScore{61.6}
+    & \SecondScore{69.4}
+    & \SecondScore{80.1}
+    & \BestScore{80.8}
+    & 84.9
+    & 89.2
+    & \SecondScore{71.1}
+    & \SecondScore{63.3}
+    & \SecondScore{70.6}
+    & \SecondScore{59.9}
+    & \SecondScore{64.8}
+    & \SecondScore{72.0}
+    & \SecondScore{9.2} \\
+
+    DIME-L
+    & \BestScore{70.9}
+    & \BestScore{62.3}
+    & \BestScore{71.5}
+    & \BestScore{81.3}
+    & \SecondScore{80.4}
+    & 84.9
+    & 88.6
+    & \BestScore{71.2}
+    & \BestScore{66.4}
+    & \BestScore{71.5}
+    & \BestScore{63.0}
+    & \BestScore{66.4}
+    & \BestScore{\textbf{73.2}}
+    & \BestScore{\textbf{8.3}} \\
+
+    \bottomrule
+  \end{tabular}%
+  }
+\end{minipage}
+\par\vspace{3mm}
+\begin{minipage}{\textwidth}
+\centering
+  \caption{Per-AU F1 scores (\%) on BP4D+ \cite{zhang2016multimodal}. Best and second-best results are in \BestScore{vermilion} and \SecondScore{deep blue}, respectively.}
+  \label{tab:au_bp4dplus}
+  \vspace{-1.0mm}
+
+  \setlength{\tabcolsep}{2.5pt}
+  \renewcommand{\arraystretch}{0.95}
+
+  \resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}l*{14}{>{\centering\arraybackslash}m{2.9em}}@{}}
+    \toprule
+    Method
+    & AU1 & AU2 & AU4 & AU6 & AU7 & AU10 & AU12
+    & AU14 & AU15 & AU17 & AU23 & AU24
+    & \textbf{Avg.}$\uparrow$ & \textbf{SD}$\downarrow$ \\
+    \midrule
+
+    FACS3D-Net \cite{yang2019facs3d}
+    & 43.0 & 38.1 & 49.9 & 82.3 & 85.1 & 87.2 & 87.5
+    & 66.0 & 48.4 & 47.4 & 50.0 & 31.9
+    & 59.7 & 19.8 \\
+
+    ML-GCN \cite{chen2019multi}
+    & 40.2 & 36.9 & 32.5 & 84.8 & \SecondScore{88.9}
+    & 89.6 & 89.3 & 81.2 & 53.3 & 43.1 & 55.9 & 28.3
+    & 60.3 & 23.6 \\
+
+    MS-CAM \cite{you2020cross}
+    & 38.3 & 37.6 & 25.0 & 85.0 & \BestScore{90.9}
+    & 90.9 & 89.0 & 81.5 & \BestScore{60.9} & 40.6 & 58.2 & 28.0
+    & 60.5 & 24.9 \\
+
+    SEV-Net \cite{yang2021exploiting}
+    & 47.9 & 40.8 & 31.2 & 86.9 & 87.5
+    & 89.7 & 88.9 & 82.6 & 39.9 & 55.6 & 59.4 & 27.1
+    & 61.5 & 23.3 \\
+
+    MAE-Face \cite{ma2024facial}
+    & 53.0 & 44.5 & 49.4 & \BestScore{87.7} & 88.8
+    & \BestScore{91.4} & \BestScore{90.8} & 83.2 & 45.2 & 50.0
+    & 61.2 & 45.3
+    & 65.9 & 19.6 \\
+
+    FMAE \cite{ning2024representation}
+    & 53.9 & 45.5 & 45.9 & 86.2 & 88.3
+    & \SecondScore{91.2} & 89.9 & 82.3 & 51.3 & 56.3 & 60.7 & 42.7
+    & 66.2 & 18.8 \\
+
+    FMAE-IAT \cite{ning2024representation}
+    & 54.2 & 47.0 & 53.9 & 85.7 & 88.4
+    & \SecondScore{91.2} & 89.7 & 82.4 & 50.3 & 54.4 & 61.0 & 43.4
+    & 66.8 & 18.1 \\
+    \midrule
+
+    MAE-L \cite{he2022masked}
+    & 46.2 & 39.0 & 29.4 & 85.1 & 85.7
+    & 88.2 & 87.1 & 80.8 & 38.1 & 53.5 & 57.6 & 25.3
+    & 59.7 & 23.4 \\
+
+    DINOv3-L \cite{simeoni2025dinov3}
+    & 47.6 & 38.8 & 31.2 & 85.4 & 86.7
+    & 87.9 & 87.3 & 82.3 & 38.0 & 54.3 & 59.2 & 25.6
+    & 60.4 & 23.3 \\
+
+    MixMAE-L \cite{liu2023mixmae}
+    & 44.5 & 38.2 & 27.0 & 84.0 & 85.0
+    & 88.3 & 87.3 & 79.2 & 35.8 & 52.6 & 55.8 & 23.8
+    & 58.5 & 23.9 \\
+
+    ConvNeXtV2-L \cite{woo2023convnext}
+    & 45.8 & 39.5 & 28.4 & 84.9 & 86.0
+    & 87.3 & 87.7 & 80.1 & 36.9 & 53.9 & 56.8 & 23.8
+    & 59.3 & 23.7 \\
+    \midrule
+
+    DIME-S
+    & 55.9 & 47.0 & 52.2 & 86.8 & 86.9
+    & 90.0 & 89.0 & 82.1 & 48.8 & 52.1 & 62.5 & 48.3
+    & 66.8 & 17.5 \\
+
+    DIME-B
+    & \SecondScore{58.4}
+    & \SecondScore{52.9}
+    & \SecondScore{55.3}
+    & \SecondScore{87.5}
+    & 88.7
+    & 90.1
+    & \SecondScore{90.1}
+    & \BestScore{84.3}
+    & 51.6
+    & \SecondScore{57.0}
+    & \SecondScore{65.6}
+    & \SecondScore{52.5}
+    & \SecondScore{69.5}
+    & \SecondScore{16.2} \\
+
+    DIME-L
+    & \BestScore{62.1}
+    & \BestScore{54.2}
+    & \BestScore{59.0}
+    & 87.1
+    & 88.1
+    & 90.3
+    & 89.5
+    & \SecondScore{83.5}
+    & \SecondScore{56.2}
+    & \BestScore{58.5}
+    & \BestScore{68.0}
+    & \BestScore{55.5}
+    & \BestScore{\textbf{71.0}}
+    & \BestScore{\textbf{14.6}} \\
+
+    \bottomrule
+  \end{tabular}%
+  }
+\end{minipage}
+\par\vspace{3mm}
+\begin{minipage}[t]{\dimexpr(\textwidth-\columnsep)/2\relax}
+\vspace{0pt}
+\centering
+  \caption{AU detection on DISFA~\cite{mavadati2013disfa}. Best and second-best results are in \BestScore{vermilion} and \SecondScore{deep blue}, respectively.}
+  \label{tab:au_disfa}
+  \vspace{-1.0mm}
+  \setlength{\tabcolsep}{2.0pt}
+  \renewcommand{\arraystretch}{1.02}
+  \resizebox{\linewidth}{!}{%
+  \begin{tabular}{@{}l*{10}{c}@{}}
+    \toprule
+    Method
+    & AU1 & AU2 & AU4 & AU6 & AU9 & AU12 & AU25 & AU26
+    & \textbf{Avg.}$\uparrow$ & \textbf{SD}$\downarrow$ \\
+    \midrule
+
+    CISNet \cite{chen2022causal}
+    & 48.8 & 50.4 & \SecondScore{78.9} & 51.9 & 47.1
+    & \SecondScore{80.1} & 95.4 & 65.0
+    & 64.7 & 17.0 \\
+
+    CaFNet \cite{chen2021cafgraph}
+    & 45.6 & 55.7 & \BestScore{80.2} & 51.0 & 54.7
+    & 79.0 & 95.2 & 65.3
+    & 65.8 & 16.2 \\
+
+    MGRR-Net \cite{ge2024mgrr}
+    & 61.3 & 62.9 & 75.8 & 48.7 & 53.8
+    & 75.5 & 94.3 & 73.1
+    & 68.2 & 13.6 \\
+
+    MAE-Face \cite{ma2024facial}
+    & 72.0 & 68.7 & 75.2 & 59.8 & 58.5
+    & 79.3 & 96.4 & 73.6
+    & 72.9 & 11.2 \\
+
+    FMAE-IAT \cite{ning2024representation}
+    & 64.7 & 61.3 & 70.8 & 58.1 & 59.4
+    & 79.9 & 95.2 & 71.3
+    & 70.1 & 11.7 \\
+    \midrule
+
+    MAE-L \cite{he2022masked}
+    & 50.7 & 50.5 & 77.6 & 52.0 & 47.2
+    & 79.8 & 95.5 & 65.1
+    & 64.8 & 16.6 \\
+
+    DINOv3-L \cite{simeoni2025dinov3}
+    & 47.7 & 48.1 & 78.0 & 49.2 & 46.2
+    & 79.7 & 93.0 & 62.1
+    & 63.0 & 17.1 \\
+
+    MixMAE-L \cite{liu2023mixmae}
+    & 46.6 & 48.9 & 77.4 & 48.7 & 44.4
+    & 79.8 & 92.4 & 61.8
+    & 62.5 & 17.2 \\
+
+    ConvNeXtV2-L \cite{woo2023convnext}
+    & 48.1 & 49.4 & 78.2 & 50.3 & 46.8
+    & 79.9 & 93.7 & 63.2
+    & 63.7 & 16.9 \\
+    \midrule
+
+    DIME-S
+    & 72.2 & 69.6 & 75.4 & 60.8 & 59.8
+    & 79.1 & 96.3 & \SecondScore{74.0}
+    & 73.4 & 10.7 \\
+
+    DIME-B
+    & \SecondScore{72.6}
+    & \SecondScore{70.5}
+    & 75.9
+    & \SecondScore{61.6}
+    & \SecondScore{60.5}
+    & 79.2
+    & \SecondScore{96.5}
+    & \BestScore{74.4}
+    & \SecondScore{73.9}
+    & \SecondScore{10.5} \\
+
+    DIME-L
+    & \BestScore{73.2}
+    & \BestScore{71.7}
+    & 76.6
+    & \BestScore{62.8}
+    & \BestScore{61.8}
+    & \BestScore{80.2}
+    & \BestScore{97.4}
+    & 73.9
+    & \BestScore{\textbf{74.7}}
+    & \BestScore{\textbf{10.4}} \\
+
+    \bottomrule
+  \end{tabular}%
+  }
+\end{minipage}\hfill%
+\begin{minipage}[t]{\dimexpr(\textwidth-\columnsep)/2\relax}
+\vspace{0pt}
+\centering
+  \caption{AU intensity-estimation. Best and second-best results are in \BestScore{vermilion} and \SecondScore{deep blue}, respectively.}
+  \label{tab:au_intensity}
+  \vspace{-1.0mm}
+  \setlength{\tabcolsep}{16pt}
+  \renewcommand{\arraystretch}{0.92}
+  \resizebox{\linewidth}{!}{%
+  \begin{tabular}{@{}lcc cc@{}}
+    \toprule
+    & \multicolumn{2}{c}{BP4D \cite{zhang2014bp4d}} & \multicolumn{2}{c}{DISFA \cite{mavadati2013disfa}} \\
+    \cmidrule(lr){2-3}\cmidrule(l){4-5}
+    Method
+    & ICC$\uparrow$ & MSE$\downarrow$
+    & ICC$\uparrow$ & MSE$\downarrow$ \\
+    \midrule
+    ISIR \cite{nicolle2015facial}           & .720 & .850 & --    & --    \\
+    HR \cite{ntinou2021transfer}            & .730 & .780 & .570  & .320  \\
+    APs \cite{sanchez2021affective}           & .740 & .770 & .580  & .300  \\
+    MAE-Face \cite{ma2024facial}       & .742 & .794 & .674  & .213  \\
+    \midrule
+    MAE-L \cite{he2022masked}          & .700 & .860 & .640  & .270  \\
+    DINOv3-L \cite{simeoni2025dinov3}       & .710 & .840 & .610  & .280  \\
+    MixMAE-L \cite{liu2023mixmae}       & .690 & .880 & .610  & .290  \\
+    ConvNeXtV2-L \cite{woo2023convnext}  & .700 & .850 & .620  & .280  \\
+    \midrule
+    DIME-S
+    & .761 & .752 & .693 & .208 \\
+    DIME-B
+    & \SecondScore{.768} & \SecondScore{.742}
+    & \SecondScore{.698} & \SecondScore{.196} \\
+    DIME-L
+    & \BestScore{\textbf{.774}} & \BestScore{\textbf{.735}}
+    & \BestScore{\textbf{.702}} & \BestScore{\textbf{.194}} \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{minipage}
+\vspace{-1.5em}
+\end{table*}
+
+
+\subsection{Experiments on Facial Action Unit Understanding}
+\label{sec:exp_au}
+
+Facial action units (AUs) describe subtle facial muscle activations. Their detection and estimation are challenging because the resulting changes are extremely fine-grained.
+
+\noindent\textbf{Evaluation protocol.} Following MAE-Face~\cite{ma2024facial}, we evaluate AU detection on BP4D~\cite{zhang2014bp4d}, BP4D+~\cite{zhang2016multimodal}, and DISFA~\cite{mavadati2013disfa}, containing 12, 12, and 8 AUs from 41, 140, and 27 subjects, respectively. Newly evaluated encoders use the subject-exclusive three-fold splits of~\cite{ma2024facial}, with patch tokens processed by global average pooling, layer normalization, and a linear head trained using inverse-frequency-weighted binary cross-entropy. We report per-AU F1, its unweighted mean, and the population SD across AUs; SD measures performance balance across AUs, and is interpreted jointly with mean F1. For intensity estimation, we use the FERA2015 train/dev partition \cite{valstar2015fera} of BP4D with five AUs and subject-exclusive three-fold evaluation on DISFA with twelve AUs, following the regression objective of MAE-Face and reporting mean ICC(3,1) and MSE. Data processing and optimization settings are held fixed across newly evaluated encoders.
+
+
+\noindent\textbf{AU detection on BP4D.} Table~\ref{tab:au_bp4d} reports per-AU F1, macro F1, and cross-AU SD. Among established methods, MAE-Face achieves 69.4\% macro F1, compared with 66.6\% for FMAE and 67.1\% for FMAE-IAT. DIME-S reaches 69.8\%, while DIME-B and DIME-L further improve to 72.0\% and 73.2\%. Meanwhile, SD decreases from 11.1 for MAE-Face to 10.0, 9.2, and 8.3 for the three DIME variants, indicating increasingly balanced performance across AUs. AU12 remains among the strongest categories, whereas AU2 and AU23 remain challenging. Overall, the joint improvement in macro F1 and SD suggests that DIME benefits a broader range of AUs rather than only already strong categories.
+
+
+\noindent\textbf{AU detection on BP4D+.} Table~\ref{tab:au_bp4dplus} evaluates transfer on the BP4D+ benchmark. FMAE and FMAE-IAT report 66.2\% and 66.8\% macro F1 under a four-fold protocol and therefore provide contextual rather than strictly matched comparisons. Under the common three-fold protocol, DIME-S achieves 66.8\%, compared with 65.9\% for MAE-Face, while DIME-B and DIME-L increase to 69.5\% and 71.0\%. Category-level variation nevertheless remains: DIME-B is slightly stronger on AU6, AU7, AU12, and AU14, whereas DIME-L improves several more challenging AUs, including AU1, AU2, AU4, AU15, AU17, and AU24. Thus, scaling particularly benefits lower-performing AUs.
+
+\begin{figure*}[!t]
+\centering
+    \setlength{\abovecaptionskip}{2pt}
+    \includegraphics[width=\linewidth]{figures/au_res.png}
+    \caption{Per-AU F1 scores on BP4D (left), BP4D+ (middle), and DISFA (right). Dashed boxes highlight groups containing lower-performing AUs, where DIME improves detection beyond generic visual encoders and prior facial SSL models.}
+    \label{fig:au_detection_analysis}
+    \vspace{-0.5em}
+\end{figure*}
+
+\begin{table*}[t!]
+  \centering
+  \caption{Cross-domain face anti-spoofing results. The generic visual encoders and DIME variants are evaluated using a unified downstream protocol \cite{yu2025learning}. Best and second-best results are highlighted in \BestScore{vermilion} and \SecondScore{deep blue}, respectively.}
+  \label{tab:cross_domain_fas}
+  \vspace{-1.0mm}
+  \setlength{\tabcolsep}{10pt}
+  \renewcommand{\arraystretch}{0.94}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{@{}l*{5}{cc}@{}}
+    \toprule
+    & \multicolumn{2}{c}{$ICM\!\rightarrow\!O$}
+    & \multicolumn{2}{c}{$OCM\!\rightarrow\!I$}
+    & \multicolumn{2}{c}{$OCI\!\rightarrow\!M$}
+    & \multicolumn{2}{c}{$OMI\!\rightarrow\!C$}
+    & \multicolumn{2}{c}{Average} \\
+    \cmidrule(lr){2-3}
+    \cmidrule(lr){4-5}
+    \cmidrule(lr){6-7}
+    \cmidrule(lr){8-9}
+    \cmidrule(l){10-11}
+    Method
+    & HTER$\downarrow$ & AUC$\uparrow$
+    & HTER$\downarrow$ & AUC$\uparrow$
+    & HTER$\downarrow$ & AUC$\uparrow$
+    & HTER$\downarrow$ & AUC$\uparrow$
+    & HTER$\downarrow$ & AUC$\uparrow$ \\
+    \midrule
+
+    LBP-TOP \cite{zhao2007dynamic}
+    & 30.17 & 77.61
+    & 29.14 & 71.69
+    & 36.90 & 70.80
+    & 33.52 & 73.15
+    & 32.43 & 73.31 \\
+
+    SA-FAS \cite{sun2023rethinking}
+    & 10.00 & 96.23
+    & 6.58 & 97.54
+    & 5.95 & 96.55
+    & 8.78 & 95.37
+    & 7.83 & 96.42 \\
+
+    PDLE \cite{kwak2023liveness}
+    & 11.42 & 95.52
+    & 8.62 & 97.60
+    & 5.41 & 98.85
+    & 10.05 & 94.27
+    & 8.88 & 96.56 \\
+
+    UDG-FAS \cite{liu2023towards}
+    & 10.97 & 95.36
+    & 5.86 & 98.62
+    & 5.95 & 98.47
+    & 9.82 & \SecondScore{96.76}
+    & 8.15 & 97.30 \\
+
+    GAC-FAS \cite{le2024gradient}
+    & 8.60 & 97.16
+    & 4.29 & 98.87
+    & 5.00 & 97.56
+    & 8.20 & 95.16
+    & 6.52 & 97.19 \\
+
+    BIB-FAS \cite{yu2025learning}
+    & 7.47 & \SecondScore{97.77}
+    & 3.95 & 99.11
+    & 4.05 & 98.27
+    & 7.42 & 96.60
+    & 5.72 & 97.94 \\
+    \midrule
+
+    MAE-L \cite{he2022masked}
+    & 18.39 & 90.52
+    & 14.17 & 92.15
+    & 12.45 & 91.68
+    & 15.58 & 90.21
+    & 15.15 & 91.14 \\
+
+    MixMAE-L \cite{liu2023mixmae}
+    & 17.61 & 91.11
+    & 15.39 & 92.90
+    & 15.17 & 89.82
+    & 19.70 & 87.73
+    & 16.97 & 90.39 \\
+
+    DINOv3-L \cite{simeoni2025dinov3}
+    & 15.30 & 92.23
+    & 13.37 & 94.26
+    & 14.06 & 90.79
+    & 16.44 & 89.96
+    & 14.79 & 91.81 \\
+
+    ConvNeXtV2-L \cite{woo2023convnext}
+    & 16.57 & 88.75
+    & 14.33 & 93.35
+    & 13.07 & 91.31
+    & 17.40 & 88.35
+    & 15.34 & 90.44 \\
+    \midrule
+
+    DIME-S
+    & 7.41 & 97.68
+    & \SecondScore{3.93} & \SecondScore{99.19}
+    & \SecondScore{3.91} & 98.88
+    & 7.07 & 96.53
+    & 5.58 & 98.07 \\
+
+    DIME-B
+    & \SecondScore{7.38} & 97.73
+    & \BestScore{3.88} & \BestScore{99.23}
+    & \BestScore{3.82} & \BestScore{98.97}
+    & \SecondScore{6.93} & 96.62
+    & \SecondScore{5.50} & \SecondScore{98.14} \\
+
+    DIME-L
+    & \BestScore{7.13} & \BestScore{97.92}
+    & 3.94 & 99.11
+    & 3.94 & \SecondScore{98.92}
+    & \BestScore{6.71} & \BestScore{97.43}
+    & \BestScore{\textbf{5.43}} & \BestScore{\textbf{98.35}} \\
+
+    \bottomrule
+  \end{tabular}%
+  }
+  \vspace{-1.5em}
+\end{table*}
+
+\noindent\textbf{AU detection on DISFA.} DISFA contains fewer subjects and substantial imbalance. DIME-S achieves 73.4\% macro F1, compared with 72.9\% for MAE-Face, while DIME-B and DIME-L reach 73.9\% and 74.7\%. These gains are smaller than on BP4D+, indicating dataset-dependent benefits. Cross-AU SD decreases moderately from 11.2 for MAE-Face to 10.7, 10.5, and 10.4 for the three DIME variants. The dataset's structure remains, with AU25 achieving the highest scores and AU6 and AU9 remaining challenging. Overall, the joint improvement in macro F1 and SD indicates a modestly more balanced transfer profile of DIME.
+
+
+\noindent\textbf{Performance on challenging AUs.}
+Figure~\ref{fig:au_detection_analysis} compares per-AU F1 on BP4D, BP4D+, and DISFA from left to right. DIME's gains concentrate on lower-performing AUs highlighted by the dashed boxes. Compared with MAE-Face, DIME-L improves AU2, AU15, and AU23 by 6.6, 6.7, and 8.2 points on BP4D, and AU2, AU4, and AU24 by 9.7, 9.6, and 10.2 points on BP4D+. High-performing categories such as AU10 and AU12 remain broadly comparable. These improvements support more effective modeling of discriminative facial changes across challenging categories.
+
+
+\noindent\textbf{Parameter efficiency.}
+Figure~\ref{fig:1}(c) compares mean F1 over BP4D and BP4D+ against model size. DIME-S achieves 68.3\% with 23M parameters, exceeding MAE-Face's mean F1 while using 73\% fewer parameters. DIME-B and DIME-L further improve accuracy with increased capacity.
+
+\noindent\textbf{Scaling analysis.}
+Figure~\ref{fig:1}(d) compares MAE-B and DIME-B pretrained on Face-20M fractions from 10\% to 100\%, matching encoder scale, data, setting, and downstream evaluation. Compute differs because their masking and recovery procedures differ. From 6M to 20M images, MAE-B improves only from 64.5\% to approximately 65.0\% BP4D mean F1, whereas DIME-B rises from 66.1\% to 72.0\%. DIME thus sustains gains from additional facial data after appearance reconstruction largely saturates. This divergence supports differential supervision as a means of scaling pretraining.
+
+\begin{table*}[t]
+  \centering
+  \setlength{\abovecaptionskip}{2pt}
+
+  \def\GeometryTableFormat{%
+    \fontsize{7.6pt}{8.4pt}\selectfont
+    \setlength{\tabcolsep}{0.25pt}%
+    \renewcommand{\arraystretch}{1.1}%
+  }
+
+  \caption{ We evaluate sparse facial geometry, global orientation, and dense semantic structure through landmark detection, head pose estimation, and face parsing, respectively. Best and second-best results are shown in \BestScore{vermilion} and \SecondScore{deep blue}.}
+  \label{tab:facial_geometry}
+  
+  % ======================== Landmark ========================
+  \begin{minipage}[t]{0.250\textwidth}
+    \vspace{0pt}
+    \centering
+    \GeometryTableFormat
+
+    \begin{tabular*}{\linewidth}{
+      @{\extracolsep{\fill}}lccc@{}
+    }
+      \toprule
+      & \multicolumn{3}{c}{WFLW \cite{wu2018look}} \\
+      \cmidrule(l){2-4}
+      Method
+      & NME$\downarrow$
+      & FR$\downarrow$
+      & AUC$\uparrow$ \\
+      \midrule
+      HRNet-W18 \cite{wang2020deep}
+      & 4.60 & -- & -- \\
+      STAR \cite{zhou2023star}
+      & 4.02 & 2.32 & 60.50 \\
+      ADNet \cite{huang2021adnet}
+      & 4.14 & 2.72 & 60.22 \\
+      LDEQ \cite{micaelli2023recurrence}
+      & 3.92 & 2.48 & 62.40 \\
+      Faceptor-Full \cite{qin2024faceptor}
+      & 4.03 & 1.92 & 60.24 \\
+      FaRL-448-ft \cite{zheng2022general}
+      & 3.96 & \SecondScore{1.76} & 61.16 \\
+      ORFormer \cite{chiang2025orformer}
+      & 3.86 & \SecondScore{1.76} & 62.20 \\
+      \midrule
+      DIME-S
+      & 3.93 & \SecondScore{1.76} & 61.28 \\
+      DIME-B
+      & \SecondScore{3.82}
+      & \BestScore{\textbf{1.72}}
+      & \SecondScore{62.94} \\
+      DIME-L
+      & \BestScore{\textbf{3.74}}
+      & \BestScore{\textbf{1.72}}
+      & \BestScore{\textbf{63.74}} \\
+      \bottomrule
+    \end{tabular*}
+
+    \vspace{0.7mm}
+    \parbox[t][1.55cm][t]{\linewidth}{%
+      \footnotesize
+      \textbf{(a) Landmark detection.}
+      Results on WFLW using inter-ocular NME, FR, and AUC at the threshold
+      of $0.10$.
+    }
+  \end{minipage}
+  \hfill
+  % ======================== Head pose ========================
+  \begin{minipage}[t]{0.425\textwidth}
+    \vspace{0pt}
+    \centering
+    \GeometryTableFormat
+
+    \begin{tabular*}{\linewidth}{
+      @{\extracolsep{\fill}}lcccccccc@{}
+    }
+      \toprule
+      & \multicolumn{4}{c}{AFLW2000-3D \cite{zhu2019face}}
+      & \multicolumn{4}{c}{BIWI \cite{hempel20226d}} \\
+      \cmidrule(lr){2-5}\cmidrule(l){6-9}
+      Method
+      & Yaw & Pitch & Roll & Mean
+      & Yaw & Pitch & Roll & Mean \\
+      \midrule
+      TriNet \cite{cao2021vector}
+      & 4.36 & 5.81 & 4.51 & 4.89
+      & \BestScore{\textbf{3.11}} & 5.09 & 5.20 & 4.47 \\
+      MNN \cite{valle2020multi}
+      & 3.34 & 4.69 & 3.48 & 3.83
+      & 3.98 & 4.61 & \BestScore{\textbf{2.39}} & 3.66 \\
+      RankPose \cite{dai2020rankpose}
+      & 3.26 & 4.72 & 3.23 & 3.74
+      & 4.54 & 5.61 & 3.05 & 4.40 \\
+      img2pose \cite{albiero2021img2pose}
+      & 3.42 & 5.03 & 3.28 & 3.91
+      & 4.56 & \BestScore{\textbf{3.54}} & 3.25 & 3.78 \\
+      6DRepNet \cite{hempel20226d}
+      & 3.27 & 4.58 & 2.98 & 3.61
+      & 3.23 & 5.32 & 2.78 & 3.78 \\
+      SRHP-Euler \cite{cobo2024representation}
+      & 2.76 & 4.25 & 2.76 & 3.26
+      & 4.54 & 5.05 & 2.80 & 4.13 \\
+      SRHP-6D \cite{cobo2024representation}
+      & 2.85 & 4.59 & 3.04 & 3.49
+      & 4.58 & 4.65 & 2.71 & 3.98 \\
+      \midrule
+      DIME-S
+      & 2.82 & \SecondScore{3.86} & 2.71 & 3.13
+      & 3.47 & 4.26 & 2.62 & 3.45 \\
+      DIME-B
+      & \BestScore{\textbf{2.56}}
+      & \BestScore{\textbf{3.82}}
+      & \BestScore{\textbf{2.65}}
+      & \BestScore{\textbf{3.01}}
+      & 3.22 & 4.17 & 2.54
+      & \SecondScore{3.31} \\
+      DIME-L
+      & \SecondScore{2.70}
+      & \SecondScore{3.86}
+      & \SecondScore{2.68}
+      & \SecondScore{3.08}
+      & \SecondScore{3.21}
+      & \SecondScore{4.07}
+      & \SecondScore{2.53}
+      & \BestScore{\textbf{3.27}} \\
+      \bottomrule
+    \end{tabular*}
+
+    \vspace{0.7mm}
+    \parbox[t][1.55cm][t]{\linewidth}{%
+      \footnotesize
+      \textbf{(b) Head pose estimation.}
+      Models are trained on 300W-LP and evaluated on AFLW2000-3D and BIWI.
+      Results are angular MAE in degrees; Mean averages yaw, pitch, and roll.
+    }
+  \end{minipage}
+  \hfill
+  % ======================== Face parsing ========================
+  \begin{minipage}[t]{0.290\textwidth}
+    \vspace{0pt}
+    \centering
+    \GeometryTableFormat
+
+    \begin{tabular*}{\linewidth}{
+      @{\extracolsep{\fill}}lcccc@{}
+    }
+      \toprule
+      & \multicolumn{2}{c}{LaPa \cite{liu2020new}}
+      & \multicolumn{2}{c}{CelebM \cite{lee2020maskgan}} \\
+      \cmidrule(lr){2-3}\cmidrule(l){4-5}
+      Method
+      & F1$\uparrow$ & mIoU$\uparrow$
+      & F1$\uparrow$ & mIoU$\uparrow$ \\
+      \midrule
+      AGRNet \cite{te2021agrnet}
+      & 92.30 & 87.00 & 85.50 & -- \\
+      FP-LIIF \cite{sarkar2023parameter}
+      & 92.41 & -- & 86.14 & -- \\
+      DML-CSR \cite{zheng2022decoupled}
+      & 92.38 & 87.13 & 86.07 & 77.81 \\
+      FaRL-448-ft \cite{zheng2022general}
+      & 93.88 & -- & 89.56 & -- \\
+      SegFace-512 \cite{narayan2025segface}
+      & 93.03 & 88.14 & 88.96 & 81.55 \\
+      PaCo-FR \cite{xie2026paco}
+      & 93.91 & -- & 89.63 & -- \\
+      Faceptor-Full \cite{qin2024faceptor}
+      & 91.50 & -- & 88.20 & -- \\
+      \midrule
+      DIME-S
+      & 93.86 & 88.96 & 89.61 & 81.96 \\
+      DIME-B
+      & \SecondScore{94.15}
+      & \SecondScore{89.52}
+      & \SecondScore{89.93}
+      & \SecondScore{82.54} \\
+      DIME-L
+      & \BestScore{\textbf{94.27}}
+      & \BestScore{\textbf{89.71}}
+      & \BestScore{\textbf{90.12}}
+      & \BestScore{\textbf{82.80}} \\
+      \bottomrule
+    \end{tabular*}
+
+    \vspace{0.7mm}
+    \parbox[t][1.55cm][t]{\linewidth}{%
+      \footnotesize
+      \textbf{(c) Face parsing.}
+      Foreground Mean F1 and mIoU on LaPa and CelebAMask-HQ; background is
+      excluded.
+    }
+  \end{minipage}
+  \vspace{-4.5em}
+\end{table*}
+
+\noindent\textbf{AU intensity estimation.} We further test whether DIME transfers from binary AU occurrence to continuous intensity. DIME-S already outperforms MAE-Face on both datasets and metrics. On BP4D, DIME-L raises ICC from .742 to .774 and reduces MSE from .794 to .735; on DISFA, it raises ICC from .674 to .702 and reduces MSE from .213 to .194. The smaller gains from DIME-S to DIME-B and DIME-L suggest that the pretraining formulation contributes more to transfer than encoder scaling alone, although these scale-wise differences should be interpreted with uncertainty across independent pretraining and fine-tuning runs.
+
+
+
+\noindent\textbf{Summary.} DIME-S provides strong transfer with a substantially smaller encoder than MAE-Face; increasing model scale improves macro F1 and generally reduces cross-AU dispersion, although individual AUs do not improve monotonically; and DIME continues to benefit from additional identity-indexed observations after appearance reconstruction begins to saturate. Together, these results support DIME's central design: identity-controlled pairing and cross-image differential supervision emphasize facial variation that transfers to both AU occurrence and intensity while maintaining a more balanced performance across AUs.
+
+
+
+\subsection{Experiments on Cross-Domain Face Anti-Spoofing}
+\label{sec:exp_cross_domain_fas}
+
+Face anti-spoofing (FAS) \cite{yu2025learning} is essential for protecting biometric systems. It is difficult because live--spoof evidence can be subtle and vary substantially with sensors, illumination, identities, and attack media. Models trained on fixed datasets may therefore exploit domain-specific appearance or acquisition artifacts that disappear in deployment. Cross-domain FAS directly tests whether a representation captures
+transferable evidence rather than dataset-specific shortcuts.
+
+
+\noindent\textbf{Protocol and metrics.} Following BIB-FAS~\cite{yu2025learning}, we adopt a leave-one-out protocol over four publicly available datasets: CASIA-FASD~\cite{zhang2012face} ($C$), MSU-MFSD~\cite{wen2015face} ($M$), OULU-NPU~\cite{boulkenafet2017oulu} ($O$), and Idiap Replay-Attack~\cite{chingovska2012effectiveness} ($I$). Each model is trained on three source datasets and evaluated on one unseen dataset, which produces four experimental settings: $ICM\!\rightarrow\!O$, $OCM\!\rightarrow\!I$, $OCI\!\rightarrow\!M$, and $OMI\!\rightarrow\!C$.
+
+We report Half Total Error Rate (HTER), the average of false-acceptance and false-rejection rates, and area under the receiver operating characteristic curve (AUC); lower HTER and higher AUC are better. Specialized FAS methods retain the optimal official results. For newly evaluated models, checkpoints and HTER decision thresholds are selected exclusively using held-out source-domain validation data.
+
+
+
+
+\noindent\textbf{Results.} Table~\ref{tab:cross_domain_fas} compares DIME with specialized FAS methods and generic encoders. Among the specialized methods, BIB-FAS achieves the strongest average performance, with 5.72\% HTER and 97.94\% AUC. Under the unified protocol, DIME-S obtains 5.58\% HTER and 98.07\% AUC, numerically improving these metrics by 0.14 and 0.13 points. DIME-B further reaches 5.50\% HTER and 98.14\% AUC, while DIME-L achieves the best overall averages of 5.43\% HTER and 98.35\% AUC. These results show that DIME provides consistently strong cross-domain transfer, rather than a decisive separation from specialized FAS systems.
+
+\noindent\textbf{Comparison with generic pretraining.} DINOv3-L obtains 14.79\% HTER and 91.81\% AUC, whereas DIME-S improves these metrics by 9.21 and 6.26 points. The remaining generic encoders achieve 15.15--16.97\% HTER and 90.39--91.14\% AUC. More specifically, MAE-L reaches 15.15\% HTER and 91.14\% AUC, compared with 5.43\% and 98.35\% for DIME-L. This gap is consistent with single-image reconstruction emphasizing static appearance and acquisition statistics, while DIME prioritizes identity-controlled facial variation that may transfer more reliably across capture conditions.
+
+
+\subsection{Experiments on Facial Geometry Estimation}
+\label{sec:exp_geometry}
+
+We evaluate DIME's transferability to geometry-sensitive tasks on three levels: sparse geometry through facial landmark detection \cite{zhou2023star}, global 3D orientation through head pose estimation \cite{hempel20226d}, and dense geometry through face parsing \cite{te2021agrnet}. Since these tasks primarily depend on facial configuration and organization rather than identity-level knowledge, they provide a direct test of whether DIME's pretraining captures facial representations beyond identity.
+
+\noindent\textbf{Experimental protocols.} For landmark detection, we train and evaluate on the WFLW~\cite{wu2018look} dataset, which contains 98 landmarks and challenging variations in pose, expression, makeup, occlusion, and blur. All DIME variants use the same heatmap-regression head and $448\times448$ inputs following \cite{zheng2022general}. We report inter-ocular normalized mean error (NME), failure rate (FR), and area under the cumulative error distribution curve (AUC) at the threshold of $0.10$.
+
+For head pose estimation, we train on 300W-LP~\cite{zhu2019face} and evaluate on AFLW2000-3D~\cite{zhu2019face} and BIWI~\cite{hempel20226d}. We adopt a linear six-dimensional rotation head with an $\mathrm{SO}(3)$ geodesic loss~\cite{hempel20226d} at $224$px. Performance is measured by the mean absolute angular error (MAE), in degrees, for yaw, pitch, and roll. The reported Mean is their arithmetic average.
+
+For face parsing, models are trained and evaluated separately on LaPa~\cite{liu2020new} and CelebAMask-HQ~\cite{lee2020maskgan}. LaPa contains 18,176/2,000/2,000 training/validation/test images and 11 semantic classes, whereas CelebAMask-HQ contains 24,183/2,993/2,824 images and 19 classes. We employ a shared multi-scale parsing head with $448\times448$ inputs and $512\times512$ predictions. Mean F1 and mIoU are macro-averaged over foreground classes. Within each task, DIME uses identical downstream architectures and optimization settings. We use EMA weights for evaluation without test-time adaptation or model ensembling.
+
+\begin{figure*}[!t]
+  \centering
+  \setlength{\abovecaptionskip}{4pt}
+  \includegraphics[width=1.0\textwidth]{figures/gen_show_1.png}
+\caption{\textbf{Selected face images generated with the DIME-L encoder in the RAEv2 framework.} The model is trained for 100K steps. DIME learns rich facial priors and face variation knowledge from differential self-supervised pretraining.}
+\vspace{-1.5em}
+  \label{fig:face_generation_samples}
+\end{figure*}
+
+\noindent\textbf{Results on landmark detection.} Facial landmark detection requires sensitivity to subtle deformations while remaining robust to expression, occlusion, and image degradation. As shown in Table~\ref{tab:facial_geometry}(a), DIME-S is competitive with established facial representation and landmark-specific models, and performance improves consistently with encoder capacity. NME decreases from 3.93 for DIME-S to 3.82 for DIME-B and 3.74 for DIME-L, while AUC increases from 61.28 to 62.94 and 63.74, respectively. DIME-L improves the previous best NME from 3.86 to 3.74 and AUC from 62.40 to 63.74. Moreover, both DIME-B and DIME-L achieve an FR of 1.72\%, indicating that the gains extend from average localization accuracy to difficult tail cases. These consistent improvements support the premise that difference-oriented pretraining preserves geometrically meaningful facial variation that is accessible to a lightweight downstream head.
+
+\noindent\textbf{Results on head pose estimation.} Table~\ref{tab:facial_geometry}(b) shows that DIME transfers effectively to 3D facial orientation. DIME-S reduces the best published mean error from 3.26$^\circ$ to 3.13$^\circ$ on AFLW2000-3D and from 3.66$^\circ$ to 3.45$^\circ$ on BIWI. DIME-B performs best on AFLW2000-3D, reaching 3.01$^\circ$ and improving over SRHP-Euler by 0.25$^\circ$, or 7.7\% relatively; DIME-L achieves the best BIWI result of 3.27$^\circ$, reducing MNN's error by 0.39$^\circ$, or 10.7\%. The preferred scale is therefore domain-dependent: DIME-B is strongest on AFLW2000-3D, whereas DIME-L is strongest on BIWI. On BIWI, DIME-L obtains the lowest mean error without leading on every Euler angle, reflecting a favorable overall balance across dimensions.
+
+\noindent\textbf{Results on Face parsing.} Table~\ref{tab:facial_geometry}(c) evaluates the dense facial semantics and part boundaries. DIME-S achieves 93.86\% Mean F1 and 88.96\% mIoU on LaPa, and 89.61\% Mean F1 and 81.96\% mIoU on CelebAMask-HQ. Both metrics improve consistently with our model scale. DIME-L reaches 94.27\% Mean F1 and 89.71\% mIoU on LaPa, exceeding the previous best results by 0.36 and 1.57 points, respectively, and obtains 90.12\% Mean F1 and 82.80\% mIoU on CelebAMask-HQ, improving them by 0.49 and 1.25 points. The larger gains in mIoU are consistent with improved spatial overlap for compact or under-represented facial parts, suggesting that DIME preserves local boundaries and relative facial configuration beyond global appearance.
+
+\noindent\textbf{Discussion.} DIME can consistently transfer across sparse landmarks, 3D orientation, and dense semantic layout. This breadth supports our central premise: differential masked pretraining preserves geometrically meaningful facial variation. These findings show that DIME moves beyond encoding a face as static identity-bearing appearance and instead retains how its structure, state, and local parts vary.
+
+\begin{table}[!t]
+  \centering
+  \caption{Face-generation results under RAEv2~\cite{singh2026improved} and REPA~\cite{yu2024representation}. FID~\cite{heusel2017gans} is evaluated at
+  resolutions of $256{\times}256$ and $512{\times}512$ (lower is better); Best and second-best results are highlighted in
+  \BestScore{vermilion} and \SecondScore{deep blue}, respectively.}
+  \label{tab:face_generation}
+  \setlength{\tabcolsep}{5.0pt}
+  \renewcommand{\arraystretch}{1.0}
+  \resizebox{\columnwidth}{!}{%
+  \begin{tabular}{@{}l c r r r r@{}}
+    \toprule
+    & & \multicolumn{2}{c}{RAEv2 \cite{singh2026improved}} & \multicolumn{2}{c}{REPA \cite{yu2024representation}} \\
+    \cmidrule(lr){3-4}\cmidrule(l){5-6}
+    Rep. encoder & Steps
+      & \multicolumn{1}{c}{256/FID} & \multicolumn{1}{c}{512/FID}
+      & \multicolumn{1}{c}{256/FID} & \multicolumn{1}{c}{512/FID} \\
+    \midrule
+    DINOv3-L \cite{simeoni2025dinov3}     & 100K & \multicolumn{1}{c}{12.48} & \multicolumn{1}{c}{14.83}
+                       & \multicolumn{1}{c}{13.46} & \multicolumn{1}{c}{16.15} \\
+    DINOv3-L \cite{simeoni2025dinov3}    & 200K &  9.83\fiddown{2.65} & 11.53\fiddown{3.30}
+                       & 10.61\fiddown{2.85} & 11.80\fiddown{4.35} \\
+    DINOv3-L \cite{simeoni2025dinov3}    & 400K &  8.53\fiddown{3.95} &  8.94\fiddown{5.89}
+                       & \SecondScore{8.22}\fiddown{5.24} & \SecondScore{8.36}\fiddown{7.79} \\
+    \midrule
+    DINOv2-L \cite{oquab2023dinov2}     & 100K & 14.83\fidup{2.35} & 16.79\fidup{1.96} & 15.31\fidup{1.85} & 18.82\fidup{2.67} \\
+    MAE-L \cite{he2022masked}        & 100K & 16.72\fidup{4.24} & 18.22\fidup{3.39} & 18.34\fidup{4.88} & 21.31\fidup{5.16} \\
+    MixMAE-L \cite{liu2023mixmae}     & 100K & 17.44\fidup{4.96} & 19.65\fidup{4.82} & 17.15\fidup{3.69} & 20.83\fidup{4.68} \\
+    MAE-Face \cite{ma2024facial}     & 100K & 11.03\fiddown{1.45} & 16.50\fidup{1.67} & 13.67\fidup{0.21} & 18.67\fidup{2.52} \\
+    \midrule
+    DIME-B       &  50K &  9.52\fiddown{2.96} &  9.98\fiddown{4.85} & 10.92\fiddown{2.54} & 11.03\fiddown{5.12} \\
+    DIME-B       & 100K & \SecondScore{7.41}\fiddown{5.07} &
+                            \SecondScore{8.06}\fiddown{6.77} &
+                            8.47\fiddown{4.99} &
+                            9.25\fiddown{6.90} \\
+    DIME-L       &  50K &  8.69\fiddown{3.79} &  9.41\fiddown{5.42} &  8.85\fiddown{4.61} & 10.16\fiddown{5.99} \\
+    DIME-L       & 100K & \BestScore{\textbf{6.12}}\fiddown{6.36} &
+                            \BestScore{\textbf{6.59}}\fiddown{8.24} &
+                            \BestScore{\textbf{7.26}}\fiddown{6.20} &
+                            \BestScore{\textbf{7.93}}\fiddown{8.22} \\
+    \bottomrule
+  \end{tabular}%
+  }
+  \vspace{-2.0em}
+\end{table}
+
+\subsection{DIME for Face Generation}
+\label{sec:exp_generation}
+
+We investigate DIME's capacity to serve as a representation encoder for face generation~\cite{melnik2024face,jiang2025towards}. Representation-based generative models (e.g., latent image diffusion) rely on the encoder to define the latent space in which generation is performed. A useful facial representation should therefore preserve subtle cues that determine perceptual realism.
+
+\noindent\textbf{Experimental setting.} We evaluate DIME with two state-of-the-art latent diffusion frameworks: RAEv2~\cite{singh2026improved}, which constructs a generative latent space from a pretrained representation encoder, and REPA~\cite{yu2024representation}, which aligns the internal diffusion features with external representations.
+
+\begin{figure}[t]
+  \centering
+  \setlength{\abovecaptionskip}{0pt}
+  \includegraphics[width=1.0\linewidth]{figures/gen_show_2.png}
+\caption{\textbf{Face-generation dynamics on FFHQ.} (a) Training loss and FID of RAEv2 using MAE, DINOv3, and DIME encoders. DIME consistently converges faster and achieves lower FID. (b) Generated samples from 1K to 50K training steps using DIME (top) and DINOv3 (bottom). DIME produces coherent facial structure earlier and resolves fine details sooner, consistent with its faster FID reduction.}
+    \label{fig:face_generation_dynamics}
+  \vspace{-1.5em}
+\end{figure}
+
+We compare DIME with generic visual encoders, including DINOv2~\cite{oquab2023dinov2}, DINOv3~\cite{simeoni2025dinov3}, MAE~\cite{he2022masked}, and MixMAE~\cite{liu2023mixmae}, as well as the MAE-Face~\cite{ma2024facial} pretrained on face data with vanilla masked optimization. Generation quality is evaluated at resolutions of $256{\times}256$ and $512{\times}512$ using Fr\'echet Inception Distance (FID)~\cite{heusel2017gans}, where a lower value indicates better alignment with real-image distributions.
+
+\noindent\textbf{Generation quality.}
+Table~\ref{tab:face_generation} shows that DIME consistently improves generation performance across all evaluated settings. After just 50K steps, DIME-L reaches FIDs of 8.69 and 9.41 with RAEv2, and 8.85 and 10.16 with REPA, outperforming every competing encoder evaluated at a full 100K-step budget. At 100K steps, it achieves the best results across all settings, yielding FIDs of 6.12 and 6.59 under RAEv2, and 7.26 and 7.93 under REPA. Relative to DINOv3-L, DIME reduces FID by 51.0\% and 55.6\% with RAEv2, and by 46.1\% and 50.9\% with REPA at resolutions of 256 and 512, respectively. DIME-B likewise outperforms larger generic encoders, demonstrating that DIME provides both faster convergence and superior final generation quality.
+
+
+
+\noindent\textbf{Convergence and resolution scaling.} Figure~\ref{fig:face_generation_dynamics}(a) compares RAEv2 using MAE, DINOv3, and DIME representations under the same training setting. DIME exhibits faster convergence in both training loss and FID throughout the first 50K steps. At 10K steps, its FID is already 18.43, compared with 24.46 for DINOv3 and 26.15 for MAE; by 50K steps, the gap widens to 9.41 versus 17.76 and 21.37, respectively. The early and persistent separation indicates that DIME provides a more readily optimizable facial representation space, rather than improving only the final converged solution.
+
+DIME also continues to benefit from longer training. From 50K to 100K steps, the four FID scores improve by 16.1--22.4\% for DIME-B and 18.0--30.0\% for DIME-L. The advantage remains pronounced at higher resolution: for DIME-L at 100K steps, increasing the output resolution from 256 to 512 raises FID by only 0.47 with RAEv2 and 0.67 with REPA, substantially less than for the competing encoders.
+
+
+
+
+\noindent\textbf{Generated samples.}
+Figure~\ref{fig:face_generation_samples} presents samples generated by RAEv2 with the DIME-L encoder. Figure~\ref{fig:face_generation_dynamics}(b) compares generated samples during training. Both DIME and DINOv3 produce coarse facial layouts at 1K steps, but DIME resolves recognizable eyes, mouth, and hair by 10K--20K steps, while the DINOv3 samples remain blurred or visibly noisy. From 30K to 50K steps, DIME further refines facial contours and local details, while DINOv3 produces coarser facial images. This qualitative comparison is consistent with the lower FID of DIME in panel~(a), supporting faster acquisition of both global facial structure and fine-grained appearance.
+
+
+\noindent\textbf{Discussion.} The generation results provide complementary evidence for the central motivation of DIME. It emphasizes how facial observations vary, encouraging the representation to capture expression, geometry, texture, and other fine-grained factors that change across observations. Such variation-aware representations provide a more informative and better-conditioned space for facial generation, leading to faster optimization, stronger resolution scaling, and substantially improved generation quality.
+
+
+\subsection{Ablation Studies and Analysis}
+\label{sec:exp_ablation}
+
+\noindent\textbf{Controlled protocol.}
+Table~\ref{tab:dime_ablation} shows controlled ablation studies of DIME. To reduce compute, we choose the ViT-S/16 as the encoder backbone and pretrain it for 100 epochs on the 30\% subset of Face-20M, holding the image pool, training settings, and decoder configuration fixed. Paired variants use a 50\% source partition except in panel~(f). Random-identity controls re-pair the same images across different identities, preserving the image pool while changing the relation between observations. We denote reciprocal RGB recovery with all-block source isolation by $R$, gradient-orientation supervision by G, and EDDS by E.
+
+Panels~(a)--(c) examine the learning unit and the conditions under which pairing becomes useful. Panel~(a) uses RGB supervision only, comparing single-image MAE with paired recovery from two augmentations of one image, distinct images of different identities, or distinct images of the same identity. Panel~(b) crosses random- versus same-identity pairing with EDDS disabled or enabled, testing whether differential supervision specifically benefits from a shared identity. Panel~(c) keeps EDDS enabled and compares unrestricted encoder attention (``None'') with source isolation in every block (``All'') for both pairing strategies. G is disabled throughout panels~(a)--(c).
+
+Panels~(d)--(f) examine objective contributions, retained facial-change information, and mixing sensitivity. Panel~(d) fixes same-identity pairing and source isolation, adding G and E separately and jointly to $R$. Panel~(e) freezes the pretrained encoders and trains linear probes on feature differences to test whether facial changes remain accessible without encoder adaptation. Panel~(f) retains same-identity pairing, source isolation, and the full objective, varying only the counterpart-patch fraction $r$.
+
+\begin{table*}[!t]
+  \centering
+  \setlength{\abovecaptionskip}{2pt}
+  \caption{\textbf{Controlled ablation study of DIME.}
+  Panels (a)--(c) examine the pretraining unit, the interaction between identity matching and EDDS, and the role of source isolation.
+  Panels (d)--(f) evaluate complementary supervision, facial-change information retained in frozen features, and sensitivity to the source-mixing ratio.}
+  \label{tab:dime_ablation}
+
+  \begingroup
+  \scriptsize
+  \setlength{\aboverulesep}{0.35ex}
+  \setlength{\belowrulesep}{0.35ex}
+  \definecolor{dimeDefault}{gray}{0.92}
+  \def\ablpaneltitle#1{%
+    \parbox[c][1.35\baselineskip][c]{\linewidth}{%
+      \centering\bfseries\strut #1\strut}\par
+    \vspace{-0.10\baselineskip}%
+  }
+
+  % ============================ first row ============================
+  \begin{minipage}[t]{0.323\textwidth}
+    \vspace{0pt}
+    \centering
+    \ablpaneltitle{(a) Pretraining unit under RGB recovery}
+    {\renewcommand{\arraystretch}{1.00}
+    \setlength{\tabcolsep}{1.0pt}
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc@{}}
+      \toprule
+      & \multicolumn{4}{c}{Transfer} \\
+      \cmidrule(l){2-5}
+      Unit & F1$\uparrow$ & ICC$\uparrow$ & NME$\downarrow$ & HTER$\downarrow$ \\
+      \midrule
+      Single (MAE~\cite{he2022masked}) & 61.9 & .619 & 4.31 & 11.32 \\
+      Same image & 62.3 & .623 & 4.29 & 10.91 \\
+      Random ID & 62.8 & \textbf{.630} & 4.23 & 10.38 \\
+      \rowcolor{dimeDefault}
+      Same ID & \textbf{62.9} & \textbf{.630} & \textbf{4.22} & \textbf{10.32} \\
+      \midrule
+      Same--random & $+0.1$ & $+.001$ & $-.01$ & $-0.06$ \\
+      \bottomrule
+    \end{tabular*}}
+  \end{minipage}\hfill%
+  %
+  \begin{minipage}[t]{0.323\textwidth}
+    \vspace{0pt}
+    \centering
+    \ablpaneltitle{(b) Identity control $\times$ EDDS}
+    {\renewcommand{\arraystretch}{1.00}
+    \setlength{\tabcolsep}{0.7pt}
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccccc@{}}
+      \toprule
+      & & \multicolumn{4}{c}{Transfer} \\
+      \cmidrule(l){3-6}
+      Pair & E & F1$\uparrow$ & ICC$\uparrow$ & NME$\downarrow$ & HTER$\downarrow$ \\
+      \midrule
+      Random ID & $-$ & 62.8 & .630 & 4.23 & 10.38 \\
+      Random ID & \checkmark & 63.1 & .630 & 4.24 & 10.57 \\
+      Same ID & $-$ & 62.9 & .630 & 4.22 & 10.32 \\
+      \rowcolor{dimeDefault}
+      Same ID & \checkmark & \textbf{65.1} & \textbf{.651} & \textbf{4.07} & \textbf{8.64} \\
+      \midrule
+      \multicolumn{2}{l}{Interaction} & $+1.9$ & $+.020$ & $-.16$ & $-1.87$ \\
+      \bottomrule
+    \end{tabular*}}
+  \end{minipage}\hfill%
+  %
+  \begin{minipage}[t]{0.323\textwidth}
+    \vspace{0pt}
+    \centering
+    \ablpaneltitle{(c) Pairing $\times$ source isolation}
+    {\renewcommand{\arraystretch}{1.00}
+    \setlength{\tabcolsep}{0.6pt}
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llcccc@{}}
+      \toprule
+      & & \multicolumn{4}{c}{Transfer} \\
+      \cmidrule(l){3-6}
+      Pair & Enc. isol. & F1$\uparrow$ & ICC$\uparrow$ & NME$\downarrow$ & HTER$\downarrow$ \\
+      \midrule
+      Random & None & 62.5 & .620 & 4.32 & 11.15 \\
+      Random & All & 63.1 & .630 & 4.24 & 10.57 \\
+      Same & None & 63.4 & .634 & 4.20 & 10.06 \\
+      \rowcolor{dimeDefault}
+      Same & All & \textbf{65.1} & \textbf{.651} & \textbf{4.07} & \textbf{8.64} \\
+      \midrule
+      \multicolumn{2}{l}{Interaction} & $+1.1$ & $+.007$ & $-.05$ & $-0.84$ \\
+      \bottomrule
+    \end{tabular*}}
+  \end{minipage}
+
+  \par\vspace{1.5mm}
+
+  % ============================ second row ===========================
+  \begin{minipage}[t][37mm][t]{0.323\textwidth}
+    \vspace{0pt}
+    \centering
+    \ablpaneltitle{(d) Objective--task correspondence}
+    {\renewcommand{\arraystretch}{1.03}
+    \setlength{\tabcolsep}{1.3pt}
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}cccccc@{}}
+      \toprule
+      & & \multicolumn{4}{c}{Transfer} \\
+      \cmidrule(l){3-6}
+      G & E & F1$\uparrow$ & ICC$\uparrow$ & NME$\downarrow$ & HTER$\downarrow$ \\
+      \midrule
+      $-$ & $-$ & 62.9 & .630 & 4.22 & 10.32 \\
+      \checkmark & $-$ & 63.8 & .653 & 4.04 & 9.83 \\
+      $-$ & \checkmark & 65.1 & .651 & 4.07 & 8.64 \\
+      \rowcolor{dimeDefault}
+      \checkmark & \checkmark & \textbf{65.8} & \textbf{.663} & \textbf{4.02} & \textbf{8.11} \\
+      \midrule
+      \multicolumn{2}{l}{Avg. $\Delta_{\rm G}$} & $+0.8$ & $+.018$ & $-.12$ & $-0.51$ \\
+      \multicolumn{2}{l}{Avg. $\Delta_{\rm E}$} & $+2.1$ & $+.016$ & $-.09$ & $-1.70$ \\
+      \bottomrule
+    \end{tabular*}}
+    \vfill
+  \end{minipage}\hfill%
+  %
+  \begin{minipage}[t][37mm][t]{0.323\textwidth}
+    \vspace{0pt}
+    \centering
+    \ablpaneltitle{(e) Frozen facial-change probe}
+    {\renewcommand{\arraystretch}{1.03}
+    \setlength{\tabcolsep}{2.0pt}
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc@{}}
+      \toprule
+      & & \multicolumn{2}{c}{Change probe} \\
+      \cmidrule(l){3-4}
+      Pretraining & Pair & F1$\uparrow$ & ICC$\uparrow$ \\
+      \midrule
+      MAE~\cite{he2022masked} & $-$ & 43.4 & .298 \\
+      $R$ & Same & 45.5 & .326 \\
+      $R+$G & Same & 47.6 & .357 \\
+      $R+$E & Random & 46.2 & .337 \\
+      $R+$E & Same & 52.0 & .405 \\
+      \rowcolor{dimeDefault}
+      Full ($R+$G$+$E) & Same & \textbf{53.4} & \textbf{.424} \\
+      \bottomrule
+    \end{tabular*}}
+    \vfill
+  \end{minipage}\hfill%
+  %
+  \begin{minipage}[t][37mm][t]{0.323\textwidth}
+    \vspace{0pt}
+    \centering
+    \ablpaneltitle{(f) Source-mixing ratio}
+    {\renewcommand{\arraystretch}{1.03}
+    \setlength{\tabcolsep}{1.3pt}
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}ccccc@{}}
+      \toprule
+      & \multicolumn{4}{c}{Transfer} \\
+      \cmidrule(l){2-5}
+      Ratio $r$ & F1$\uparrow$ & ICC$\uparrow$ & NME$\downarrow$ & HTER$\downarrow$ \\
+      \midrule
+      $.10$ & 63.1 & .634 & 4.20 & 10.25 \\
+      $.20$ & 64.0 & .643 & 4.13 & 9.57 \\
+      $.30$ & 64.9 & .653 & 4.07 & 8.78 \\
+      $.40$ & 65.7 & \textbf{.664} & 4.03 & 8.20 \\
+      \rowcolor{dimeDefault}
+      $.50^{\dagger}$ & \textbf{65.8} & .663 & \textbf{4.02} & \textbf{8.11} \\
+      \midrule
+      $\Delta_{.50-.10}$ & $+2.7$ & $+.029$ & $-.18$ & $-2.14$ \\
+      \bottomrule
+    \end{tabular*}}
+    \vfill
+  \end{minipage}
+
+  \par\vspace{-1.5em}
+  \begin{minipage}{0.985\textwidth}
+    \scriptsize
+    \emph{Notes.}
+    $R$ denotes reciprocal RGB recovery with all-block source isolation;
+    G and E denote gradient-orientation supervision and EDDS.
+    Derived rows are computed from unrounded means and are not additional models.
+    Interaction is the same-identity treatment effect minus the random-identity treatment effect:
+    enabling E in (b) and enabling source isolation in (c).
+    In (c), ``None'' removes the encoder source-attention mask, whereas ``All'' applies it in every block.
+    In (e), ``Pair'' denotes pretraining pairing; all change probes use same-subject pairs.
+    In (f), $r$ is the counterpart-patch fraction; reciprocal exchange makes $r$ and $1-r$ equivalent.
+    Gray rows mark the reference configurations within each panel, and $\dagger$ marks the default ratio.
+    Boldface identifies the best displayed results among model rows.
+  \end{minipage}
+  \endgroup
+  \vspace{-2.0em}
+\end{table*}
+
+For downstream evaluations, we follow the BP4D~\cite{zhang2014bp4d} and DISFA~\cite{mavadati2013disfa} folds used in the main experiments, with three fine-tuning seeds for WFLW~\cite{wu2018look} and each FAS target. Panels~(a)--(d) and~(f) report BP4D mean AU F1, DISFA mean ICC(3,1), WFLW inter-ocular NME, and macro HTER over four cross-domain transfers; panel~(e) evaluates facial-change prediction with frozen encoders. All results use the reduced data and pretraining protocol and are intended for comparisons within the ablation study only.
+
+\noindent\textbf{Relieve the identity shortcut.}
+In panel~(a), paired RGB recovery slightly improves over single-image MAE, but replacing random- with same-identity pairs yields only marginal gains. Identity matching alone therefore provides little benefit when supervision decomposes into separate losses. With EDDS enabled in panel~(b), same-identity pairing outperforms random pairing by $2.0$ F1, $.021$ ICC, $.17$ NME, and $1.93$ HTER. The interaction effects measure how much more EDDS benefits same-identity pairs than random pairs and favor identity matching across all four metrics. These results support their joint role: matching establishes a shared appearance reference, while differential supervision makes the remaining variation relevant to optimization.
+
+\noindent\textbf{Why source isolation matters.}
+Panel~(c) tests whether paired supervision remains effective when the encoder can attend across observations. All-block source isolation improves every metric, with larger gains for same-identity pairs: $+1.7$ F1 and $-1.42$ HTER, compared with $+0.6$ and $-0.58$ for random pairs. ICC and NME follow the same pattern. The larger benefit under identity matching is consistent with shared appearance providing greater opportunity for cross-observation shortcuts. Source isolation requires each reconstruction to depend on its own visible evidence, strengthening the representation retained for single-image transfer.
+
+\noindent\textbf{Complementary objective contributions.}
+Panel~(d) evaluates the complete $2\!\times\!2$ combination of G and E. Each marginal effect averages one objective's contribution with the other disabled and enabled. Relative to E, G contributes more to AU intensity estimation and landmark localization, increasing ICC by $.018$ and reducing NME by $.12$ on average. E contributes more to AU detection and cross-domain FAS, increasing F1 by $2.1$ and reducing HTER by $1.70$. Combining both achieves the best results on all four metrics. Although the additional NME reduction over G alone is small, the results support complementary roles for local-geometry recovery and cross-image differential supervision.
+
+\noindent\textbf{Frozen facial-change probes.}
+Panel~(e) tests the accessibility of facial variation from the frozen encoder. The ``Pair'' column denotes pretraining pairing; all probes use same-subject frame pairs. We sample a fixed number of pairs across predefined temporal offsets, assign the earlier frame to $a$ and the later frame to $b$, and balance decrease, no-change, and increase transitions. Each image is encoded independently, and the probe receives only $\Delta\mathbf{z}=\mathbf{z}^{b}-\mathbf{z}^{a}$. BP4D per-AU linear classifiers predict decrease, no change, or increase in AU occurrence and are evaluated by F1. DISFA per-AU linear regressors predict signed intensity differences and are evaluated by ICC(3,1). Under $R+$E, same-identity pretraining improves change-prediction F1 from 46.2 to 52.0 and ICC from $.337$ to $.405$ over random pairing. The full model reaches 53.4 and $.424$, compared with 43.4 and $.298$ for MAE. These gains show that facial-change information is retained in the encoder and remains accessible without downstream feature adaptation.
+
+\noindent\textbf{Sensitivity to source mixing.}
+Panel~(f) varies the counterpart-patch fraction $r$ under the full objective. Transfer improves from $.10$ to $.40$, with only small changes between $.40$ and $.50$. Across the tested range, F1 increases by $2.7$ and HTER decreases by $2.14$. The $.40$ setting gives the highest ICC, while $.50$ gives the best F1, NME, and HTER. Performance is therefore stable near balanced mixing; we use $r=.50$ for source symmetry by default.
+
+\noindent\textbf{Discussion.}
+The ablations connect DIME's construction to its learned representations: identity matching provides little benefit under independent recovery, becomes effective through EDDS, and benefits further from source isolation. Frozen probes confirm that the encoder preserves more accessible facial-change information. These findings explain how DIME makes within-identity variation useful for pretraining, complementing the data-scaling results in Fig.~\ref{fig:1}(d). Identity controls the differential comparison, but RGB recovery can still retain person-specific appearance. These results therefore support an optimization bias toward facial variation rather than complete identity or nuisance invariance.
+
+\section{Conclusion}
+
+This paper presents DIME, a framework that reframes self-supervised facial representation learning from holistic appearance completion to identity-controlled subtle variation modeling. By organizing inputs into identity-matched observation pairs, DIME couples masked image recovery via Explicit Differential Direction Supervision (EDDS), transforming subtle inter-observation differences into an explicit optimization target. Pretrained on 20M face images, DIME yields a versatile image encoder that transfers exceptionally well across diverse fine-grained tasks, including action unit analysis, cross-domain anti-spoofing, 3D facial geometry estimation, and generative modeling. We show that DIME establishes facial variation as a reusable basis for representation learning beyond identity. Future work will focus on disentangling task-relevant variation from pose and acquisition artifacts, and extending differential supervision to multi-observation and video domains.
+
+\bibliographystyle{IEEEtran}
+\bibliography{reference}
+
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/HaoYu.png}}]{Hao Yu} is currently a PhD student at the Center for Machine Vision and Signal Analysis, University of Oulu, Finland. His research interests focus on visual representation learning, facial attribute analysis and visual generative models.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/HaoyuChen.jpg}}]{Haoyu Chen}
+received his Ph.D. degree in Computer Science and Engineering from the University of Oulu, Finland, in 2022. He is currently a Tenure Track Assistant Professor with CMVS and Academy Research Fellow, at the University of Oulu, Finland. He has actively chaired workshops and challenges at various conferences, including HHAI 2024, IJCAI 2023, and IJCAI 2024. His work on gesture recognition has received notable recognition, including the second prize of the IEEE Finland Jt. Chapter SP/CAS Best Paper Award, the 2nd place in the Action Recognition Track of the ECCV 2020 VIPriors Challenges, etc. His research interests include human behavior analysis, hybrid intelligence, and emotion AI.
+\end{IEEEbiography}
+
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/wh.png}}]{Hui Wei}
+received the PhD degree in computer science from Wuhan University, China. He is currently a postdoctoral researcher with the Center for Machine Vision and Signal Analysis, University of Oulu, Finland. He has authored or coauthored papers in mainstream conferences and journals, including CVPR, NeurIPS, AAAI, ACM Multimedia, and the IEEE TPAMI. His research interests include trustworthy AI, privacy protection, and machine learning. 
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/YanJiang.jpg}}]{Yan Jiang}
+received the B.E. and M.S. degrees from Nanjing University of Information Science and Technology in 2022 and 2025, respectively. He is currently pursuing his Ph.D. degree in computer science at the University of Oulu, Finland. His research interests include human-centric vision and visual generative models.
+\end{IEEEbiography}
+
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/nicu.png}}]{Nicu Sebe}(Senior Member, IEEE) is a professor with the University of Trento, Italy, leading the research in the areas of multimedia information retrieval and human behavior understanding in Multimedia and Human Understanding Group (MHUG). He was the General Co-Chair of ACM Multimedia 2013, and the Program Chair of ACM Multimedia 2007 and 2011, ECCV 2016, ICCV 2017 and ICPR 2020. He is a fellow of the International Association for Pattern Recognition.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/Guoying_Zhao.jpg}}]{Guoying Zhao} (IEEE Fellow 2022) received the Ph.D. degree in computer science from the Chinese Academy of Sciences, Beijing, China, in 2005. She is currently an Academy Professor and full Professor (tenured in 2017) with the University of Oulu, and a PI with ELLIS Institute Finland. She is a member of Academia Europaea, a member of Finnish Academy of Sciences and Letters, Fellow of IEEE, IAPR, ELLIS and AAIA. %She has authored or co-authored more than 380 papers in journals and conferences with 38045+ citations in Google Scholar and h-index 94. She is the recipient of 2024 IAPR Maria Petrou Prize. She has been associate Editor-in-Chief for Computer Vision and Image Understanding (CVIU), was/is associate editor for IEEE Trans. on Affective Computing, IEEE Trans. on Biometrics, Behavior, and Identity Science, IEEE Trans. on Multimedia, Pattern Recognition, IEEE Trans. on Circuits and Systems for Video Technology, Image and Vision Computing and Frontiers in Psychology Journals. She was general co-chair for CVIP2025 and ACII 2025, was program co-chair for ACM International Conference on Multimodal Interaction (ICMI 2021), tutorial chair for ICPR 2024, panel chair for FG 2023, publicity chair of 22nd Scandinavian Conference on Image Analysis (SCIA 2023) and FG2018, and has served as area chairs for many conferences. 
+Her current research interests include image and video representation, facial-expression and micro-expression recognition, emotional gesture analysis, affective computing, and biometrics. %Her research has been reported by Finnish TV programs, newspapers and MIT Technology Review.
+\end{IEEEbiography}
+
+
+\end{document}
