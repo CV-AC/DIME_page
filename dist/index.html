@@ -10,7 +10,10 @@
   <meta property="og:type" content="website">
   <title>DIME | Research Project Page</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="style.css?v=20260915b">
+  <link rel="stylesheet" href="style.css?v=20260915c">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false,trust:true})"></script>
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
@@ -63,12 +66,12 @@
           <p class="step-tag"><span>01</span> Pair by identity, so identity cancels</p>
           <div class="step-visual">
             <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
-              <div class="observation observation-a"><div class="portrait neutral" role="img" aria-label="Input image x a with patch y sub ell a marked"><span class="image-symbol"><math><msup><mi>x</mi><mi>a</mi></msup></math></span><span class="patch-marker"><span class="patch-symbol"><math><msubsup><mi>y</mi><mi>ℓ</mi><mi>a</mi></msubsup></math></span></span></div></div>
-              <div class="observation observation-b"><div class="portrait smile" role="img" aria-label="Input image x b of the same person with patch y sub ell b marked"><span class="image-symbol"><math><msup><mi>x</mi><mi>b</mi></msup></math></span><span class="patch-marker"><span class="patch-symbol"><math><msubsup><mi>y</mi><mi>ℓ</mi><mi>b</mi></msubsup></math></span></span></div></div>
+              <div class="observation observation-a"><div class="portrait neutral" role="img" aria-label="Input image x a with patch y sub ell a marked"><span class="image-symbol">\(x^{a}\)</span><span class="patch-marker"><span class="patch-symbol">\(y^{a}_{\ell}\)</span></span></div></div>
+              <div class="observation observation-b"><div class="portrait smile" role="img" aria-label="Input image x b of the same person with patch y sub ell b marked"><span class="image-symbol">\(x^{b}\)</span><span class="patch-marker"><span class="patch-symbol">\(y^{b}_{\ell}\)</span></span></div></div>
             </div>
             <div class="cancel-eq">
-              <math><msubsup><mi>y</mi><mi>ℓ</mi><mi>a</mi></msubsup><mo>−</mo><msubsup><mi>y</mi><mi>ℓ</mi><mi>b</mi></msubsup><mo>=</mo><mrow class="cancels"><mo>(</mo><msub><mi>μ</mi><msub><mi>s</mi><mi>a</mi></msub></msub><mo>−</mo><msub><mi>μ</mi><msub><mi>s</mi><mi>b</mi></msub></msub><mo>)</mo></mrow><mo>+</mo><mrow class="keeps"><mo>(</mo><msup><mi>r</mi><mi>a</mi></msup><mo>−</mo><msup><mi>r</mi><mi>b</mi></msup><mo>)</mo></mrow></math>
-              <p><span class="key-gray">identity term</span> → 0 for the same person<br><span class="key-keep">observation term</span> = Δ<sub>ℓ</sub>, what actually changed</p>
+              \(y^{a}_{\ell}-y^{b}_{\ell}=\textcolor{#b8541a}{\cancel{\textcolor{#9aa7b8}{(\mu_{s_a}-\mu_{s_b})}}}+\textcolor{#355aa5}{(r^{a}-r^{b})}\)
+              <p><span class="key-gray">identity term</span> → 0 for the same person<br><span class="key-keep">observation term</span> = \(\boldsymbol{\Delta}_{\ell}\), what actually changed</p>
             </div>
           </div>
           <p class="step-text">Across people, a mouth shape may reflect who someone is or what they are doing. Within one person the identity baseline is shared, so it cancels in the difference. Identity labels only form pairs; they are never an input or a target.</p>
@@ -79,8 +82,8 @@
           <div class="step-visual">
             <div class="mix-flow">
               <div class="mix-inputs">
-                <figure><div class="tok-grid" aria-label="Mixed grid a: positions with mask 0 from a, mask 1 from b"><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i></div><figcaption><math><msup><mover><mi>T</mi><mo>~</mo></mover><mi>a</mi></msup></math></figcaption></figure>
-                <figure><div class="tok-grid" aria-label="Mixed grid b: reciprocal assignment"><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i></div><figcaption><math><msup><mover><mi>T</mi><mo>~</mo></mover><mi>b</mi></msup></math></figcaption></figure>
+                <figure><div class="tok-grid" aria-label="Mixed grid a: positions with mask 0 from a, mask 1 from b"><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i></div><figcaption>\(\tilde{T}^{a}\)</figcaption></figure>
+                <figure><div class="tok-grid" aria-label="Mixed grid b: reciprocal assignment"><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i></div><figcaption>\(\tilde{T}^{b}\)</figcaption></figure>
               </div>
               <span class="flow-arrow" aria-hidden="true">→</span>
               <figure class="attn-block">
@@ -89,13 +92,13 @@
               </figure>
               <span class="flow-arrow" aria-hidden="true">→</span>
               <div class="mix-outputs">
-                <figure><div class="thumb neutral"><span><math><msup><mover><mi>y</mi><mo>^</mo></mover><mi>a</mi></msup></math></span></div></figure>
-                <figure><div class="thumb smile"><span><math><msup><mover><mi>y</mi><mo>^</mo></mover><mi>b</mi></msup></math></span></div></figure>
+                <figure><div class="thumb neutral"><span>\(\hat{y}^{a}\)</span></div></figure>
+                <figure><div class="thumb smile"><span>\(\hat{y}^{b}\)</span></div></figure>
               </div>
             </div>
-            <p class="mix-legend"><i class="a"></i> tokens of <math><msup><mi>x</mi><mi>a</mi></msup></math> &nbsp; <i class="b"></i> tokens of <math><msup><mi>x</mi><mi>b</mi></msup></math> &nbsp;·&nbsp; one random 50% mask, applied in both orders</p>
+            <p class="mix-legend"><i class="a"></i> tokens of \(x^{a}\) &nbsp; <i class="b"></i> tokens of \(x^{b}\) &nbsp;·&nbsp; one random 50% mask, applied in both orders</p>
           </div>
-          <p class="step-text">The two faces look alike, so copying the missing patch from the other one would be the easy way out. Source-isolated attention makes that impossible: every patch of <math><msup><mover><mi>y</mi><mo>^</mo></mover><mi>a</mi></msup></math> and <math><msup><mover><mi>y</mi><mo>^</mo></mover><mi>b</mi></msup></math> is predicted from its own visible half, by a decoder branch in which that patch was masked.</p>
+          <p class="step-text">The two faces look alike, so copying the missing patch from the other one would be the easy way out. Source-isolated attention makes that impossible: every patch of \(\hat{y}^{a}\) and \(\hat{y}^{b}\) is predicted from its own visible half, by a decoder branch in which that patch was masked.</p>
         </article>
 
         <article class="idea-step">
@@ -112,7 +115,7 @@
                 <text x="158" y="20" font-size="14" fill="#355aa5" font-style="italic">δ<tspan font-size="9" dy="4">ℓ</tspan><tspan dy="-4" font-style="normal" fill="#5e6d80" font-size="11"> target</tspan></text>
                 <text x="150" y="119" font-size="14" fill="#187e85" font-style="italic">δ̂<tspan font-size="9" dy="4">ℓ</tspan><tspan dy="-4" font-style="normal" fill="#5e6d80" font-size="11"> recovered</tspan></text>
               </svg>
-              <p class="edds-caption"><span>loss = 1 − cos θ</span><span>length ignored</span></p>
+              <p class="edds-caption"><span>loss \(=1-\cos\theta\)</span><span>length ignored</span></p>
               <ul class="edds-cases" aria-label="Three outcomes for two plausible reconstructions">
                 <li><svg viewBox="0 0 64 40" width="64" height="40" aria-hidden="true"><line x1="10" y1="30" x2="54" y2="12" stroke="#355aa5" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-blue)"/><line x1="54" y1="26" x2="30" y2="36" stroke="#187e85" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-teal)"/></svg><span><b class="bad">reversed</b><br>change flipped</span></li>
                 <li><svg viewBox="0 0 64 40" width="64" height="40" aria-hidden="true"><line x1="10" y1="30" x2="54" y2="12" stroke="#355aa5" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-blue)"/><circle cx="10" cy="30" r="4" fill="#187e85"/></svg><span><b class="bad">erased</b><br>both recoveries equal</span></li>
@@ -126,13 +129,13 @@
 
       <div class="edds-panel">
         <div class="edds-formula">
-          <math display="block"><msub><mi>ℒ</mi><mi>edds</mi></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mo>|</mo><mi>Γ</mi><mo>|</mo></mrow></mfrac><munder><mo>∑</mo><mrow><mi>ℓ</mi><mo>∈</mo><mi>Γ</mi></mrow></munder><mrow><mo>[</mo><mn>1</mn><mo>−</mo><mfrac><mrow><mo>⟨</mo><msub><mover><mi>δ</mi><mo>^</mo></mover><mi>ℓ</mi></msub><mo>,</mo><msub><mi>δ</mi><mi>ℓ</mi></msub><mo>⟩</mo></mrow><mrow><mo>‖</mo><msub><mover><mi>δ</mi><mo>^</mo></mover><mi>ℓ</mi></msub><mo>‖</mo><mo>‖</mo><msub><mi>δ</mi><mi>ℓ</mi></msub><mo>‖</mo></mrow></mfrac><mo>]</mo></mrow></math><math display="block" class="delta-def"><msub><mi>δ</mi><mi>ℓ</mi></msub><mo>=</mo><msub><mi>H</mi><mi>P</mi></msub><mo>(</mo><msubsup><mi>y</mi><mi>ℓ</mi><mi>a</mi></msubsup><mo>−</mo><msubsup><mi>y</mi><mi>ℓ</mi><mi>b</mi></msubsup><mo>)</mo><mo>,</mo><mspace width="0.5em"/><msub><mover><mi>δ</mi><mo>^</mo></mover><mi>ℓ</mi></msub><mo>=</mo><msub><mi>H</mi><mi>P</mi></msub><mo>(</mo><msubsup><mover><mi>y</mi><mo>^</mo></mover><mi>ℓ</mi><mi>a</mi></msubsup><mo>−</mo><msubsup><mover><mi>y</mi><mo>^</mo></mover><mi>ℓ</mi><mi>b</mi></msubsup><mo>)</mo></math>
-          <p>Γ keeps the patches where the pair really changed (largest ‖δ‖), chosen from targets only. <math><msub><mi>H</mi><mi>P</mi></msub></math> removes each channel's spatial mean, so a uniform color offset does not count as change.</p>
+          \[\mathcal{L}_{\mathrm{edds}}=\frac{1}{\max(1,|\Gamma|)}\sum_{\ell\in\Gamma}\left[\,1-\frac{\langle\hat{\boldsymbol{\delta}}_{\ell},\boldsymbol{\delta}_{\ell}\rangle_{F}}{\|\hat{\boldsymbol{\delta}}_{\ell}\|_{F}\,\|\boldsymbol{\delta}_{\ell}\|_{F}+\varepsilon}\right]\]<div class="delta-def">\[\boldsymbol{\delta}_{\ell}=\mathbf{H}_{P}\,\boldsymbol{\Delta}_{\ell},\qquad \hat{\boldsymbol{\delta}}_{\ell}=\mathbf{H}_{P}\,\hat{\boldsymbol{\Delta}}_{\ell},\qquad \boldsymbol{\Delta}_{\ell}=\operatorname{reshape}_{P\times 3}\bigl(\mathbf{y}^{a}_{\ell}-\mathbf{y}^{b}_{\ell}\bigr)\]</div>
+          <p>\(\Gamma\) keeps the patches where the pair really changed (largest \(\|\boldsymbol{\delta}_{\ell}\|_{F}\)), chosen from targets only; \(\hat{\boldsymbol{\Delta}}_{\ell}\) is formed the same way from the two recovered patches mapped back to raw pixels. \(\mathbf{H}_{P}=\mathbf{I}_{P}-\tfrac{1}{P}\mathbf{1}_{P}\mathbf{1}_{P}^{\top}\) removes each channel's spatial mean, so a uniform color offset does not count as change.</p>
         </div>
         <ul class="edds-facts">
-          <li><b>Equal and opposite gradients.</b> <math><msub><mi>∇</mi><mi>a</mi></msub><mo>=</mo><mo>−</mo><msub><mi>∇</mi><mi>b</mi></msub></math>: the loss pushes the two recoveries apart along the true direction, and each gradient depends on the other face's state.</li>
+          <li><b>Equal and opposite gradients.</b> \(\nabla_{\hat{\mathbf{Q}}^{a}_{\ell}}\mathcal{L}_{\mathrm{edds},\ell}=-\nabla_{\hat{\mathbf{Q}}^{b}_{\ell}}\mathcal{L}_{\mathrm{edds},\ell}=\mathbf{H}_{P}^{\top}\mathbf{q}_{\ell}\), with \(\mathbf{q}_{\ell}=\nabla_{\hat{\boldsymbol{\delta}}_{\ell}}\mathcal{L}_{\mathrm{edds},\ell}\): the loss pushes the two recovered patches apart along the true direction, and each gradient depends on the other face\'s state.</li>
           <li><b>Zero mean per channel.</b> The EDDS gradient never touches the constant appearance component, so RGB reconstruction keeps anchoring what the face looks like while gradient orientation keeps local structure.</li>
-          <li><b>Order-free, identity-free.</b> Swapping <i>a</i> and <i>b</i> negates both δ and δ̂ and leaves the loss unchanged: no temporal order, no reference expression, no identity code.</li>
+          <li><b>Order-free, identity-free.</b> Swapping \(a\) and \(b\) negates both \(\boldsymbol{\delta}_{\ell}\) and \(\hat{\boldsymbol{\delta}}_{\ell}\) and leaves the loss unchanged: no temporal order, no reference expression, no identity code.</li>
           <li><b>Only the encoder survives.</b> Downstream inference takes a single image, with no pairs and no mask. The variation-aware features are simply in the weights.</li>
         </ul>
       </div>
