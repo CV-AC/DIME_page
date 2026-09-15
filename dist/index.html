@@ -3,200 +3,113 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#071317">
-  <meta name="description" content="DIME scales self-supervised facial representation learning through same-identity pairing and differential masked autoencoding. Explore the method, evidence, and video.">
-  <meta property="og:title" content="DIME — Learning what changes in a face">
-  <meta property="og:description" content="Differential masked autoencoding for self-supervised facial representation learning beyond identity.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="DIME: Scaling Self-Supervised Facial Representation Learning via Differential Masked Autoencoding. Project page, method, results, and video.">
+  <meta property="og:title" content="DIME: Differential Masked Autoencoding">
+  <meta property="og:description" content="Self-supervised facial representation learning through same-identity pairing and differential supervision.">
   <meta property="og:type" content="website">
-  <title>DIME — Differential Masked Autoencoding</title>
+  <title>DIME | Research Project Page</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="grain" aria-hidden="true"></div>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="#top" aria-label="DIME, back to top">
-        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
-        <span>DIME<span class="brand-period">.</span></span>
-      </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#idea">The idea</a>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="topbar">
+    <div class="page-width topbar-inner">
+      <a class="site-name" href="#top">DIME</a>
+      <nav aria-label="On this page">
+        <a href="#abstract">Abstract</a>
         <a href="#method">Method</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#demo">Demo</a>
+        <a href="#results">Results</a>
+        <a href="#video">Video</a>
+        <a href="#citation">BibTeX</a>
       </nav>
-      <a class="header-cta" href="https://github.com/CV-AC/DIME" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
-  <main id="main">
-    <section class="hero" id="top">
-      <div class="hero-grid wrap">
-        <div class="hero-copy">
-          <div class="eyebrow"><span class="pulse"></span> Facial representation learning · 2026</div>
-          <h1><span class="hero-name">DIME<span class="punctuation">.</span></span><span class="hero-headline">Learn the face<br><em>between</em> frames.</span></h1>
-          <p class="hero-subtitle">Scaling Self-Supervised Facial Representation Learning via Differential Masked Autoencoding</p>
-          <p class="hero-description">A face is more than an identity. DIME learns from two observations of the same person, making their subtle differences an explicit training signal.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#method">Explore the method <span aria-hidden="true">↗</span></a>
-            <a class="button button-ghost" href="paper.tex" download>Paper source <span aria-hidden="true">↓</span></a>
-          </div>
-          <div class="authors"><span class="authors-label">BY</span><span>Hao Yu · Haoyu Chen · Hui Wei · Yan Jiang<br>Nicu Sebe · Guoying Zhao</span></div>
-        </div>
-        <div class="hero-art" aria-label="Illustrative portraits of one person in two facial states">
-          <div class="art-orbit art-orbit-one" aria-hidden="true"></div>
-          <div class="art-orbit art-orbit-two" aria-hidden="true"></div>
-          <div class="face-card face-card-a"><div class="face-photo face-photo-a" role="img" aria-label="Neutral expression from an illustrative portrait series"></div><span>OBSERVATION / A</span></div>
-          <div class="face-card face-card-b"><div class="face-photo face-photo-b" role="img" aria-label="Smiling expression of the same person from the illustrative portrait series"></div><span>OBSERVATION / B</span></div>
-          <div class="delta-symbol" aria-hidden="true">Δ</div>
-          <div class="art-label label-top">IDENTITY HELD CONSTANT</div>
-          <div class="art-label label-bottom">VARIATION BECOMES SIGNAL <span>↗</span></div>
-          <a class="art-credit" href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Illustrative portraits · Andrea Piacquadio / Pexels ↗</a>
-          <div class="crosshair crosshair-one" aria-hidden="true"></div>
-          <div class="crosshair crosshair-two" aria-hidden="true"></div>
-        </div>
-      </div>
-      <div class="hero-bottom wrap">
-        <div class="hero-index">01 / 06 &nbsp; A NEW LEARNING UNIT</div>
-        <a href="#idea" class="scroll-cue">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a>
+  <main id="content" class="page-width">
+    <section class="paper-header" id="top" aria-labelledby="paper-title">
+      <p class="project-label">Research project · 2026</p>
+      <h1 id="paper-title">DIME: Scaling Self-Supervised Facial Representation Learning via Differential Masked Autoencoding</h1>
+      <p class="authors">Hao Yu<sup>1</sup>, Haoyu Chen<sup>1</sup>, Hui Wei<sup>1</sup>, Yan Jiang<sup>1</sup>, Nicu Sebe<sup>2</sup>, Guoying Zhao<sup>1</sup></p>
+      <p class="affiliations"><sup>1</sup> ELLIS Institute Finland and CMVS, University of Oulu &nbsp; · &nbsp; <sup>2</sup> DISI, University of Trento</p>
+      <div class="resource-links">
+        <a href="paper.tex" download>Paper source <span>(TeX)</span></a>
+        <a href="#video">Video demo</a>
+        <a href="https://github.com/CV-AC/DIME" target="_blank" rel="noopener noreferrer">Repository ↗</a>
       </div>
     </section>
 
-    <div class="signal-strip" aria-hidden="true"><div class="signal-track">
-      <span>IDENTITY IS THE REFERENCE</span><i>✳</i><span>VARIATION IS THE SIGNAL</span><i>✳</i><span>DIFFERENCE IS THE OBJECTIVE</span><i>✳</i>
-      <span>IDENTITY IS THE REFERENCE</span><i>✳</i><span>VARIATION IS THE SIGNAL</span><i>✳</i><span>DIFFERENCE IS THE OBJECTIVE</span><i>✳</i>
-    </div></div>
-
-    <section class="idea section-pad" id="idea">
-      <div class="wrap">
-        <div class="section-intro"><span class="section-kicker">01 / THE IDEA</span><h2>Most models see a face.<br><span>DIME sees the change.</span></h2></div>
-        <div class="idea-grid">
-          <div class="idea-main">
-            <p class="lead">Conventional masked autoencoding reconstructs one image at a time. As pretraining grows, it can learn more appearance without becoming more sensitive to the small changes that matter for expression, action units, and geometry.</p>
-            <p>DIME pairs distinct observations of the <strong>same person</strong>. Shared morphology becomes a controlled reference, so the learning target exposes changes in facial state rather than differences between people. The two images are recovered from reciprocal masked mixtures, and their reconstructed difference is supervised directly.</p>
-            <a class="text-link" href="#method">See how differential learning works <span aria-hidden="true">↗</span></a>
-          </div>
-          <div class="idea-aside">
-            <div class="aside-heading">THE CORE SHIFT</div>
-            <div class="equation"><span class="eq-muted">appearance</span><span class="eq-arrow">→</span><span class="eq-glow">variation</span></div>
-            <p>From predicting what a face looks like to preserving <em>how it changes</em>.</p>
-            <div class="aside-line"></div>
-            <div class="aside-stat"><strong>20M</strong><span>curated, high-resolution face images for pretraining</span></div>
-          </div>
+    <figure class="teaser">
+      <div class="teaser-inner">
+        <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
+          <div class="portrait neutral" role="img" aria-label="Neutral expression"></div>
+          <div class="portrait-arrow" aria-hidden="true">→</div>
+          <div class="portrait smile" role="img" aria-label="Smiling expression of the same person"></div>
+        </div>
+        <div class="teaser-text">
+          <span>Same identity, different observations</span>
+          <p>DIME uses a person's shared appearance as a reference and explicitly learns the direction of subtle changes between two masked reconstructions.</p>
         </div>
       </div>
+      <figcaption>Illustrative portraits by <a href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Andrea Piacquadio / Pexels</a>. These images are not study samples.</figcaption>
+    </figure>
+
+    <section class="content-section" id="abstract">
+      <h2>Abstract</h2>
+      <p>Conventional large-scale visual pretraining shows diminishing returns on fine-grained facial tasks: learning more appearance does not necessarily improve sensitivity to expression, geometry, or local texture changes. DIME reframes masked autoencoding around two observations of the same person. Their shared identity provides a reference, while Explicit Differential Direction Supervision (EDDS) aligns the direction of change between the original and reconstructed pairs. Pretrained on the curated Face-20M dataset, DIME continues to improve as facial data grows to 20 million images, where a standard MAE objective begins to plateau. The resulting single-image encoder transfers across facial action-unit analysis, cross-domain anti-spoofing, facial geometry, parsing, and face generation.</p>
     </section>
 
-    <section class="method section-pad" id="method">
-      <div class="wrap">
-        <div class="section-intro"><span class="section-kicker">02 / THE METHOD</span><h2>Pair. Mask. Recover.<br><span>Compare the difference.</span></h2><p>A masked autoencoder redesigned around facial variation.</p></div>
-        <div class="steps">
-          <article class="step"><div class="step-no">01</div><div class="step-icon pair-icon" aria-hidden="true"><span></span><span></span></div><h3>Same-identity pairing</h3><p>Two distinct observations share person-specific appearance. Identity is used only to organize pairs, never as a network input or prediction target.</p></article>
-          <article class="step"><div class="step-no">02</div><div class="step-icon mask-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></div><h3>Reciprocal masked recovery</h3><p>Complementary patch mixtures pass through a shared encoder. Source-isolated attention prevents one observation from leaking the other's missing content.</p></article>
-          <article class="step"><div class="step-no">03</div><div class="step-icon delta-icon" aria-hidden="true">Δ</div><h3>Differential supervision</h3><p>EDDS aligns the direction of local changes between the reconstructed pair and the original pair, alongside RGB and gradient-orientation recovery.</p></article>
-        </div>
-        <figure class="figure-panel method-figure">
-          <div class="figure-topline"><span>FIG. 02 / MODEL ARCHITECTURE</span><button class="figure-expand" type="button" data-lightbox="media/main.webp" data-caption="Overall DIME architecture: reciprocal mixed grids, source-isolated encoding, complementary decoding, and differential supervision." aria-label="Expand architecture figure">EXPAND ↗</button></div>
-          <img src="media/main.webp" alt="DIME architecture showing two same-identity faces, reciprocal patch mixing, a shared ViT encoder, complementary decoders, and RGB, orientation, and differential losses" loading="lazy">
-          <figcaption>The two reciprocal mixed grids and their decoder branches run in parallel in practice. After pretraining, only the encoder is retained for downstream single-image tasks.</figcaption>
-        </figure>
-      </div>
+    <section class="content-section" id="method">
+      <h2>Method</h2>
+      <p>Same-identity pairs are mixed reciprocally at the patch level. A shared encoder with source-isolated attention and complementary decoder branches recovers both faces. RGB reconstruction, gradient-orientation recovery, and EDDS jointly preserve appearance, local structure, and inter-observation variation.</p>
+      <figure class="paper-figure">
+        <a href="media/main.webp" target="_blank" rel="noopener noreferrer" aria-label="Open DIME architecture figure at full size"><img src="media/main.webp" alt="DIME architecture with same-identity pairing, reciprocal masked mixtures, source-isolated ViT encoding, complementary decoding, and differential supervision" loading="lazy"></a>
+        <figcaption>Overall DIME architecture. Only the encoder is retained for downstream single-image inference. <a href="media/main.webp" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+      </figure>
     </section>
 
-    <section class="evidence section-pad" id="evidence">
-      <div class="wrap">
-        <div class="section-intro"><span class="section-kicker">03 / THE EVIDENCE</span><h2>Scaling finally<br><span>moves the needle.</span></h2><p>On fine-grained facial tasks, DIME keeps improving as data grows where conventional MAE begins to plateau.</p></div>
-        <div class="metrics">
-          <div class="metric"><span class="metric-tag">PRETRAINING SCALE</span><strong>20<span>M</span></strong><p>face images in Face-20M</p></div>
-          <div class="metric"><span class="metric-tag">BP4D AU DETECTION</span><strong>73.2<span>%</span></strong><p>macro F1 with DIME-L</p></div>
-          <div class="metric"><span class="metric-tag">CROSS-DOMAIN FAS</span><strong>5.43<span>%</span></strong><p>average HTER with DIME-L <small>↓ lower is better</small></p></div>
-          <div class="metric"><span class="metric-tag">FACE GENERATION</span><strong>6.12</strong><p>FID at 256px, RAEv2, 100K steps <small>↓ lower is better</small></p></div>
-        </div>
-        <figure class="figure-panel scaling-figure">
-          <div class="figure-topline"><span>FIG. 01 / WHY DIFFERENTIAL LEARNING SCALES</span><button class="figure-expand" type="button" data-lightbox="media/first.webp" data-caption="DIME's paired objective, parameter efficiency, and the pretraining scaling comparison with MAE." aria-label="Expand scaling figure">EXPAND ↗</button></div>
-          <img src="media/first.webp" alt="Four-panel paper figure comparing standard MAE to DIME, parameter efficiency on action unit detection, and pretraining data scaling" loading="lazy">
-          <figcaption>Under matched data fractions and encoder scale, MAE-B changes little beyond about 6M images while DIME-B continues to improve through 20M.</figcaption>
-        </figure>
-        <div class="scaling-note"><span class="note-marker">↗</span><p>From <strong>6M to 20M</strong> pretraining images, BP4D mean F1 rises from <strong>66.1% to 72.0%</strong> for DIME-B. MAE-B moves from <strong>64.5% to about 65.0%</strong> in the same range.</p></div>
+    <section class="content-section" id="results">
+      <h2>Results</h2>
+      <p>On Face-20M, DIME-B keeps gaining from larger pretraining subsets while a matched MAE-B baseline changes little beyond approximately 6 million images. DIME is evaluated across seven task families.</p>
+      <figure class="paper-figure">
+        <a href="media/first.webp" target="_blank" rel="noopener noreferrer" aria-label="Open scaling and efficiency figure at full size"><img src="media/first.webp" alt="Paper overview comparing MAE and DIME objectives, action-unit parameter efficiency, and performance as facial pretraining data scales" loading="lazy"></a>
+        <figcaption>From 6M to 20M images, DIME-B's BP4D mean F1 rises from 66.1% to 72.0%; MAE-B moves from 64.5% to approximately 65.0%. <a href="media/first.webp" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+      </figure>
+      <div class="result-summary" aria-label="Selected paper results">
+        <p><strong>73.2%</strong><span>BP4D AU macro F1 · DIME-L</span></p>
+        <p><strong>5.43%</strong><span>Cross-domain FAS HTER · DIME-L ↓</span></p>
+        <p><strong>6.12</strong><span>RAEv2 256px FID at 100K steps · DIME-L ↓</span></p>
       </div>
+      <figure class="paper-figure samples">
+        <a href="media/gen_show_1.webp" target="_blank" rel="noopener noreferrer" aria-label="Open generated face samples at full size"><img src="media/gen_show_1.webp" alt="Selected face images generated using the DIME-L encoder in RAEv2 after 100K training steps" loading="lazy"></a>
+        <figcaption>Selected face-generation samples using DIME-L in the RAEv2 framework after 100K steps.</figcaption>
+      </figure>
     </section>
 
-    <section class="applications section-pad" id="applications">
-      <div class="wrap">
-        <div class="section-intro"><span class="section-kicker">04 / TRANSFER</span><h2>One encoder.<br><span>Many facial tasks.</span></h2><p>The learned variation transfers across seven evaluated task families, from dense facial geometry to generative modeling.</p></div>
-        <div class="application-grid">
-          <div class="application-list">
-            <div class="application-item"><span>01</span><strong>Action unit detection</strong><i>↗</i></div>
-            <div class="application-item"><span>02</span><strong>Action unit intensity</strong><i>↗</i></div>
-            <div class="application-item"><span>03</span><strong>Cross-domain anti-spoofing</strong><i>↗</i></div>
-            <div class="application-item"><span>04</span><strong>Facial landmarks</strong><i>↗</i></div>
-            <div class="application-item"><span>05</span><strong>Head pose</strong><i>↗</i></div>
-            <div class="application-item"><span>06</span><strong>Face parsing</strong><i>↗</i></div>
-            <div class="application-item"><span>07</span><strong>Face generation</strong><i>↗</i></div>
-          </div>
-          <div class="application-visual">
-            <div class="app-visual-head"><span>LOCAL FACIAL EVIDENCE</span><span>BP4D · BP4D+ · DISFA</span></div>
-            <img src="media/au_res.webp" alt="Per-action-unit F1 curves on BP4D, BP4D+, and DISFA, showing DIME gains on challenging action units" loading="lazy">
-            <p>DIME's gains concentrate on challenging action units rather than only those with already high scores.</p>
-            <button class="figure-expand" type="button" data-lightbox="media/au_res.webp" data-caption="Per-action-unit F1 comparison across BP4D, BP4D+, and DISFA." aria-label="Expand action unit result figure">EXPAND FIGURE ↗</button>
-          </div>
-        </div>
-      </div>
+    <section class="content-section" id="video">
+      <h2>Video</h2>
+      <p>The supplied demo shows facial landmarks, head pose, face parsing, and action-unit analysis on a moving face.</p>
+      <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="Facial analysis demo video">
+        <source src="media/dime-demo.mp4" type="video/mp4">
+        Your browser does not support video playback.
+      </video>
     </section>
 
-    <section class="semantics section-pad" id="semantics">
-      <div class="wrap">
-        <div class="section-intro"><span class="section-kicker">05 / WHAT EMERGES</span><h2>Facial structure,<br><span>without dense labels.</span></h2><p>Differential supervision organizes features around local facial regions and sharper spatial boundaries.</p></div>
-        <figure class="figure-panel semantic-figure">
-          <div class="figure-topline"><span>FIG. 03 / EMERGENT FACIAL SEMANTICS</span><button class="figure-expand" type="button" data-lightbox="media/semantic.webp" data-caption="Patch-query similarity maps and dense-feature visualizations comparing DIME-L with DINOv3-L and MAE-L." aria-label="Expand semantic figure">EXPAND ↗</button></div>
-          <img src="media/semantic.webp" alt="DIME feature maps showing coherent activation around facial regions, alongside dense-feature comparisons with DINOv3 and MAE" loading="lazy">
-          <figcaption>Regional queries reveal coherent structure around facial anatomy. The comparison shows visibly differentiated dense facial semantics in DIME-L.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="demo section-pad" id="demo">
-      <div class="wrap">
-        <div class="section-intro"><span class="section-kicker">06 / SEE IT IN MOTION</span><h2>Beyond static<br><span>benchmarks.</span></h2><p>A supplied visual demo brings facial geometry, parsing, and action-unit analysis together on a moving face.</p></div>
-        <div class="video-shell">
-          <div class="video-head"><span><span class="live-dot"></span> DIME / FACIAL ANALYSIS DEMO</span><span>00:17</span></div>
-          <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="DIME facial analysis video with head pose, facial landmarks, parsing, and action unit overlays">
-            <source src="media/dime-demo.mp4" type="video/mp4">
-            Your browser does not support video playback.
-          </video>
-          <div class="video-footer"><span>HEAD POSE</span><span>LANDMARKS</span><span>FACE PARSING</span><span>ACTION UNITS</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="generation section-pad" id="generation">
-      <div class="wrap">
-        <div class="generation-heading"><div><span class="section-kicker">GENERATION / A SECOND PERSPECTIVE</span><h2>Represent variation.<br><span>Generate better faces.</span></h2></div><p>As a representation encoder for RAEv2 and REPA, DIME improves convergence and final face-generation quality. At 100K RAEv2 steps, DIME-L reaches FID 6.12 at 256px and 6.59 at 512px.</p></div>
-        <figure class="generation-samples"><div class="figure-topline"><span>FIG. 04 / GENERATED FACES</span><button class="figure-expand" type="button" data-lightbox="media/gen_show_1.webp" data-caption="Selected faces generated with DIME-L in the RAEv2 framework after 100K training steps." aria-label="Expand generated face samples">EXPAND ↗</button></div><img src="media/gen_show_1.webp" alt="Selected varied face images generated with the DIME-L encoder and RAEv2 framework after 100K steps" loading="lazy"><figcaption>Selected DIME-L + RAEv2 samples after 100K steps.</figcaption></figure>
-        <figure class="figure-panel dynamics-figure"><div class="figure-topline"><span>FIG. 05 / GENERATION DYNAMICS</span><button class="figure-expand" type="button" data-lightbox="media/gen_show_2.webp" data-caption="RAEv2 training curves and generated samples across 1K to 50K steps, comparing DIME with DINOv3 and MAE." aria-label="Expand generation dynamics figure">EXPAND ↗</button></div><img src="media/gen_show_2.webp" alt="Training loss and FID curves, plus generated face samples at training milestones for DIME and DINOv3" loading="lazy"><figcaption>DIME resolves recognizable facial structure earlier in training and maintains a lower FID across the shown trajectory.</figcaption></figure>
-      </div>
-    </section>
-
-    <section class="paper-block section-pad" id="paper">
-      <div class="wrap paper-grid">
-        <div><span class="section-kicker">READ THE RESEARCH</span><h2>The full story<br>is in the paper<span>.</span></h2><p>DIME: Scaling Self-Supervised Facial Representation Learning via Differential Masked Autoencoding</p></div>
-        <div class="paper-links">
-          <a href="paper.tex" download><span>Download LaTeX source</span><span>↓</span></a>
-          <a href="https://github.com/CV-AC/DIME" target="_blank" rel="noopener noreferrer"><span>Visit the research repository</span><span>↗</span></a>
-          <button type="button" id="citation-button" aria-label="Copy BibTeX citation"><span>Copy BibTeX citation</span><span>⧉</span></button>
-          <p class="repository-note">The linked repository is the one named in the paper; consult it for the latest release status.</p>
-        </div>
-      </div>
+    <section class="content-section citation-section" id="citation">
+      <h2>BibTeX</h2>
+      <p>Suggested citation for the 2026 manuscript; update the venue when the formal publication is available.</p>
+      <pre>@article{yu2026dime,
+  title={DIME: Scaling Self-Supervised Facial Representation Learning via Differential Masked Autoencoding},
+  author={Yu, Hao and Chen, Haoyu and Wei, Hui and Jiang, Yan and Sebe, Nicu and Zhao, Guoying},
+  year={2026}
+}</pre>
     </section>
   </main>
 
-  <footer class="site-footer"><div class="wrap"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span>DIME<span class="brand-period">.</span></span></a><p>Facial representation learning beyond identity.</p><span>ELLIS Institute Finland · University of Oulu · University of Trento</span><a href="#top">BACK TO TOP ↑</a></div></footer>
-  <dialog class="lightbox" id="figure-dialog" aria-label="Expanded paper figure"><button class="lightbox-close" type="button" aria-label="Close expanded figure">×</button><div class="lightbox-media"><img alt=""></div><p></p></dialog>
+  <footer class="page-width footer">
+    <span>DIME · Research project page</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
 </body>
 </html>
