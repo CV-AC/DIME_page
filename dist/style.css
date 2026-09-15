@@ -128,7 +128,7 @@ sup{font-size:10px;vertical-align:super}
 .panel-text strong{color:var(--navy);font-weight:650}
 .panel-text-main{font-size:14px;color:var(--text)}
 .panel-text .katex{font-size:1.04em;color:var(--text)}
-.edds-eqs{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;align-items:center}
+.edds-eqs{display:grid;grid-template-columns:auto auto;justify-content:center;gap:0 64px;align-items:center}
 .edds-eqs .katex-display{margin:4px 0}
 .edds-eqs .katex-display>.katex{font-size:1.08em;color:var(--navy)}
 .delta-def{margin:2px 0 6px}
