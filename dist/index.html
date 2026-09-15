@@ -10,70 +10,136 @@
   <meta property="og:type" content="website">
   <title>DIME | Research Project Page</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260915b">
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
   <main id="content" class="page-width">
-    <section class="paper-header" id="top" aria-labelledby="paper-title">
-      <p class="project-label">Research project · 2026</p>
+    <header class="paper-header" id="top">
       <h1 id="paper-title"><span class="title-acronym">DIME:</span> Scaling Self-Supervised Facial Representation Learning via Differential Masked Autoencoding</h1>
       <p class="authors">Hao Yu<sup>1</sup>, Haoyu Chen<sup>1</sup>, Hui Wei<sup>1</sup>, Yan Jiang<sup>1</sup>, Nicu Sebe<sup>2</sup>, Guoying Zhao<sup>1</sup></p>
-      <p class="affiliations"><sup>1</sup> ELLIS Institute Finland and CMVS, University of Oulu &nbsp; · &nbsp; <sup>2</sup> DISI, University of Trento</p>
+      <p class="affiliations"><sup>1</sup> ELLIS Institute Finland and CMVS, University of Oulu, Finland &nbsp; · &nbsp; <sup>2</sup> DISI, University of Trento, Italy</p>
       <div class="resource-links">
-        <a href="paper.tex" download>Paper source <span>(TeX)</span></a>
-        <a href="#video">Video demo</a>
-        <a href="https://github.com/CV-AC/DIME" target="_blank" rel="noopener noreferrer">Repository ↗</a>
+        <a href="https://github.com/CV-AC/DIME" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>
       </div>
+      <nav class="section-nav" aria-label="Page sections">
+        <a href="#demo">Demo</a><a href="#idea">Key idea</a><a href="#abstract">Brief abstract</a><a href="#method">Method</a><a href="#results">Results</a><a href="#citation">BibTeX</a>
+      </nav>
+    </header>
+
+    <section class="content-section opening-demo" id="demo" aria-labelledby="demo-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Downstream results</p><h2 id="demo-title">DIME in action</h2></div>
+        <p>Facial landmarks, head pose, face parsing, and action-unit (AU) analysis on unconstrained video, all from one DIME encoder in a <span class="highlight">plain baseline setting</span>: lightweight task heads, no specialized modules.</p>
+      </div>
+      <div class="demo-stack">
+        <figure class="demo-media">
+          <video controls muted loop playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="DIME downstream facial analysis results, sequence 1">
+            <source src="media/dime-demo.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+          <figcaption><strong>Sequence 1.</strong> Head pose, landmarks, parsing, and AU activations on a frontal talking face.</figcaption>
+        </figure>
+        <figure class="demo-media">
+          <video controls muted loop playsinline preload="metadata" poster="media/demo-interview-poster.webp" aria-label="DIME downstream facial analysis results, sequence 2">
+            <source src="media/dime-demo-interview.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+          <figcaption><strong>Sequence 2.</strong> The same pipeline on an interview clip with head turns, speech, and changing expressions.</figcaption>
+        </figure>
+      </div>
+      <p class="panel-legend">Panels, left to right: input · head pose · landmarks · face parsing · action units.</p>
     </section>
 
-    <section class="opening-demo" id="video" aria-labelledby="video-title">
-      <div class="demo-heading">
-        <div><p class="eyebrow">Downstream results</p><h2 id="video-title">DIME in action</h2></div>
-        <p>Results obtained with DIME for facial landmarks, head pose, face parsing, and action-unit analysis.</p>
+    <section class="content-section design-insight" id="idea" aria-labelledby="design-title">
+      <header class="insight-heading">
+        <p class="eyebrow">Key idea</p>
+        <h2 id="design-title">Learning the variation within an identity</h2>
+        <p>Faces share one canonical layout, so a masked autoencoder can fill in a plausible face from context while subtle changes vanish into the residual. DIME fixes the identity, recovers two mixed observations, and supervises how the recovered pair differs.</p>
+      </header>
+
+      <div class="idea-steps">
+        <article class="idea-step">
+          <p class="step-tag"><span>01</span> Pair by identity, so identity cancels</p>
+          <div class="step-visual">
+            <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
+              <div class="observation observation-a"><div class="portrait neutral" role="img" aria-label="Input image x a with patch y sub ell a marked"><span class="image-symbol"><math><msup><mi>x</mi><mi>a</mi></msup></math></span><span class="patch-marker"><span class="patch-symbol"><math><msubsup><mi>y</mi><mi>ℓ</mi><mi>a</mi></msubsup></math></span></span></div></div>
+              <div class="observation observation-b"><div class="portrait smile" role="img" aria-label="Input image x b of the same person with patch y sub ell b marked"><span class="image-symbol"><math><msup><mi>x</mi><mi>b</mi></msup></math></span><span class="patch-marker"><span class="patch-symbol"><math><msubsup><mi>y</mi><mi>ℓ</mi><mi>b</mi></msubsup></math></span></span></div></div>
+            </div>
+            <div class="cancel-eq">
+              <math><msubsup><mi>y</mi><mi>ℓ</mi><mi>a</mi></msubsup><mo>−</mo><msubsup><mi>y</mi><mi>ℓ</mi><mi>b</mi></msubsup><mo>=</mo><mrow class="cancels"><mo>(</mo><msub><mi>μ</mi><msub><mi>s</mi><mi>a</mi></msub></msub><mo>−</mo><msub><mi>μ</mi><msub><mi>s</mi><mi>b</mi></msub></msub><mo>)</mo></mrow><mo>+</mo><mrow class="keeps"><mo>(</mo><msup><mi>r</mi><mi>a</mi></msup><mo>−</mo><msup><mi>r</mi><mi>b</mi></msup><mo>)</mo></mrow></math>
+              <p><span class="key-gray">identity term</span> → 0 for the same person<br><span class="key-keep">observation term</span> = Δ<sub>ℓ</sub>, what actually changed</p>
+            </div>
+          </div>
+          <p class="step-text">Across people, a mouth shape may reflect who someone is or what they are doing. Within one person the identity baseline is shared, so it cancels in the difference. Identity labels only form pairs; they are never an input or a target.</p>
+        </article>
+
+        <article class="idea-step">
+          <p class="step-tag"><span>02</span> Mix, mask, recover, without peeking</p>
+          <div class="step-visual">
+            <div class="mix-flow">
+              <div class="mix-inputs">
+                <figure><div class="tok-grid" aria-label="Mixed grid a: positions with mask 0 from a, mask 1 from b"><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i></div><figcaption><math><msup><mover><mi>T</mi><mo>~</mo></mover><mi>a</mi></msup></math></figcaption></figure>
+                <figure><div class="tok-grid" aria-label="Mixed grid b: reciprocal assignment"><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="a"></i><i class="a"></i><i class="b"></i><i class="b"></i></div><figcaption><math><msup><mover><mi>T</mi><mo>~</mo></mover><mi>b</mi></msup></math></figcaption></figure>
+              </div>
+              <span class="flow-arrow" aria-hidden="true">→</span>
+              <figure class="attn-block">
+                <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><rect x="2" y="2" width="29" height="29" rx="2" fill="#355aa5"/><rect x="33" y="33" width="29" height="29" rx="2" fill="#187e85"/><rect x="33" y="2" width="29" height="29" rx="2" fill="#e6ecf5" stroke="#b9c8dd"/><rect x="2" y="33" width="29" height="29" rx="2" fill="#e6ecf5" stroke="#b9c8dd"/><text x="47.5" y="21" font-size="13" text-anchor="middle" fill="#7a8899">−∞</text><text x="16.5" y="52" font-size="13" text-anchor="middle" fill="#7a8899">−∞</text></svg>
+                <figcaption>shared encoder<br>attention only within a source</figcaption>
+              </figure>
+              <span class="flow-arrow" aria-hidden="true">→</span>
+              <div class="mix-outputs">
+                <figure><div class="thumb neutral"><span><math><msup><mover><mi>y</mi><mo>^</mo></mover><mi>a</mi></msup></math></span></div></figure>
+                <figure><div class="thumb smile"><span><math><msup><mover><mi>y</mi><mo>^</mo></mover><mi>b</mi></msup></math></span></div></figure>
+              </div>
+            </div>
+            <p class="mix-legend"><i class="a"></i> tokens of <math><msup><mi>x</mi><mi>a</mi></msup></math> &nbsp; <i class="b"></i> tokens of <math><msup><mi>x</mi><mi>b</mi></msup></math> &nbsp;·&nbsp; one random 50% mask, applied in both orders</p>
+          </div>
+          <p class="step-text">The two faces look alike, so copying the missing patch from the other one would be the easy way out. Source-isolated attention makes that impossible: every patch of <math><msup><mover><mi>y</mi><mo>^</mo></mover><mi>a</mi></msup></math> and <math><msup><mover><mi>y</mi><mo>^</mo></mover><mi>b</mi></msup></math> is predicted from its own visible half, by a decoder branch in which that patch was masked.</p>
+        </article>
+
+        <article class="idea-step">
+          <p class="step-tag"><span>03</span> EDDS: align the direction of change</p>
+          <div class="step-visual">
+            <div class="edds-visual">
+              <svg class="edds-vectors" viewBox="0 0 230 124" width="230" height="124" aria-label="Target difference delta and recovered difference delta-hat as vectors with the angle theta between them">
+                <defs><marker id="ah-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#355aa5"/></marker><marker id="ah-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#187e85"/></marker></defs>
+                <line x1="22" y1="96" x2="154" y2="26" stroke="#355aa5" stroke-width="3" stroke-linecap="round" marker-end="url(#ah-blue)"/>
+                <line x1="22" y1="96" x2="146" y2="113" stroke="#187e85" stroke-width="3" stroke-linecap="round" marker-end="url(#ah-teal)"/>
+                <path d="M57.3 77.2A40 40 0 0 1 61.6 101.6" fill="none" stroke="#b8541a" stroke-width="1.8"/>
+                <text x="66" y="93" font-size="14" fill="#b8541a" font-style="italic">θ</text>
+                <circle cx="22" cy="96" r="3.2" fill="#182e50"/>
+                <text x="158" y="20" font-size="14" fill="#355aa5" font-style="italic">δ<tspan font-size="9" dy="4">ℓ</tspan><tspan dy="-4" font-style="normal" fill="#5e6d80" font-size="11"> target</tspan></text>
+                <text x="150" y="119" font-size="14" fill="#187e85" font-style="italic">δ̂<tspan font-size="9" dy="4">ℓ</tspan><tspan dy="-4" font-style="normal" fill="#5e6d80" font-size="11"> recovered</tspan></text>
+              </svg>
+              <p class="edds-caption"><span>loss = 1 − cos θ</span><span>length ignored</span></p>
+              <ul class="edds-cases" aria-label="Three outcomes for two plausible reconstructions">
+                <li><svg viewBox="0 0 64 40" width="64" height="40" aria-hidden="true"><line x1="10" y1="30" x2="54" y2="12" stroke="#355aa5" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-blue)"/><line x1="54" y1="26" x2="30" y2="36" stroke="#187e85" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-teal)"/></svg><span><b class="bad">reversed</b><br>change flipped</span></li>
+                <li><svg viewBox="0 0 64 40" width="64" height="40" aria-hidden="true"><line x1="10" y1="30" x2="54" y2="12" stroke="#355aa5" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-blue)"/><circle cx="10" cy="30" r="4" fill="#187e85"/></svg><span><b class="bad">erased</b><br>both recoveries equal</span></li>
+                <li><svg viewBox="0 0 64 40" width="64" height="40" aria-hidden="true"><line x1="10" y1="30" x2="54" y2="12" stroke="#355aa5" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-blue)"/><line x1="10" y1="30" x2="34" y2="20.2" stroke="#187e85" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-teal)"/></svg><span><b class="good">aligned</b><br>smaller, same direction</span></li>
+              </ul>
+            </div>
+          </div>
+          <p class="step-text">Two reconstructions can each look right and still flatten or reverse a small change, paying almost nothing in RGB loss. EDDS compares the centered differences with a cosine, so only direction counts: a subtle change matters as much as a large one, and reproducing shared appearance alone cannot satisfy it.</p>
+        </article>
       </div>
-      <figure class="demo-media demo-media-primary">
-        <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="DIME downstream facial analysis results">
-          <source src="media/dime-demo.mp4" type="video/mp4">
-          Your browser does not support video playback.
-        </video>
-        <figcaption><strong>DIME results.</strong> Facial geometry, parsing, and action-unit predictions on a moving face.</figcaption>
-      </figure>
-      <section class="design-insight" aria-labelledby="design-title">
-        <header class="insight-heading">
-          <p class="eyebrow">The DIME design</p>
-          <h3 id="design-title">Learning the variation within an identity</h3>
-          <p>A shared appearance reference makes subtle facial changes an explicit learning signal.</p>
-        </header>
-        <div class="insight-grid">
-        <figure class="paired-observations">
-          <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
-            <div class="observation observation-a"><span class="observation-label">Observation A</span><div class="portrait neutral" role="img" aria-label="The person with a neutral expression"></div></div>
-            <div class="observation observation-b"><span class="observation-label">Observation B</span><div class="portrait smile" role="img" aria-label="The same person with a smiling expression"></div></div>
-          </div>
-          <div class="identity-bracket"><span>Same identity · different observations</span></div>
-          <figcaption>Illustrative portraits by <a href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Andrea Piacquadio / Pexels</a>; not study samples.</figcaption>
-        </figure>
-        <div class="learning-path">
-          <div class="learning-step"><span class="step-number">01</span><div><h4>Reconstruct both observations</h4><p>Reciprocal masked mixtures share an encoder. Source-isolated attention prevents copying between observations.</p></div></div>
-          <div class="learning-step"><span class="step-number">02</span><div><h4>Supervise how they differ</h4><p>Explicit Differential Direction Supervision (EDDS) aligns the direction of change between the input pair and its reconstructions.</p></div></div>
-          <p class="learning-anchor">RGB recovery preserves appearance; gradient-orientation recovery preserves local structure.</p>
+
+      <div class="edds-panel">
+        <div class="edds-formula">
+          <math display="block"><msub><mi>ℒ</mi><mi>edds</mi></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mo>|</mo><mi>Γ</mi><mo>|</mo></mrow></mfrac><munder><mo>∑</mo><mrow><mi>ℓ</mi><mo>∈</mo><mi>Γ</mi></mrow></munder><mrow><mo>[</mo><mn>1</mn><mo>−</mo><mfrac><mrow><mo>⟨</mo><msub><mover><mi>δ</mi><mo>^</mo></mover><mi>ℓ</mi></msub><mo>,</mo><msub><mi>δ</mi><mi>ℓ</mi></msub><mo>⟩</mo></mrow><mrow><mo>‖</mo><msub><mover><mi>δ</mi><mo>^</mo></mover><mi>ℓ</mi></msub><mo>‖</mo><mo>‖</mo><msub><mi>δ</mi><mi>ℓ</mi></msub><mo>‖</mo></mrow></mfrac><mo>]</mo></mrow></math><math display="block" class="delta-def"><msub><mi>δ</mi><mi>ℓ</mi></msub><mo>=</mo><msub><mi>H</mi><mi>P</mi></msub><mo>(</mo><msubsup><mi>y</mi><mi>ℓ</mi><mi>a</mi></msubsup><mo>−</mo><msubsup><mi>y</mi><mi>ℓ</mi><mi>b</mi></msubsup><mo>)</mo><mo>,</mo><mspace width="0.5em"/><msub><mover><mi>δ</mi><mo>^</mo></mover><mi>ℓ</mi></msub><mo>=</mo><msub><mi>H</mi><mi>P</mi></msub><mo>(</mo><msubsup><mover><mi>y</mi><mo>^</mo></mover><mi>ℓ</mi><mi>a</mi></msubsup><mo>−</mo><msubsup><mover><mi>y</mi><mo>^</mo></mover><mi>ℓ</mi><mi>b</mi></msubsup><mo>)</mo></math>
+          <p>Γ keeps the patches where the pair really changed (largest ‖δ‖), chosen from targets only. <math><msub><mi>H</mi><mi>P</mi></msub></math> removes each channel's spatial mean, so a uniform color offset does not count as change.</p>
         </div>
-        </div>
-        <div class="direction-panel" aria-label="EDDS aligns the directions of centered input-pair and reconstruction-pair differences">
-          <div class="difference-label"><span>Input-pair difference</span><strong>Observed change <i>δ</i></strong></div>
-          <div class="direction-alignment">
-            <svg viewBox="0 0 132 45" width="132" height="45" aria-hidden="true"><path d="M12 14H116m-11-8 11 8-11 8" fill="none" stroke="#355aa5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 32H116m-11-8 11 8-11 8" fill="none" stroke="#187e85" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>EDDS · align directions</span>
-          </div>
-          <div class="difference-label"><span>Reconstruction-pair difference</span><strong>Recovered change <math aria-label="delta hat"><mover><mi>δ</mi><mo>^</mo></mover></math></strong></div>
-          <p class="direction-note">Compared patch by patch after removing constant channel offsets. Pair order does not matter.</p>
-        </div>
-      </section>
+        <ul class="edds-facts">
+          <li><b>Equal and opposite gradients.</b> <math><msub><mi>∇</mi><mi>a</mi></msub><mo>=</mo><mo>−</mo><msub><mi>∇</mi><mi>b</mi></msub></math>: the loss pushes the two recoveries apart along the true direction, and each gradient depends on the other face's state.</li>
+          <li><b>Zero mean per channel.</b> The EDDS gradient never touches the constant appearance component, so RGB reconstruction keeps anchoring what the face looks like while gradient orientation keeps local structure.</li>
+          <li><b>Order-free, identity-free.</b> Swapping <i>a</i> and <i>b</i> negates both δ and δ̂ and leaves the loss unchanged: no temporal order, no reference expression, no identity code.</li>
+          <li><b>Only the encoder survives.</b> Downstream inference takes a single image, with no pairs and no mask. The variation-aware features are simply in the weights.</li>
+        </ul>
+      </div>
     </section>
 
     <section class="content-section" id="abstract">
-      <h2>Abstract</h2>
+      <h2>Brief abstract</h2>
       <p>Conventional large-scale visual pretraining shows diminishing returns on fine-grained facial tasks: learning more appearance does not necessarily improve sensitivity to expression, geometry, or local texture changes. DIME reframes masked autoencoding around two observations of the same person. Their shared identity provides a reference, while Explicit Differential Direction Supervision (EDDS) aligns the direction of change between the original and reconstructed pairs. Pretrained on the curated Face-20M dataset, DIME continues to improve as facial data grows to 20 million images, where a standard MAE objective begins to plateau. The resulting single-image encoder transfers across facial action-unit analysis, cross-domain anti-spoofing, facial geometry, parsing, and face generation.</p>
     </section>
 
@@ -89,19 +155,55 @@
     <section class="content-section" id="results">
       <h2>Results</h2>
       <p>On Face-20M, DIME-B keeps gaining from larger pretraining subsets while a matched MAE-B baseline changes little beyond approximately 6 million images. DIME is evaluated across seven task families.</p>
-      <figure class="paper-figure">
-        <a href="media/first.webp" target="_blank" rel="noopener noreferrer" aria-label="Open scaling and efficiency figure at full size"><img src="media/first.webp" alt="Paper overview comparing MAE and DIME objectives, action-unit parameter efficiency, and performance as facial pretraining data scales" loading="lazy"></a>
-        <figcaption>From 6M to 20M images, DIME-B's BP4D mean F1 rises from 66.1% to 72.0%; MAE-B moves from 64.5% to approximately 65.0%. <a href="media/first.webp" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
-      </figure>
       <div class="result-summary" aria-label="Selected paper results">
         <p><strong>73.2%</strong><span>BP4D AU macro F1 · DIME-L</span></p>
         <p><strong>5.43%</strong><span>Cross-domain FAS HTER · DIME-L ↓</span></p>
         <p><strong>6.12</strong><span>RAEv2 256px FID at 100K steps · DIME-L ↓</span></p>
       </div>
+      <p class="summary-source">Headline numbers from the paper's BP4D action-unit, cross-domain face anti-spoofing (leave-one-domain-out over O, C, I, M), and FFHQ generation tables; the generation table is reproduced below.</p>
+      <h3 class="result-heading">Scaling with facial data</h3>
+      <figure class="paper-figure">
+        <a href="media/first.webp" target="_blank" rel="noopener noreferrer" aria-label="Open scaling and efficiency figure at full size"><img src="media/first.webp" alt="Paper overview comparing MAE and DIME objectives, action-unit parameter efficiency, and performance as facial pretraining data scales" loading="lazy"></a>
+        <figcaption>From 6M to 20M images, DIME-B's BP4D mean F1 rises from 66.1% to 72.0%; MAE-B moves from 64.5% to approximately 65.0%. <a href="media/first.webp" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+      </figure>
+      <h3 class="result-heading">Emergent facial semantics</h3>
+      <figure class="paper-figure">
+        <a href="media/semantic.webp" target="_blank" rel="noopener noreferrer" aria-label="Open semantic feature visualization at full size"><img src="media/semantic.webp" alt="Left: cosine similarity maps for query patches in different facial regions. Right: UMAP-PCA dense feature visualizations comparing DINOv3-L, MAE-L and DIME-L." loading="lazy"></a>
+        <figcaption><strong>Facial semantics emerge in DIME's representations.</strong> (a) Cosine similarity to the query token marked with +, for eyebrow, eye, nose, cheek, and mouth queries; brighter is more similar. (b) UMAP-PCA views of dense features from DINOv3-L, MAE-L, and DIME-L. <a href="media/semantic.webp" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+      </figure>
+      <h3 class="result-heading">DIME as the latent space for face generation</h3>
+      <p class="result-intro">Latent diffusion models do not generate pixels directly. An encoder first maps every training image into a latent space, the diffusion model learns to generate inside that space, and a decoder turns the result back into pixels. The encoder therefore decides what the generator can express at all. We plug DIME in as that encoder in two recent frameworks: <strong>RAEv2</strong>, which builds its generative latent space directly from a pretrained representation encoder, and <strong>REPA</strong>, which aligns the internal features of the diffusion model with the encoder's representation. Only the encoder changes; the diffusion architecture and the FFHQ training data are the same for every encoder compared in the table below: MAE, MixMAE, DINOv2, DINOv3, the face-pretrained MAE-Face, and DIME.</p>
+      <figure class="paper-figure generation-dynamics">
+        <a href="media/gen_show_2.png" target="_blank" rel="noopener noreferrer" aria-label="Open face generation convergence and sample progression at full size"><img src="media/gen_show_2.png" alt="RAEv2 on FFHQ: training loss and FID curves for MAE, DINOv3 and DIME; sample progression from 1K to 50K steps for DIME and DINOv3." loading="lazy"></a>
+        <figcaption><strong>Faster convergence with DIME in RAEv2 on FFHQ.</strong> (a) Training loss and FID (lower is better) with MAE, DINOv3, and DIME as the encoder. At 10K steps DIME's FID is already 18.43 versus 24.46 for DINOv3 and 26.15 for MAE; at 50K steps the gap widens to 9.41 versus 17.76 and 21.37. (b) Samples from 1K to 50K steps. DIME resolves recognisable eyes, mouth, and hair by 10K to 20K steps, while DINOv3 samples remain blurred or noisy. <a href="media/gen_show_2.png" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+      </figure>
       <figure class="paper-figure samples">
         <a href="media/gen_show_1.webp" target="_blank" rel="noopener noreferrer" aria-label="Open generated face samples at full size"><img src="media/gen_show_1.webp" alt="Selected face images generated using the DIME-L encoder in RAEv2 after 100K training steps" loading="lazy"></a>
-        <figcaption>Selected face-generation samples using DIME-L in the RAEv2 framework after 100K steps.</figcaption>
+        <figcaption><strong>Samples from RAEv2 with the DIME-L encoder after 100K steps.</strong> FID 6.12 at 256 × 256 and 6.59 at 512 × 512 with RAEv2, and 7.26 and 7.93 with REPA, the best of all encoders in the table below.</figcaption>
       </figure>
+      <div class="table-wrap">
+        <table class="result-table" aria-label="FID of latent diffusion on FFHQ with different representation encoders">
+          <caption><strong>FID on FFHQ (lower is better) with different representation encoders.</strong> Same diffusion framework and data; only the encoder changes. Bold is best, underlined is second best. DINOv3-L is additionally run for 200K and 400K steps.</caption>
+          <thead>
+            <tr><th scope="col" rowspan="2">Encoder</th><th scope="col" rowspan="2">Steps</th><th scope="colgroup" colspan="2">RAEv2</th><th scope="colgroup" colspan="2">REPA</th></tr>
+            <tr><th scope="col">256²</th><th scope="col">512²</th><th scope="col">256²</th><th scope="col">512²</th></tr>
+          </thead>
+          <tbody>
+<tr class=""><th scope="row">DINOv3-L</th><td>100K</td><td>12.48</td><td>14.83</td><td>13.46</td><td>16.15</td></tr>
+<tr class=""><th scope="row">DINOv3-L</th><td>200K</td><td>9.83</td><td>11.53</td><td>10.61</td><td>11.80</td></tr>
+<tr class="sep"><th scope="row">DINOv3-L</th><td>400K</td><td>8.53</td><td>8.94</td><td class="second">8.22</td><td class="second">8.36</td></tr>
+<tr class=""><th scope="row">DINOv2-L</th><td>100K</td><td>14.83</td><td>16.79</td><td>15.31</td><td>18.82</td></tr>
+<tr class=""><th scope="row">MAE-L</th><td>100K</td><td>16.72</td><td>18.22</td><td>18.34</td><td>21.31</td></tr>
+<tr class=""><th scope="row">MixMAE-L</th><td>100K</td><td>17.44</td><td>19.65</td><td>17.15</td><td>20.83</td></tr>
+<tr class="sep"><th scope="row">MAE-Face</th><td>100K</td><td>11.03</td><td>16.50</td><td>13.67</td><td>18.67</td></tr>
+<tr class="ours"><th scope="row">DIME-B</th><td>50K</td><td>9.52</td><td>9.98</td><td>10.92</td><td>11.03</td></tr>
+<tr class="ours"><th scope="row">DIME-B</th><td>100K</td><td class="second">7.41</td><td class="second">8.06</td><td>8.47</td><td>9.25</td></tr>
+<tr class="ours"><th scope="row">DIME-L</th><td>50K</td><td>8.69</td><td>9.41</td><td>8.85</td><td>10.16</td></tr>
+<tr class="ours best"><th scope="row">DIME-L</th><td>100K</td><td class="best">6.12</td><td class="best">6.59</td><td class="best">7.26</td><td class="best">7.93</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="result-note"><strong>Why a representation encoder changes generation.</strong> Generic encoders organise their latent space around object semantics or, for face-pretrained MAE, around predictable identity appearance. DIME's pretraining is instead about how one face varies: expression, geometry, and local texture must be encoded because EDDS supervises them directly. The resulting latent space is face-focused and variation-aware, so the diffusion model finds coherent facial structure earlier, resolves fine detail sooner, and reaches a lower final FID. Relative to DINOv3-L at 100K steps, DIME-L lowers FID by 51.0% and 55.6% with RAEv2 and by 46.1% and 50.9% with REPA at 256 and 512 resolution. The space also scales better: moving from 256 to 512 output raises DIME-L's FID by only 0.47 with RAEv2 and 0.67 with REPA, far less than for the other encoders, and DIME-B already outperforms larger generic encoders. The generation results thus echo the pretraining motivation: representing variation, not just appearance, gives a richer and better-conditioned space to generate from.</p>
     </section>
 
     <section class="content-section citation-section" id="citation">

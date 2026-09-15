@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dime-page",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["C:/Users/Price/Desktop/project_page/.claude/serve.py", "8765", "C:/Users/Price/Desktop/project_page/dist"],
+      "port": 8765
+    }
+  ]
+}
