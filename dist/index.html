@@ -30,36 +30,27 @@
     <section class="opening-demo" id="video" aria-labelledby="video-title">
       <div class="demo-heading">
         <h2 id="video-title">Video overview</h2>
-        <p>Two recordings illustrate facial landmarks, head pose, face parsing, and action-unit analysis on moving faces.</p>
+        <p>The recording illustrates facial landmarks, head pose, face parsing, and action-unit analysis on a moving face.</p>
       </div>
       <figure class="demo-media demo-media-primary">
-        <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="Facial analysis demo on the first person">
+        <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="Facial analysis demo video">
           <source src="media/dime-demo.mp4" type="video/mp4">
           Your browser does not support video playback.
         </video>
-        <figcaption>Example 01 · motion, geometry, parsing, and action units</figcaption>
+        <figcaption>Video demo · motion, geometry, parsing, and action units</figcaption>
       </figure>
-      <div class="demo-support">
-        <figure class="demo-media demo-media-secondary">
-          <video controls playsinline preload="none" poster="media/demo-second-poster.webp" aria-label="Facial analysis demo on a second person">
-            <source src="media/dime-demo-second.mp4" type="video/mp4">
-            Your browser does not support video playback.
-          </video>
-          <figcaption>Example 02 · a different person and setting</figcaption>
-        </figure>
-        <div class="demo-copy">
-          <figure class="paired-observations">
-            <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
-              <div class="portrait neutral" role="img" aria-label="Neutral expression"></div>
-              <div class="portrait-arrow" aria-hidden="true">→</div>
-              <div class="portrait smile" role="img" aria-label="Smiling expression of the same person"></div>
-            </div>
-            <figcaption>Illustrative portraits: <a href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Andrea Piacquadio / Pexels</a>. Not study samples.</figcaption>
-          </figure>
-          <div class="pair-note">
-            <h3>Identity-matched observations</h3>
-            <p>During pretraining, DIME compares two images of the same person and learns the direction of their subtle differences.</p>
+      <div class="demo-copy">
+        <figure class="paired-observations">
+          <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
+            <div class="portrait neutral" role="img" aria-label="Neutral expression"></div>
+            <div class="portrait-arrow" aria-hidden="true">→</div>
+            <div class="portrait smile" role="img" aria-label="Smiling expression of the same person"></div>
           </div>
+          <figcaption>Illustrative portraits: <a href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Andrea Piacquadio / Pexels</a>. Not study samples.</figcaption>
+        </figure>
+        <div class="pair-note">
+          <h3>Identity-matched observations</h3>
+          <p>During pretraining, DIME compares two images of the same person and learns the direction of their subtle differences.</p>
         </div>
       </div>
     </section>
