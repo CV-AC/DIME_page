@@ -14,19 +14,6 @@
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to content</a>
-  <header class="topbar">
-    <div class="page-width topbar-inner">
-      <a class="site-name" href="#top">DIME</a>
-      <nav aria-label="On this page">
-        <a href="#abstract">Abstract</a>
-        <a href="#method">Method</a>
-        <a href="#results">Results</a>
-        <a href="#video">Video</a>
-        <a href="#citation">BibTeX</a>
-      </nav>
-    </div>
-  </header>
-
   <main id="content" class="page-width">
     <section class="paper-header" id="top" aria-labelledby="paper-title">
       <p class="project-label">Research project · 2026</p>
@@ -41,41 +28,39 @@
     </section>
 
     <section class="opening-demo" id="video" aria-labelledby="video-title">
-      <div class="demo-videos">
-        <figure class="demo-media">
-          <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="Facial analysis demo on the first person">
-            <source src="media/dime-demo.mp4" type="video/mp4">
-            Your browser does not support video playback.
-          </video>
-          <figcaption>Example 01 · facial analysis in motion</figcaption>
-        </figure>
+      <div class="demo-heading">
+        <h2 id="video-title">Video overview</h2>
+        <p>Two recordings illustrate facial landmarks, head pose, face parsing, and action-unit analysis on moving faces.</p>
+      </div>
+      <figure class="demo-media demo-media-primary">
+        <video controls playsinline preload="metadata" poster="media/demo-poster.webp" aria-label="Facial analysis demo on the first person">
+          <source src="media/dime-demo.mp4" type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+        <figcaption>Example 01 · motion, geometry, parsing, and action units</figcaption>
+      </figure>
+      <div class="demo-support">
         <figure class="demo-media demo-media-secondary">
           <video controls playsinline preload="none" poster="media/demo-second-poster.webp" aria-label="Facial analysis demo on a second person">
             <source src="media/dime-demo-second.mp4" type="video/mp4">
             Your browser does not support video playback.
           </video>
-          <figcaption>Example 02 · a different person and scene</figcaption>
+          <figcaption>Example 02 · a different person and setting</figcaption>
         </figure>
-      </div>
-      <div class="demo-copy">
-        <p class="demo-label">TWO VIDEO EXAMPLES <span>· 17 s + 7 s</span></p>
-        <h2 id="video-title">Downstream facial analysis</h2>
-        <p>Two moving faces illustrate the analysis outputs shown in the demos:</p>
-        <ul class="demo-tasks">
-          <li>Facial landmarks</li>
-          <li>Head pose</li>
-          <li>Face parsing</li>
-          <li>Action units</li>
-        </ul>
-        <p class="demo-method-note">During pretraining, DIME learns subtle changes between two observations of the same person.</p>
-        <figure class="paired-observations">
-          <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
-            <div class="portrait neutral" role="img" aria-label="Neutral expression"></div>
-            <div class="portrait-arrow" aria-hidden="true">→</div>
-            <div class="portrait smile" role="img" aria-label="Smiling expression of the same person"></div>
+        <div class="demo-copy">
+          <figure class="paired-observations">
+            <div class="portrait-pair" aria-label="Illustrative portraits of the same person with different expressions">
+              <div class="portrait neutral" role="img" aria-label="Neutral expression"></div>
+              <div class="portrait-arrow" aria-hidden="true">→</div>
+              <div class="portrait smile" role="img" aria-label="Smiling expression of the same person"></div>
+            </div>
+            <figcaption>Illustrative portraits: <a href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Andrea Piacquadio / Pexels</a>. Not study samples.</figcaption>
+          </figure>
+          <div class="pair-note">
+            <h3>Identity-matched observations</h3>
+            <p>During pretraining, DIME compares two images of the same person and learns the direction of their subtle differences.</p>
           </div>
-          <figcaption>Illustrative portraits: <a href="https://www.pexels.com/photo/collage-photo-of-woman-3812743/" target="_blank" rel="noopener noreferrer">Andrea Piacquadio / Pexels</a>. Not study samples.</figcaption>
-        </figure>
+        </div>
       </div>
     </section>
 
