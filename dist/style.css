@@ -122,13 +122,16 @@ sup{font-size:10px;vertical-align:super}
 .edds-cases svg{display:block}
 .edds-cases b{font-weight:700}.edds-cases .bad{color:#b8541a}.edds-cases .good{color:var(--teal)}
 /* bottom panel */
-.edds-panel{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px;align-items:center;padding:16px 26px 18px;border-top:1px solid #d2dfee;background:#e9f0f9}
+.edds-panel{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:22px;align-items:start;padding:16px 26px 18px;border-top:1px solid #d2dfee;background:#e9f0f9}
 .edds-formula{min-width:0}
 .edds-formula .katex-display{margin:0;text-align:center}
-.edds-formula .katex-display>.katex{font-size:1.12em;color:var(--navy)}
+.edds-formula .katex-display>.katex{font-size:1.06em;color:var(--navy)}
 .edds-formula .delta-def{margin-top:10px}
-.edds-formula .delta-def .katex-display>.katex{font-size:.98em;color:var(--sub)}
-.edds-formula p{font-size:12.5px;line-height:1.5;color:var(--sub);margin:8px 0 0;text-align:justify}
+.edds-formula .delta-def .katex-display>.katex{font-size:.9em;color:var(--sub)}
+.notation{margin:10px 0 0;padding:9px 0 0;border-top:1px solid #c5d5e8;display:grid;gap:5px}
+.notation>div{display:grid;grid-template-columns:64px minmax(0,1fr);gap:8px;font-size:12.5px;line-height:1.5;color:var(--sub)}
+.notation dt{margin:0;color:var(--navy);white-space:nowrap}
+.notation dd{margin:0;text-align:justify}
 .edds-facts{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:12.5px;line-height:1.5;color:var(--text);text-align:justify}
 .edds-facts b{color:var(--navy);font-weight:650}
 .katex{font-size:1.06em}
