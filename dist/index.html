@@ -52,6 +52,14 @@
         </figure>
       </div>
       <p class="panel-legend">Panels, left to right: input · head pose · landmarks · face parsing · action units.</p>
+      <div class="semantic-block">
+        <h3 class="result-heading">What the encoder has learned</h3>
+        <p class="result-intro">The same encoder, with no labels and no task head, already carries facial semantics. Querying one patch lights up the same anatomical region across different people, and a dense-feature projection separates eyes, nose, mouth, and skin far more cleanly than generic encoders trained on natural images or a plain MAE trained on faces.</p>
+        <figure class="paper-figure">
+          <a href="media/semantic.webp" target="_blank" rel="noopener noreferrer" aria-label="Open semantic feature visualization at full size"><img src="media/semantic.webp" alt="Left: cosine similarity maps for query patches in different facial regions. Right: UMAP-PCA dense feature visualizations comparing DINOv3-L, MAE-L and DIME-L." loading="lazy"></a>
+          <figcaption><strong>Facial semantics emerge in DIME's representations.</strong> (a) Cosine similarity to the query token marked with +, for eyebrow, eye, nose, cheek, and mouth queries; brighter is more similar. (b) UMAP-PCA views of dense features from DINOv3-L, MAE-L, and DIME-L. <a href="media/semantic.webp" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="content-section design-insight" id="idea" aria-labelledby="design-title">
@@ -166,11 +174,6 @@
       <figure class="paper-figure">
         <a href="media/first.webp" target="_blank" rel="noopener noreferrer" aria-label="Open scaling and efficiency figure at full size"><img src="media/first.webp" alt="Paper overview comparing MAE and DIME objectives, action-unit parameter efficiency, and performance as facial pretraining data scales" loading="lazy"></a>
         <figcaption>From 6M to 20M images, DIME-B's BP4D mean F1 rises from 66.1% to 72.0%; MAE-B moves from 64.5% to approximately 65.0%. <a href="media/first.webp" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
-      </figure>
-      <h3 class="result-heading">Emergent facial semantics</h3>
-      <figure class="paper-figure">
-        <a href="media/semantic.webp" target="_blank" rel="noopener noreferrer" aria-label="Open semantic feature visualization at full size"><img src="media/semantic.webp" alt="Left: cosine similarity maps for query patches in different facial regions. Right: UMAP-PCA dense feature visualizations comparing DINOv3-L, MAE-L and DIME-L." loading="lazy"></a>
-        <figcaption><strong>Facial semantics emerge in DIME's representations.</strong> (a) Cosine similarity to the query token marked with +, for eyebrow, eye, nose, cheek, and mouth queries; brighter is more similar. (b) UMAP-PCA views of dense features from DINOv3-L, MAE-L, and DIME-L. <a href="media/semantic.webp" target="_blank" rel="noopener noreferrer">View full size ↗</a></figcaption>
       </figure>
       <h3 class="result-heading">DIME as the latent space for face generation</h3>
       <p class="result-intro">Latent diffusion models do not generate pixels directly. An encoder first maps every training image into a latent space, the diffusion model learns to generate inside that space, and a decoder turns the result back into pixels. The encoder therefore decides what the generator can express at all. We plug DIME in as that encoder in two recent frameworks: <strong>RAEv2</strong>, which builds its generative latent space directly from a pretrained representation encoder, and <strong>REPA</strong>, which aligns the internal features of the diffusion model with the encoder's representation. Only the encoder changes; the diffusion architecture and the FFHQ training data are the same for every encoder compared in the table below: MAE, MixMAE, DINOv2, DINOv3, the face-pretrained MAE-Face, and DIME.</p>

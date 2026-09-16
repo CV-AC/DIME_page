@@ -60,6 +60,9 @@ sup{font-size:11px;vertical-align:super}
 .demo-media figcaption{font-size:14px;color:var(--sub);margin-top:8px}
 .demo-media figcaption strong{color:var(--navy);font-weight:600}
 .panel-legend{font-size:13px;letter-spacing:.02em;color:var(--sub);margin:14px 0 0!important;padding-top:10px;border-top:1px dashed var(--line)}
+.semantic-block{margin-top:30px;padding-top:26px;border-top:1px solid var(--line)}
+.semantic-block .result-heading{margin-top:0}
+.semantic-block .paper-figure{margin-top:0}
 
 /* Key idea */
 .design-insight{padding:0;border:1px solid #cddbec;border-top:3px solid var(--link);border-radius:4px;background:linear-gradient(120deg,#f1f5fc,#f7fafc);overflow:hidden}
